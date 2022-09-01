@@ -42,7 +42,7 @@ ScratchEd est l'environnement de programmation qui utilise une plateforme simila
 6. Cliquer sur le bouton `Program Edison`
 7. Sur le robot, appuyer sur le bouton rond (*record*) pour le mettre en mode programmation.
 8. Dans le navigateur cliquer sur le bouton `Program Edison`
-   ![](img/edscratch_program_robot.mp4)
+   ![](img/edscratch_program_robot.gif)
    - On devrait entendre un son typique des modems des années '90
    - Lorsque la programmation est terminé, on entend un *beep*
 9.  Tester le code
