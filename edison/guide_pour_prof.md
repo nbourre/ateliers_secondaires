@@ -1,6 +1,13 @@
-# Robot Edison : Guide de l'enseignant
+# Robot Edison : Guide de l'enseignant <!-- omit in toc -->
 
 Ce document sert à préparer l'enseignant qui donnera des ateliers avec le robot Edison.
+
+- [Le robot](#le-robot)
+- [Préparation du robot](#préparation-du-robot)
+- [Préparation du l'appareil de programmation](#préparation-du-lappareil-de-programmation)
+- [Programmation du robot](#programmation-du-robot)
+  - [ScratchEd](#scratched)
+  - [PyEd](#pyed)
 
 # Le robot
 Le robot possède trois boutons sur le dessus soit un triangle, un carré et un cercle. C'est trois boutons sont à l'image des boutons d'un radiocassette soit *Play*, *Stop* et *Record*.
@@ -27,7 +34,6 @@ Configurer l'appareil pour qu'il émette le son au niveau maximal.
 
 Ce robot ne nécessite aucun téléchargement. Cependant **une connexion internet est obligatoire**.
 
-
 ## ScratchEd
 ScratchEd est l'environnement de programmation qui utilise une plateforme similaire à [Scratch](https://scratch.mit.edu/).
 
@@ -45,7 +51,7 @@ ScratchEd est l'environnement de programmation qui utilise une plateforme simila
    ![](img/edscratch_program_robot.gif)
    - On devrait entendre un son typique des modems des années '90
    - Lorsque la programmation est terminé, on entend un *beep*
-9.  Tester le code
+9.  Tester le robot en appuyant sur le bouton triangulaire *Play*
 
 
 ## PyEd
