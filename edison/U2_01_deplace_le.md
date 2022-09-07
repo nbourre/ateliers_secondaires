@@ -1,0 +1,36 @@
+# Unité 02 : Déplace-le! <!-- omit in toc -->
+![](img/u0201_intro.png)
+
+# U2-1.1 Regardons comment les ordinateurs "pensent"
+Imagine un ordinateur. Maintenant, imagine une personne. Lequel des deux est le plus intelligent, selon toi?
+C'est un peu une question piège. Crois-le ou non, la plupart des ordinateurs ne peuvent rien faire sans l'aide de personnes.
+
+> **Pourquoi?**
+> 
+> Les ordinateurs et les personnes peuvent suivre des instructions, mais les personnes peuvent également penser par elles-mêmes. Nous pouvons apprendre et modifier ce que nous faisons sur la base de nouvelles connaissances. 
+La plupart des ordinateurs, en revanche, ne peuvent pas le faire. Un robot Edison, par exemple, ne peut pas penser par lui-même. Il ne peut que suivre des instructions. D'où viennent ces instructions? D'une personne comme toi!
+
+Les gens donnent des instructions aux ordinateurs en leur donnant des programmes informatiques.
+
+Pour créer un bon programme informatique pour notre robot Edison, ou pour tout autre ordinateur, nous devons écrire ce programme de manière à ce que l'ordinateur puisse le comprendre. Pour ce faire, nous devons essayer de penser aux choses comme si nous étions un ordinateur.
+
+Ce type de pensée est appelé **pensée computationnelle**.
+
+> **Zone à jargon**
+> 
+> La **pensée computationnelle** consiste à penser à un problème ou à une tâche de la même manière qu'un ordinateur. Il s'agit d'une manière de traiter logiquement les problèmes, de les décomposer en petits morceaux, de trouver des modèles, puis d'utiliser ces informations pour trouver une solution étape par étape.
+> 
+> En d'autres termes, la pensée computationnelle est une façon de planifier, de résoudre des problèmes et d'analyser des informations de la même manière qu'un ordinateur.
+
+Lorsque tu veux écrire un programme pour ton robot, tu dois utiliser la pensée computationnelle pour t'aider à déterminer ce qu'il faut faire. En apprenant à penser de manière à ce qu'Edison comprenne, tu seras en mesure de donner des instructions au robot pour qu'il fasse ce que tu veux.
+
+L'une des choses les plus importantes pour donner des instructions à Edison est l'ordre dans lequel tu les donnes.
+
+## L'importance d'y aller pas-à-pas
+Les ordinateurs, y compris les robots Edison, sont très doués pour suivre les instructions que nous leur donnons sous forme de programmes informatiques. En fait, un robot Edison suivra les instructions d'un programme exactement comme elles sont écrites. C'est pourquoi l'une des parties les plus importantes de la pensée computationnelle est l'utilisation de **séquences**.
+
+Imagine que tu veux faire un gâteau. Tu pourrais consulter une recette dans un livre de cuisine. Pour faire le gâteau, tu suis ensuite chaque étape une par une. C'est ça, la séquence!
+
+Lorsque tu écriras un programme pour Edison, tu devras utiliser la séquence de la même manière. Tu dois dire à Edison exactement ce qu'il doit faire, dans l'ordre exact où tu veux que le robot effectue chaque étape.
+
+

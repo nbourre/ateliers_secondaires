@@ -1,5 +1,14 @@
 # Prise en main d'EdScratch <!-- omit in toc -->
 
+- [Tâche 1 : Ouvre EdScratch](#tâche-1--ouvre-edscratch)
+- [Tâche 2 : Charger et télécharger le programme de test](#tâche-2--charger-et-télécharger-le-programme-de-test)
+  - [Charger le programme de démonstration `Test_program`](#charger-le-programme-de-démonstration-test_program)
+  - [Téléverser le programme vers le robot](#téléverser-le-programme-vers-le-robot)
+  - [Zone à questions](#zone-à-questions)
+- [U1 - 2.1a Défi : Téléverse un autre!](#u1---21a-défi--téléverse-un-autre)
+- [U1 - 2.2 Les messages d'avertissements](#u1---22-les-messages-davertissements)
+  - [Essaie-le!](#essaie-le)
+
 L'une des meilleures choses à propos d'Edison est que vous pouvez créer vos propres programmes pour votre robot ! Pour écrire un programme pour Edison, nous devons utiliser un logiciel spécial.
 
 > **Zone à jargon**
@@ -18,7 +27,7 @@ Le logiciel que nous allons utiliser avec Edison est un **langage de programmati
 
 Le langage de programmation que nous allons utiliser s'appelle EdScratch. Apprenons-en un peu plus sur le langage de programmation EdScratch.
 
-# Tâche 1 : Consulte EdScratch
+# Tâche 1 : Ouvre EdScratch
 Tu peux accéder à EdScratch en ligne.
 
 À l'aide de ton navigateur, vas à l'adresse [www.edscratchapp.com](www.edscratchapp.com)
