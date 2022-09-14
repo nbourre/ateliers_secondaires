@@ -45,3 +45,35 @@ C'est un peu comme le jeu "Jean dit"!
 Regarde le programme suivant :
 
 ![](img/u2_1_2_t1.png)
+
+> **Note**
+> 
+> Tu remarques que le programme en anglais. En effet, dans la très grande majorité des langages de programmation sont en anglais.
+> Toutefois, ne t'en fais pas! Ce sont souvent des mots simples et facile à comprendre. Ce n'est pas un Shakespeare! :)
+
+Tous les programmes EdScratch doivent débuter avec un bloc jaune `Start`. Celui-ci permet d'indiquer au robot que le programme débute en-dessous du `Start`.
+
+**Question :**
+- Que penses-tu que le robot va faire avec ce programme?
+
+## Tâche 02 : Code le programme
+Vas sur l'application EdScratch sur ton ordinateur et code le programme de l'image précédente. Trouve chaque bloc dans la palette de blocs et fais-le glisser dans la zone de programmation.
+
+> **Astuces**
+> 
+> Tu peux modifier les chiffres dans un bloc en cliquant sur le chiffre et le modifier avec le clavier.
+> 
+> Tu peux modifier les items dans une liste dans un bloc en cliquant sur la flèche pointant vers le bas et sélectionner l'optionque tu désires.
+
+Assure-toi que tu mets tous les blocs dans la séquence correcte dans ton programme.
+
+- Quand tu as terminé, télécharge le programme sur le robot, est-ce qu'il fait ce que tu pensais à la question précédente? Si non, regarde ton programme et ce qu'il y a dans l'image et essaie de corriger l'erreur.
+
+## Tâche 03 : Change la séquence
+- Change l'ordre d'au moins 3 blocs dans ton programme. N'ajoute pas d'autres blocs ou ne modifie pas les options dans les blocs.
+- Télécharge le nouveau programme et observe tes modifications.
+- Est-ce que celles-ci répondent à tes attentes? Si non, pourquoi?
+
+
+
+
