@@ -1,7 +1,7 @@
 # Unité 02 : Déplace-le! <!-- omit in toc -->
 ![](img/u0201_intro.png)
 
-# U2-1.1 Regardons comment les ordinateurs "pensent"
+# U2-1.1 Comment les ordinateurs "pensent"
 Imagine un ordinateur. Maintenant, imagine une personne. Lequel des deux est le plus intelligent, selon toi?
 C'est un peu une question piège. Crois-le ou non, la plupart des ordinateurs ne peuvent rien faire sans l'aide de personnes.
 
@@ -34,3 +34,14 @@ Imagine que tu veux faire un gâteau. Tu pourrais consulter une recette dans un 
 Lorsque tu écriras un programme pour Edison, tu devras utiliser la séquence de la même manière. Tu dois dire à Edison exactement ce qu'il doit faire, dans l'ordre exact où tu veux que le robot effectue chaque étape.
 
 
+# U2-1.2 : EdScratch pas-à-pas
+Lorsque tu écris un programme pour ton robot Edison dans EdScratch, tu écris les instructions qui indiquent au robot ce qu'il doit faire et dans quel ordre il doit le faire. Chaque bloc EdScratch représente une action que tu demandes au robot de réaliser.
+
+L'ordre dans lequel tu relies les blocs entre eux dans ton programme indique au robot l'ordre dans lequel il doit effectuer chaque action. Edison effectuera les actions dans l'ordre, une par une, en commençant par le bloc du haut.
+
+C'est un peu comme le jeu "Jean dit"!
+
+## Tâche 01 : Qu'est-ce que le robot va faire?
+Regarde le programme suivant :
+
+![](img/u2_1_2_t1.png)
