@@ -12,7 +12,7 @@ config_version=4
 
 config/name="plateforme_base"
 run/main_scene="res://World.tscn"
-config/icon="res://icon.png"
+config/icon="res://zOld/icon.png"
 
 [importer_defaults]
 

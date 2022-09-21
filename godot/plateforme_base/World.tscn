@@ -1,115 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/tilesets/tileset128.png" type="Texture" id=1]
-[ext_resource path="res://Traveler.tscn" type="PackedScene" id=2]
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
-
-[sub_resource type="TileSet" id=9]
-0/name = "tileset128.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 384, 384, 384 )
-0/tile_mode = 1
-0/autotile/bitmask_mode = 1
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 128, 128 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
+[ext_resource path="res://assets/tilesets/tiles1.tres" type="TileSet" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 
 [node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 0.25, 0.25 )
-tile_set = SubResource( 9 )
-cell_size = Vector2( 128, 128 )
-cell_custom_transform = Transform2D( 128, 0, 0, 128, 0, 0 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 1048580, 0, 0, 1048581, 0, 1, 1048582, 0, 1, 1048583, 0, 1, 1048584, 0, 1, 1048585, 0, 1, 1048586, 0, 1, 1048587, 0, 1, 1048588, 0, 1, 1048589, 0, 1, 1048590, 0, 1, 1048591, 0, 1, 1048592, 0, 1, 1048593, 0, 1, 1048594, 0, 2, 1114116, 0, 131072, 1114117, 0, 131073, 1114118, 0, 131073, 1114119, 0, 131073, 1114120, 0, 131073, 1114121, 0, 131073, 1114122, 0, 131073, 1114123, 0, 131073, 1114124, 0, 131073, 1114125, 0, 131073, 1114126, 0, 131073, 1114127, 0, 131073, 1114128, 0, 131073, 1114129, 0, 131073, 1114130, 0, 131074 )
+tile_data = PoolIntArray( 1507353, 25, 0, 1507355, 23, 0, 1507356, 37, 0, 1572888, 38, 0, 1572891, 6, 0, 1572893, 24, 0, 1638415, 6, 0, 1638416, 6, 0, 1638417, 22, 0, 1638418, 22, 0, 1638419, 22, 0, 1638420, 22, 0, 1638421, 22, 0, 1638422, 22, 0, 1638423, 22, 0, 1638425, 6, 0, 1638426, 6, 0, 1638427, 6, 0, 1638428, 6, 0, 1638431, 21, 0, 1638432, 21, 0, 1638433, 21, 0, 1638434, 21, 0, 1638435, 21, 0, 1638436, 21, 0, 1638437, 21, 0, 1638438, 21, 0, 1638439, 21, 0, 1638440, 21, 0, 1638441, 21, 0, 1703951, 6, 0, 1703952, 6, 0, 1703953, 6, 0, 1703954, 6, 0, 1703955, 6, 0, 1703956, 6, 0, 1703957, 6, 0, 1703958, 6, 0, 1703959, 6, 0, 1703960, 6, 0, 1703961, 6, 0, 1703962, 6, 0, 1703963, 6, 0, 1703964, 6, 0, 1703965, 6, 0, 1703966, 6, 0, 1703967, 6, 0, 1703968, 6, 0, 1703969, 6, 0, 1703970, 6, 0, 1703971, 6, 0, 1703972, 6, 0, 1703973, 6, 0, 1703974, 6, 0, 1703975, 6, 0, 1703976, 6, 0, 1703977, 6, 0, 1769507, 6, 0, 1769508, 6, 0, 1769509, 6, 0, 1769510, 6, 0, 1769511, 6, 0 )
 
-[node name="Traveler" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, 384 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 396, 352 )
