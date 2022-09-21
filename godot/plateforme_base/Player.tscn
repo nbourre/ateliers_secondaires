@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/fox/player_sheet.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -124,18 +123,14 @@ tracks/0/keys = {
 position = Vector2( 147.75, 194.053 )
 collision_layer = 2
 collision_mask = 13
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-run_speed = 100
-jump_speed = -350
-gravity = 1200
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 19
-frame = 7
+frame = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5 )
