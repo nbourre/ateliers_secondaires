@@ -74,6 +74,29 @@ Assure-toi que tu mets tous les blocs dans la séquence correcte dans ton progra
 - Télécharge le nouveau programme et observe tes modifications.
 - Est-ce que celles-ci répondent à tes attentes? Si non, pourquoi?
 
+# U2-1.3 Piloter le robot!
+Un des groupes de blocs dans EdScratch est la catégorie `Drive`. Tous les blocs dans cette catégorie sont liés aux moteurs d'Edison. Une des choses que l'on peut faire avec les moteurs est de déplacer le robot comme une voiture.
 
+C'est en programmant le robot avec du code que l'on va le piloter.
 
+## Tâche 01 : Conduire droit devant
+Pour cette tâche, tu dois faire en sorte qu'Edison conduise une voie droite. Tu dois écrire un programme pour qu'Edison puisse parcourir un tracé droit. Mesure un tracé d'environ 30 cm par terre et code le robot pour qu'il parcourt l'ensemble du tracé et s'arrête après.
+
+**Question**
+- Quel bloc as-tu utilisé?
+
+## Tâche 02 : À travers un labyrinthe
+Pour cette tâche, tu dois faire en sorte qu'Edison traverse un labyrinthe. Regarde le labyrinthe sur la fiche d'activité U2-3. Réfléchis aux différentes actions qu'Edison devra entreprendre pour traverser le labyrinthe. N'oublie pas de tenir compte de l'ordre des actions!
+
+**Question**
+- Quelles actions crois-tu qu'Edison aura de besoin pour compléter le labyrinthe?
+  - Écris ton plan dans un fichier texte.
+
+Tu vas avoir besoin de plusieurs blocs différents pour passer à travers le tracé. Tu devras aussi essayer de trouver les **paramètres d'entrée** à utiliser pour chaque bloc.
+
+> **Zone à jargon**
+> 
+> Les valeurs que tu peux changer dans un bloc comme les nombres et les choix dans les listes sont appelées `paramètres d'entrée`.
+
+Démarre Edison au début du tracé et fais en sorte qu'il arrête après la ligne d'arrivée. Assure-toi qu'il reste à l'intérieur des lignes pendant le trajet. On ne triche pas! :)
 
