@@ -100,3 +100,7 @@ Tu vas avoir besoin de plusieurs blocs différents pour passer à travers le tra
 
 Démarre Edison au début du tracé et fais en sorte qu'il arrête après la ligne d'arrivée. Assure-toi qu'il reste à l'intérieur des lignes pendant le trajet. On ne triche pas! :)
 
+## Feuille d'activité U2-3
+[Version PDF](img/activite_labyrinthe.pdf)
+![](img/activite_labyrinthe.png)
+
