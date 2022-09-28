@@ -30,7 +30,7 @@ Le langage de programmation que nous allons utiliser s'appelle EdScratch. Appren
 # Tâche 1 : Ouvre EdScratch
 Tu peux accéder à EdScratch en ligne.
 
-À l'aide de ton navigateur, vas à l'adresse [www.edscratchapp.com](www.edscratchapp.com)
+À l'aide de ton navigateur, vas à l'adresse https://www.edscratchapp.com/
 
 Whenever you want to program Edison using EdScratch, you will always need to go to the EdScratch app.
 
