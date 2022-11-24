@@ -5,6 +5,6 @@
 [node name="World" type="Node2D"]
 
 [node name="logo" type="Sprite" parent="."]
-position = Vector2( 904, 427 )
-scale = Vector2( 0.105787, 0.105787 )
+position = Vector2( 337, 182 )
+scale = Vector2( 0.166746, 0.166746 )
 texture = ExtResource( 1 )
