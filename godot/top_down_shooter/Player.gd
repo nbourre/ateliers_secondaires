@@ -11,8 +11,6 @@ func _ready():
 
 
 func _physics_process(_delta):
-	
-
 	motion.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	motion.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 
