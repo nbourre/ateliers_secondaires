@@ -9,7 +9,7 @@ var hp = 1
 func _ready():
 	player = get_parent().get_node("Player")
 	
-	hp = rand_range(1, 5)
+	hp = int(rand_range(1, 5))
 	match hp:
 		1:
 			$Sprite.modulate = Color(.75, .75, .75)
@@ -24,7 +24,10 @@ func _ready():
 	
 
 func _physics_process(_delta):
-	position += (player.position - position)/50
+	var direction = (player.position - position)
+	direction = direction.normalized() * 6
+
+	position += direction
 	look_at(player.position)
 
 	var _collision = move_and_collide(motion)
