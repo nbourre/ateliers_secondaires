@@ -24,7 +24,10 @@ func _ready():
 	
 
 func _physics_process(_delta):
-	position += (player.position - position)/50
+	var direction = (player.position - position)
+	direction = direction.normalized() * 5.5
+
+	position += direction
 	look_at(player.position)
 
 	var _collision = move_and_collide(motion)
