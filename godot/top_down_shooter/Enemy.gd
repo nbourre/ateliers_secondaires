@@ -25,7 +25,7 @@ func _ready():
 
 func _physics_process(_delta):
 	var direction = (player.position - position)
-	direction = direction.normalized() * 6
+	direction = direction.normalized() * 5.5
 
 	position += direction
 	look_at(player.position)
