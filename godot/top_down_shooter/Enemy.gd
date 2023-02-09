@@ -9,7 +9,7 @@ var hp = 1
 func _ready():
 	player = get_parent().get_node("Player")
 	
-	hp = rand_range(1, 5)
+	hp = int(rand_range(1, 5))
 	match hp:
 		1:
 			$Sprite.modulate = Color(.75, .75, .75)
