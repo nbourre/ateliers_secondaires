@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4j8e8fp0awhf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_x37sj"]
+radius = 50.0
+height = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lrfj"]
+radius = 51.0
+
+[node name="Player" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.0470588, 0.678431, 0.211765, 1)
+mesh = SubResource("SphereMesh_x37sj")
+
+[node name="Area2D" type="Area2D" parent="MeshInstance2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/Area2D"]
+shape = SubResource("CircleShape2D_4lrfj")
