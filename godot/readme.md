@@ -1,14 +1,14 @@
 # Étape 1 - Télécharger le fichier de départ
 - Utilisez le navigateur Chrome ou Edge
   - Ne pas utiliser Firefox, car il a un bogue de copier-coller
-- Téléchargez le fichier de départ en allant à l'adresse suivante : **https://bit.ly/facile_tds**
+- Téléchargez le fichier de départ en allant à l'adresse suivante : **https://tinyurl.com/jeutds**
   - Ce fichier se nomme `top_down_shooter.zip`
   - **Ne pas l'ouvrir**
 
 ---
 
 # Étape 2 - Atteindre le moteur de jeu
-- Allez à la page web suivante  : https://editor.godotengine.org
+- Allez à la page web suivante  : https://tinyurl.com/editeurjeux
 - Si une fenêtre surgit avec un texte, **cliquez sur le bouton «  Ok, don’t show again »**
 
 
