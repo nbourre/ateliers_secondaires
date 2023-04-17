@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var move_speed = 500
 var motion = Vector2()
@@ -15,7 +15,9 @@ func _physics_process(_delta):
 	motion.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 
 	motion = motion.normalized()
-	motion = move_and_slide(motion * move_speed)
+	set_velocity(motion * move_speed)
+	move_and_slide()
+	motion = velocity
 
 	look_at(get_global_mouse_position())
 
@@ -23,10 +25,10 @@ func _physics_process(_delta):
 		fire()
 
 func fire():
-	var bullet_instance = bullet.instance()
+	var bullet_instance = bullet.instantiate()
 	bullet_instance.position = get_global_position()
 	bullet_instance.rotation_degrees = rotation_degrees
-	bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
+	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation), Vector2())
 	get_tree().get_root().call_deferred("add_child", bullet_instance)
 
 func kill():
