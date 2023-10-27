@@ -15,11 +15,13 @@ position = Vector2(-1, -1)
 polygon = PackedVector2Array(1, -15, 8.18544, -7.81455, 17, 1, 1, 17, -15, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
 polygon = PackedVector2Array(0, -17, 17, 0, 0, 17, -17, 0)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
