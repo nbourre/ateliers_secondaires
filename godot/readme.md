@@ -4,8 +4,6 @@
 3. Code du joueur (Partie 2) : https://tinyurl.com/gd4tdsfire
 4. Si Godot n'est pas installé sur les postes, on peut y accéder en version web à l'adresse : https://tinyurl.com/gd4web
 
-
-
 # Godot 3.5 - Top Down Shooter
 ## Étape 1 - Télécharger le fichier de départ
 - Utilisez le navigateur Chrome ou Edge
@@ -20,7 +18,6 @@
 - Allez à la page web suivante  : https://tinyurl.com/editeurjeux
 - Si une fenêtre surgit avec un texte, **cliquez sur le bouton «  Ok, don’t show again »**
 
-
 ---
 
 ## Étape 3 - Sélectionner le fichier et démarrer
@@ -32,4 +29,3 @@
 - Cliquez sur « Start Godot Editor »
 - Cela peut prendre un moment avant d’avoir quelque chose à l’écran
 - Dans la fenêtre qui apparaîtra, cliquez sur « Create Folder » et ensuite « Install & Edit »
-
