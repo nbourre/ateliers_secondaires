@@ -10,15 +10,14 @@ static var count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	#player = get_node("/root/world/Player")
-	player = get_parent().get_parent().get_node("Player")
+	player = get_node("/root/world/Player")
 
 	count += 1
 	
 	if (count > 5):
 		hp = randi_range(1, 5)
 	
-	
+		
 	match (hp):
 		1:
 			shape.color = Color(1, 1, 1)
