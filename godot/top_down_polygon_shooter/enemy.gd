@@ -11,7 +11,7 @@ static var count = 0
 func _ready():
 	randomize()
 	player = get_node("/root/world/Player")
-
+	
 	count += 1
 	
 	if (count > 5):
@@ -32,7 +32,7 @@ func _ready():
 			scale.x = 1.5
 			scale.y = 1.5
 			
-func _physics_process(_delta):
+func _process(_delta):
 	var direction = (player.position - position)
 	direction = direction.normalized() * speed
 	
