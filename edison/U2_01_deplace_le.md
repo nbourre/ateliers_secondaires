@@ -5,7 +5,7 @@
 
 # U2-1.1 Comment les ordinateurs "pensent"
 Imagine un ordinateur. Maintenant, imagine une personne. Lequel des deux est le plus intelligent, selon toi?
-C'est un peu une question piège. Crois-le ou non, la plupart des ordinateurs ne peuvent rien faire sans l'aide de personnes.
+C'est un peu une question piège. Crois-le ou non, la plupart des ordinateurs ne peuvent rien faire sans l'aide de personne.
 
 > **Pourquoi?**
 > 
