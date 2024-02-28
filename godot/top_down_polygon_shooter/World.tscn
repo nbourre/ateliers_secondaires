@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cr0yvphaldqgd"]
+[gd_scene load_steps=5 format=3 uid="uid://cr0yvphaldqgd"]
 
 [ext_resource type="Texture2D" uid="uid://bf37ory33odcr" path="res://assets/logo_cegep.png" id="1_1l6vu"]
+[ext_resource type="PackedScene" uid="uid://cmxbvegddblyc" path="res://Player.tscn" id="2_dqdvt"]
+[ext_resource type="PackedScene" uid="uid://bwp3iiyjtyehu" path="res://enemy.tscn" id="3_bk63v"]
+[ext_resource type="PackedScene" uid="uid://bdv1tc5j1d8fn" path="res://level.tscn" id="4_kn1ng"]
 
 [node name="world" type="Node2D"]
 
@@ -10,3 +13,21 @@ position = Vector2(596, 180)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_1l6vu")
 offset = Vector2(-53.4366, 236.075)
+
+[node name="Level" parent="." instance=ExtResource("4_kn1ng")]
+
+[node name="Player" parent="." instance=ExtResource("2_dqdvt")]
+position = Vector2(512, 503)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Enemy" parent="Node" instance=ExtResource("3_bk63v")]
+
+[node name="Enemy2" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(734, 145)
+
+[node name="Enemy3" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(67, 124)
+
+[node name="Enemy4" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(977, 756)
