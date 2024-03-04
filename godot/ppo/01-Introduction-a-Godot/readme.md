@@ -24,5 +24,16 @@ Quand tu ouvres Godot pour la première fois, tu découvriras une interface util
 # Langages de programmation
 Godot utilise son propre langage de programmation appelé GDScript, qui est spécialement conçu pour la création de jeux. GDScript est assez simple à apprendre, surtout si tu as déjà une petite idée de ce qu'est la programmation. Il ressemble beaucoup à Python, un langage connu pour sa facilité de lecture et d'écriture. Ne t'inquiète pas si tu es complètement nouveau dans ce domaine : on va explorer ensemble les bases de GDScript et comment l'utiliser pour animer tes idées de jeux.
 
+![alt text](assets/Godot_v4.2-stable_mono_win64_Zz0SuNSp6J.png)
+
 # Qu'est-ce que j'ai besoin de savoir pour commencer?
-Pour commencer avec Godot, tu n'as pas besoin de beaucoup : un ordinateur assez récent pour faire tourner le logiciel et une bonne dose de créativité. Il n'est pas nécessaire d'être un expert en programmation ou en design graphique dès le départ. Tout ce que tu dois savoir, tu l'apprendras en faisant, étape par étape. La communauté Godot est également là pour t'aider : il y a des tonnes de tutoriels, de forums, et de ressources en ligne pour répondre à tes questions. Alors, prêt à plonger dans la création de jeux vidéo avec Godot? C'est parti!
+Pour commencer avec Godot, tu n'as pas besoin de beaucoup : un ordinateur pour faire tourner le logiciel et une bonne dose de créativité. Il n'est pas nécessaire d'être un expert en programmation ou en design graphique dès le départ. Tout ce que tu dois savoir, tu l'apprendras en faisant, étape par étape. La communauté Godot est également là pour t'aider : il y a des tonnes de tutoriels, de forums, et de ressources en ligne pour répondre à tes questions.
+
+## Ressources externes
+- [Documentation officielle de Godot - franglais](https://docs.godotengine.org/fr/latest/getting_started/introduction/)
+- [Canal YouTube de Nicolas Bourré - français](https://www.youtube.com/@NicolasBourre)
+- [YT : Canal d'un professionnel de Godot - anglais](https://www.youtube.com/@uheartbeast)
+
+# Suite
+- Retour à la [page principale](../readme.md)
+- [Installation de Godot et l'environnement](../02-Installation/readme.md)
