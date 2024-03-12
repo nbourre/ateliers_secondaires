@@ -11,7 +11,7 @@
 
 ---
 
-L'une des meilleures choses à propos d'Edison est que vous pouvez créer vos propres programmes pour votre robot ! Pour écrire un programme pour Edison, nous devons utiliser un logiciel spécial.
+L'une des meilleures choses à propos d'Edison est que vous pouvez créer vos propres programmes pour votre robot! Pour écrire un programme pour Edison, nous devons utiliser un logiciel spécial.
 
 > **Zone à jargon**
 > 
@@ -20,7 +20,7 @@ L'une des meilleures choses à propos d'Edison est que vous pouvez créer vos pr
 > - Le logiciel est l'ensemble des programmes et des applications qui font fonctionner le matériel, comme un ordinateur ou un robot.
 
 
-Le logiciel que nous allons utiliser avec Edison est un **langage de programmation** pour robot.
+Le logiciel que nous allons utiliser avec Edison est un **langage de programmation** spécialisé pour robot.
 
 
 > **Zone à jargon**
@@ -85,7 +85,7 @@ Une fois que le programme est chargé dans la zone de programmation, tu peux le 
 Lorsque tu veux télécharger un programme d'EdScratch vers Edison, tu dois suivre les étapes suivantes : 
 1.	Connectes l'Édison à ton ordinateur à l'aide du câble EdComm. 
 2.	Assure-toi que le volume est monté à fond sur l'ordinateur.
-3.	Aoppuye une fois sur le bouton d'enregistrement (rond) de l'Édison.
+3.	Appuie une fois sur le bouton d'enregistrement (rond) de l'Édison.
 4.	Vas dans la barre de menu d'EdScratch et cliques sur le bouton `Programmer Edison`.
 5.	Une fenêtre pop-up s'ouvre. Une fois que le programme est prêt, un bouton intitulé `Program Edison` apparaîtra en bas de la fenêtre pop-up.
 6.	Clique sur le bouton `Program Edison` dans la fenêtre pop-up.
@@ -105,7 +105,7 @@ Une fois que tu as entendu le bip de réussite d'Edison, débranche le robot du 
 ---
 
 ## Zone à questions
-- Qu'est-ce que le robot fait quand tu exécute `Test_program`? Décris ce qui se passe.
+- Qu'est-ce que le robot fait quand tu exécutes `Test_program`? Décris ce qui se passe.
 
 ---
 
@@ -122,7 +122,7 @@ Essaie de télécharger et d'exécuter le programme de démonstration de ton cho
 ---
 
 # U1 - 2.2 Les messages d'avertissements
-Certains langages de programmation ont des caractéristiques spéciales pour faciliter l'utilisation de ce langage. Un exemple de ceci est la boîte à bogues dans EdScratch. 
+Certains langages de programmation ont des caractéristiques spéciales pour faciliter l'utilisation de ce langage. Un exemple de ceci est la boîte à bogues dans EdScratch.
 
 Parfois, lorsque nous écrivons un programme pour Édison dans EdScratch, quelque chose ne va pas. Lorsque cela se produit, un message d'avertissement s'affiche dans la boîte à bogues.
 

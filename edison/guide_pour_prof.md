@@ -10,7 +10,7 @@ Ce document sert à préparer l'enseignant qui donnera des ateliers avec le robo
   - [PyEd](#pyed)
 
 # Le robot
-Le robot possède trois boutons sur le dessus soit un triangle, un carré et un cercle. C'est trois boutons sont à l'image des boutons d'un radiocassette soit *Play*, *Stop* et *Record*.
+Le robot possède trois boutons sur le dessus soit un triangle, un carré et un cercle. Ces trois boutons sont à l'image des boutons d'un radiocassette soit *Play*, *Stop* et *Record*.
 
 ![](img/robot_buttons.jpg)
 
@@ -18,7 +18,7 @@ Ainsi pour exécuter le programme enregistré, il suffit d'appuyer sur *Play*, p
 
 # Préparation du robot
 1. S'assurer que les piles sont chargées.
-2. Allumer le robot avec l'interrupteur qui est en-dessous.
+2. Allumer le robot avec l'interrupteur qui est en-dessous.<br />
 ![Power switch](img/edison_power.png)
     - **Note** : Après 5 minutes d'inutilisation, le robot se mettra en veille. On recommande de l'éteindre manuellement lorsqu'il n'est pas utilisé.
 
