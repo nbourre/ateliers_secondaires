@@ -4,6 +4,7 @@ var player
 
 var motion = Vector2()
 var hp = 1
+var speed = 5.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +26,9 @@ func _ready():
 
 func _physics_process(_delta):
 	var direction = (player.position - position)
-	direction = direction.normalized() * 5.5
+
+	direction = direction.normalized() * speed
+
 
 	position += direction
 	look_at(player.position)
