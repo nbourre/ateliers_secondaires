@@ -15,7 +15,7 @@ func _ready():
 	count += 1
 	
 	if (count > 5):
-		hp = randi_range(1, 5)
+		hp = randi_range(1, 6)
 	
 		
 	match (hp):
@@ -31,12 +31,17 @@ func _ready():
 			shape.color = Color(0.8, 0, 0)
 			scale.x = 1.5
 			scale.y = 1.5
+		6:
+			$MeGustaSmall.visible = true
+			scale.x = 2
+			scale.y = 2
 			
 func _process(_delta):
 	var direction = (player.position - position)
 	direction = direction.normalized() * speed
 	
-	look_at(player.position)
+	if not $MeGustaSmall.visible :
+		look_at(player.position)
 	
 	var _collision = move_and_collide(direction)	
 	
