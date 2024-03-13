@@ -13,6 +13,7 @@
   - [Volet Scène](#volet-scène)
     - [Qu'est-ce qu'une scène?](#quest-ce-quune-scène)
   - [Système de fichiers](#système-de-fichiers)
+  - [Zone de travail](#zone-de-travail)
 
 
 # Créer un nouveau projet
@@ -43,7 +44,7 @@ Avant de créer le projet, nous allons explorer les différentes options qui s'o
 4. **Créer et ouvrer** : C'est le bouton qui te permettra de créer le projet et de l'ouvrir dans Godot.
 
 ## Exercice
-1. Donne le nom "Jump Boy" à ton projet.
+1. Donne le nom "Aventurier" à ton projet.
    - Tu peux aussi choisir un autre nom si tu préfères.
 2. Choisis un emplacement pour ton projet.
 3. Si l'avertissement jaune apparaît, clique sur le bouton "Créer un dossier".
@@ -99,4 +100,7 @@ Les fichiers peuvent être des scènes, des scripts, des images, des sons, des v
 
 ![alt text](assets/sys_fichiers.png)
 
-TODO: Continuer avec la zone de travail, les boutons d'exécution et le volet de débogage.
+## Zone de travail
+La zone de travail est l'endroit où tu pourras voir et modifier les éléments de la scène active. C'est ton terrain de jeu visuel.
+
+Tu y glisseras et déposeras les éléments de ton jeu pour les modifier.
