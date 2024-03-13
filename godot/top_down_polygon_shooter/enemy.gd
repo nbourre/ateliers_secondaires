@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var player
+var player : Player
 var hp = 1
 var speed = 5
 
@@ -11,12 +11,12 @@ static var count = 0
 func _ready():
 	randomize()
 	player = get_node("/root/world/Player")
+	player.player_died.connect(player_died)
 	
 	count += 1
 	
 	if (count > 5):
-		hp = randi_range(1, 5)
-	
+		hp = randi_range(1, 6)	
 		
 	match (hp):
 		1:
@@ -31,6 +31,11 @@ func _ready():
 			shape.color = Color(0.8, 0, 0)
 			scale.x = 1.5
 			scale.y = 1.5
+		6:
+			$MeGustaSmall.visible = true
+			scale.x = 2
+			scale.y = 2
+
 			
 func _process(_delta):
 	var direction = (player.position - position)
@@ -51,6 +56,6 @@ func _on_area_2d_area_entered(area):
 			count -= 1
 			area.get_parent().queue_free()
 			queue_free();
-		
 
-	
+func player_died():
+	count = 0

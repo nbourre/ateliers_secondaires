@@ -18,7 +18,7 @@ texture = ExtResource("1_1l6vu")
 offset = Vector2(-53.4366, 236.075)
 
 [node name="Player" parent="." instance=ExtResource("2_dqdvt")]
-position = Vector2(512, 503)
+position = Vector2(530, 533)
 
 [node name="Node" type="Node" parent="."]
 
@@ -32,3 +32,21 @@ position = Vector2(67, 124)
 
 [node name="Enemy4" parent="Node" instance=ExtResource("3_bk63v")]
 position = Vector2(977, 756)
+
+[node name="Enemy5" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(-356, -433)
+
+[node name="Enemy6" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(1706, -117)
+
+[node name="Enemy7" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(-486, 71)
+
+[node name="Enemy8" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(330, -297)
+
+[node name="Enemy9" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(2018, -221)
+
+[node name="Enemy10" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(1234, -425)
