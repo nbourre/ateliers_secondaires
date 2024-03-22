@@ -42,7 +42,9 @@ Si tu as des questions, n'hésite pas à demander à ton enseignant ou à consul
 ---
 
 # Table des matières <!-- omit in toc -->
-- [Introduction à Godot](01-Introduction-a-Godot/readme.md)
+- [Introduction à Godot](./01-Introduction-a-Godot/readme.md)
+- [Installatin de Godot](./02-Installation/readme.md)
+- [Premier projet](./03-Premier-projet/readme.md)
 
 ---
 

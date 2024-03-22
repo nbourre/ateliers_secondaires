@@ -1,17 +1,16 @@
-# Installation et l'environnement de Godot <!-- omit in toc -->
+# Installation de Godot <!-- omit in toc -->
 
 # Objectifs <!-- omit in toc -->
 - Télécharger Godot
 - Exécuter Godot pour la première fois
-- Explorer l'interface utilisateur de Godot
 
 # Table des matières <!-- omit in toc -->
 - [Télécharger Godot](#télécharger-godot)
   - [Méthode 1 : Télécharger Godot via Steam](#méthode-1--télécharger-godot-via-steam)
   - [Méthode 2 : Télécharger Godot depuis le site officiel](#méthode-2--télécharger-godot-depuis-le-site-officiel)
     - [Extraire le contenu du fichier zip](#extraire-le-contenu-du-fichier-zip)
-- [Première utilisation de Godot](#première-utilisation-de-godot)
-  - [Créer un nouveau projet](#créer-un-nouveau-projet)
+- [Première exécution de Godot](#première-exécution-de-godot)
+- [Conclusion](#conclusion)
 
 
 # Télécharger Godot
@@ -41,7 +40,7 @@ Si tu sais comment extraire un fichier zip, tu peux passer à la section suivant
 
 ---
 
-# Première utilisation de Godot
+# Première exécution de Godot
 Si tu as téléchargé Godot via Steam, tu n'as qu'à ouvrir Steam et lancer Godot. Si tu as téléchargé Godot depuis le site officiel, tu devras ouvrir le logiciel à partir du fichier exécutable que tu as extrait du fichier zip. Le nom du fichier exécutable devrait ressembler à ceci `Godot_v4.xyz` (ou une version similaire).
 
 Une fois que tu as ouvert Godot, tu devrais voir une fenêtre qui ressemble à ceci :
@@ -52,8 +51,7 @@ Il s'agit de l'interface de démarrage de Godot. Tu peux créer un nouveau proje
 
 Dans la capture d'écran, il y déjà plusieurs projets qui sont listés. Tu n'auras pas autant de projets que moi, car j'ai déjà utilisé Godot pour créer des jeux. J'espère que tu en auras autant, sinon plus, un jour!
 
-## Créer un nouveau projet
-Dans le cadre de cet exercice, je te propose de créer un nouveau jeu de type "2D". Pour ce faire, tu peux cliquer sur le bouton "New Project" en bas à droite de la fenêtre. Tu devrais voir une fenêtre qui ressemble à ceci :
+---
 
-
-TODO: Compléter le contenu de cette section
+# Conclusion
+Dans cette section, tu as appris à télécharger Godot et à l'exécuter pour la première fois. Dans la prochaine section, tu apprendras à créer un nouveau projet dans Godot.
