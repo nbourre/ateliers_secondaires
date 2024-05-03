@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfsywyjpraq12"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_45sid"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_45sid")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LblKillCount" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Kill count :"
+
+[node name="killCount" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"

@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr0yvphaldqgd"]
+[gd_scene load_steps=7 format=3 uid="uid://cr0yvphaldqgd"]
 
 [ext_resource type="Texture2D" uid="uid://bf37ory33odcr" path="res://assets/logo_cegep.png" id="1_1l6vu"]
+[ext_resource type="Script" path="res://World.gd" id="1_gr0kn"]
 [ext_resource type="PackedScene" uid="uid://cmxbvegddblyc" path="res://Player.tscn" id="2_dqdvt"]
 [ext_resource type="PackedScene" uid="uid://bwp3iiyjtyehu" path="res://enemy.tscn" id="3_bk63v"]
 [ext_resource type="PackedScene" uid="uid://bdv1tc5j1d8fn" path="res://level.tscn" id="4_kn1ng"]
+[ext_resource type="PackedScene" uid="uid://bfsywyjpraq12" path="res://hud.tscn" id="5_lv3gv"]
 
-[node name="world" type="Node2D"]
+[node name="world" type="Node2D" groups=["game_manager"]]
+script = ExtResource("1_gr0kn")
+mob_scene = ExtResource("3_bk63v")
 
 [node name="Level" parent="." instance=ExtResource("4_kn1ng")]
-position = Vector2(-72, 243)
+position = Vector2(-92, 303)
 
 [node name="LogoCegep" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.498039)
@@ -18,35 +22,31 @@ texture = ExtResource("1_1l6vu")
 offset = Vector2(-53.4366, 236.075)
 
 [node name="Player" parent="." instance=ExtResource("2_dqdvt")]
-position = Vector2(530, 533)
+position = Vector2(490, 615)
 
 [node name="Node" type="Node" parent="."]
 
 [node name="Enemy" parent="Node" instance=ExtResource("3_bk63v")]
+position = Vector2(775, -314)
 
 [node name="Enemy2" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(734, 145)
+position = Vector2(-164, 396)
 
 [node name="Enemy3" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(67, 124)
+position = Vector2(1312, 863)
 
 [node name="Enemy4" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(977, 756)
+position = Vector2(-501, -156)
 
 [node name="Enemy5" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(-356, -433)
+position = Vector2(110, -387)
 
 [node name="Enemy6" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(1706, -117)
+position = Vector2(1765, -62)
 
-[node name="Enemy7" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(-486, 71)
+[node name="HUD" parent="." instance=ExtResource("5_lv3gv")]
 
-[node name="Enemy8" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(330, -297)
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 2.0
 
-[node name="Enemy9" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(2018, -221)
-
-[node name="Enemy10" parent="Node" instance=ExtResource("3_bk63v")]
-position = Vector2(1234, -425)
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
