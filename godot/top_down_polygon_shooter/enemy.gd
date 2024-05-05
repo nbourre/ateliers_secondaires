@@ -23,7 +23,7 @@ func _ready():
 	
 		
 	# Save initial position
-	var startPos = position
+	startPos = position
 	
 	reset()
 			

@@ -8,8 +8,8 @@ class_name GenericBar
 func _ready():
 	text.visible = show_text
 
-func update_value (new_value, max):
-	if max != null :
-		max_value = max
+func update_value (new_value, _max):
+	if _max != null :
+		max_value = _max
 	value = new_value		
 	

@@ -44,9 +44,6 @@ position = Vector2(110, -387)
 [node name="Enemy6" parent="Node" instance=ExtResource("3_bk63v")]
 position = Vector2(1765, -62)
 
-[node name="HUD" parent="." instance=ExtResource("5_lv3gv")]
-
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 2.0
 
-[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[node name="HUD" parent="." instance=ExtResource("5_lv3gv")]

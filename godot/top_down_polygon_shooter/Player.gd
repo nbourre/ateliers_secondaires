@@ -13,7 +13,7 @@ var direction = Vector2()
 var bullet_speed = 1000
 var bullet = preload("res://Bullet.tscn")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
@@ -44,5 +44,5 @@ func _on_area_2d_area_entered(area):
 
 	#if "Enemy" in area.get_parent().name :
 	if area.get_parent() is Enemy :
-		var tmp = get_tree().call_deferred("reload_current_scene")
+		var _tmp = get_tree().call_deferred("reload_current_scene")
 		player_died.emit()
