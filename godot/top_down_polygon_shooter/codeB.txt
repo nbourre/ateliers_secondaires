@@ -2,12 +2,16 @@
 
 
 func fire():
-	var bullet_instance = bullet.instantiate()
+	var bullet_instance = bullet.instantiate() as Bullet
 	bullet_instance.position = get_global_position() + (Vector2.from_angle(rotation) * 25)
 	bullet_instance.rotation_degrees = rotation_degrees
 	bullet_instance.apply_impulse(Vector2(bullet_speed, 0).rotated(rotation))
+	bullet_instance.realName = "Bullet"
 	get_tree().get_root().call_deferred("add_child", bullet_instance)
-
+ 
 func _on_area_2d_area_entered(area):
-	if "Enemy" in area.get_parent().name :
-		var _tmp = get_tree().reload_current_scene()
+
+	#if "Enemy" in area.get_parent().name :
+	if area.get_parent() is Enemy :
+		var _tmp = get_tree().call_deferred("reload_current_scene")
+		player_died.emit()
