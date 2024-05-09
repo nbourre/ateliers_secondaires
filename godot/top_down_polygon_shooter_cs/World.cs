@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using Godot;
 
 public partial class World : Node2D
@@ -23,6 +24,24 @@ public partial class World : Node2D
     {
         if (HasNode("MobTimer"))
             GetNode<Timer>("MobTimer").Start();
+    }
+
+    // Event for capturing Escape key press
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventKey eventKey)
+        {
+            if (eventKey.Pressed)
+            {
+                switch (eventKey.Keycode)
+                {
+                    case Key.Escape:
+                        GetTree().Quit();
+                        break;
+                }
+            
+            }
+        }
     }
 
     private void OnMobTimerTimeout()
