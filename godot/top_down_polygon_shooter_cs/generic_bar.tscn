@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvqxbvip3ocig"]
 
-[ext_resource type="Script" path="res://generic_bar.cs" id="1_p6f7g"]
+[ext_resource type="Script" path="res://GenericBar.cs" id="1_62dy2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fg5pw"]
 bg_color = Color(0.231373, 0.231373, 0.231373, 1)
@@ -16,7 +16,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_fg5pw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8irbs")
 value = 50.0
 show_percentage = false
-script = ExtResource("1_p6f7g")
+script = ExtResource("1_62dy2")
 
 [node name="BarText" type="Label" parent="."]
 layout_mode = 1

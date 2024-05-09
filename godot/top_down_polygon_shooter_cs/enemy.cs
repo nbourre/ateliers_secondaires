@@ -8,15 +8,15 @@ public partial class Enemy : CharacterBody2D
     private int _speed = 5;
 
     [Export]
-    private NodePath _polygon2DPath;
+    private NodePath _polygon2DPath = "Polygon2D";
     private Polygon2D _shape;
 
     [Export]
-    private NodePath _progBarContainerPath;
+    private NodePath _progBarContainerPath = "Node";
     private Node2D _progBarContainer;
 
     [Export]
-    private NodePath _lifeBarPath;
+    private NodePath _lifeBarPath = "Node/GenericBar";
     private GenericBar _lifeBar;
 
     public static int Count = 0;
@@ -54,6 +54,7 @@ public partial class Enemy : CharacterBody2D
         var collision = MoveAndCollide(direction);
 
         // Prevent the bar from rotating
+        //_progBarContainer.Rotation = -GlobalTransform.Rotation;
         _progBarContainer.Rotation = -GlobalRotation;
     }
 
