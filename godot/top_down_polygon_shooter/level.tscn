@@ -23,9 +23,9 @@ sources/0 = SubResource("TileSetAtlasSource_xjnrq")
 
 [sub_resource type="Curve2D" id="Curve2D_bdgxj"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -524, -191, 0, 0, 0, 0, -423, -715, 0, 0, 0, 0, 400, -666, 0, 0, 0, 0, 266, -354, 0, 0, 0, 0, 354, -24, 0, 0, 0, 0, 562, 125, 0, 0, 0, 0, 1011, 108, 0, 0, 0, 0, 814, -559, 0, 0, 0, 0, 2219, -477, 0, 0, 0, 0, 1209, -420, 0, 0, 0, 0, 1193, 58, 0, 0, 0, 0, 1515, 89, 0, 0, 0, 0, 1481, 575)
+"points": PackedVector2Array(0, 0, 0, 0, -423, -715, 0, 0, 0, 0, 400, -666, 0, 0, 0, 0, 266, -354, 0, 0, 0, 0, 354, -24, 0, 0, 0, 0, 562, 125, 0, 0, 0, 0, 1011, 108, 0, 0, 0, 0, 814, -559, 0, 0, 0, 0, 2219, -477, 0, 0, 0, 0, 1209, -420, 0, 0, 0, 0, 1193, 58, 0, 0, 0, 0, 1515, 89)
 }
-point_count = 13
+point_count = 11
 
 [node name="Level" type="Node2D"]
 
@@ -55,5 +55,5 @@ layer_0/tile_data = PackedInt32Array(-65543, 0, 0, -7, 0, 0, 65529, 0, 0, 131065
 curve = SubResource("Curve2D_bdgxj")
 
 [node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
-position = Vector2(-524, -191)
-rotation = -1.38038
+position = Vector2(-423, -715)
+rotation = 0.0594681

@@ -13,12 +13,21 @@ var direction = Vector2()
 var bullet_speed = 1000
 var bullet = preload("res://Bullet.tscn")
 
+var has_joystick : bool
+
+func _ready():
+	has_joystick = Input.get_connected_joypads().size() > 0
+
 func _physics_process(_delta):
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	
 	direction = direction.normalized()
 	
+	#if (has_joystick) :
+		#rotate((Input.get_action_strength("spinRight") - Input.get_action_strength("spinLeft")) * PI / 10)
+	#else:
+		#look_at(get_global_mouse_position())
 	look_at(get_global_mouse_position())
 	
 	if (Input.is_action_just_pressed("fire")):
