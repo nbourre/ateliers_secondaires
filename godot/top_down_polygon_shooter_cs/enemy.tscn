@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwp3iiyjtyehu"]
+
+[ext_resource type="Script" path="res://enemy.cs" id="1_kirny"]
+[ext_resource type="Texture2D" uid="uid://ve0g1xw5bnyi" path="res://extras/me_gusta_small.png" id="2_m1jgs"]
+[ext_resource type="PackedScene" uid="uid://cvqxbvip3ocig" path="res://generic_bar.tscn" id="3_so5go"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bjr5y"]
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+motion_mode = 1
+script = ExtResource("1_kirny")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -18, 18, 0, 0, 18, -18, 0)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_bjr5y")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(1, -15, 17, 1, 1, 17, -15, 1)
+
+[node name="MeGustaSmall" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.189266, 0.189266)
+texture = ExtResource("2_m1jgs")
+
+[node name="Node" type="Node2D" parent="."]
+
+[node name="GenericBar" parent="Node" instance=ExtResource("3_so5go")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -30.0
+offset_right = 262.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+show_text = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

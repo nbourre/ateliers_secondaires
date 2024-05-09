@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfsywyjpraq12"]
+
+[ext_resource type="Script" path="res://hud.cs" id="1_euvti"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_euvti")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxKillCount" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LblKillCount" type="Label" parent="VBoxContainer/HBoxKillCount"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Kill count :"
+
+[node name="killCount" type="Label" parent="VBoxContainer/HBoxKillCount"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+
+[node name="HBoxBestScore" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LblKillCount" type="Label" parent="VBoxContainer/HBoxBestScore"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Meilleur :"
+
+[node name="killCount" type="Label" parent="VBoxContainer/HBoxBestScore"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
