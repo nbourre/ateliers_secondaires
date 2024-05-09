@@ -29,7 +29,7 @@ public partial class World : Node2D
     {
         if (HasNode("Level") && Enemy.Count <= MaxMobs)
         {
-            var mob = ResourceLoader.Load<PackedScene>("res://Mob.tscn").Instantiate() as Enemy;
+            var mob = ResourceLoader.Load<PackedScene>("res://Enemy.tscn").Instantiate() as Enemy;
             //var mob = (Node2D)MobScene.Instance();
             var mobSpawnLocation = GetNode<PathFollow2D>("Level/SpawnPath/SpawnLocation");
             mobSpawnLocation.ProgressRatio = GD.Randf();
@@ -68,6 +68,13 @@ public partial class World : Node2D
         while (!saveFile.EofReached())
         {
             string jsonString = saveFile.GetLine();
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                continue;
+            }
+
+            GD.Print("JSON: " + jsonString);
 
             var json = new Json();
             var parseResult = json.Parse(jsonString);

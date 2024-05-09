@@ -72,7 +72,7 @@ public partial class Enemy : CharacterBody2D
                 Count -= 1;
                 EmitSignal(nameof(EnemyKilled));
 
-                GetTree().CallGroup("game_manager", "add_kill");
+                GetTree().CallGroup("game_manager", "AddKill");
                 GD.Print("Enemies left: " + Count);
 
                 area.GetParent().QueueFree();
@@ -81,7 +81,7 @@ public partial class Enemy : CharacterBody2D
                 if (Count <= 0)
                 {
                     EmitSignal(nameof(EnemiesAllDead));
-                    GetTree().CallGroup("game_manager", "start_spawning");
+                    GetTree().CallGroup("game_manager", "StartSpawning");
                 }
             }
         }

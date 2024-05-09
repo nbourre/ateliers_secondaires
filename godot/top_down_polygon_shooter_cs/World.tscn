@@ -46,3 +46,5 @@ position = Vector2(1765, -62)
 [node name="MobTimer" type="Timer" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource("5_lv3gv")]
+
+[connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]

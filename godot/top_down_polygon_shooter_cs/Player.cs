@@ -49,7 +49,7 @@ public partial class Player : CharacterBody2D
         Bullet bulletInstance = (Bullet)_bullet.Instantiate();
         bulletInstance.Position = GlobalPosition + (Vector2.Right.Rotated(Rotation) * 25);
         bulletInstance.RotationDegrees = RotationDegrees;
-        bulletInstance.ApplyImpulse(Vector2.Zero, new Vector2(_bulletSpeed, 0).Rotated(Rotation));
+        bulletInstance.ApplyImpulse(new Vector2(_bulletSpeed, 0).Rotated(Rotation));
         bulletInstance.RealName = "Bullet";
         GetTree().Root.CallDeferred("add_child", bulletInstance);
     }
