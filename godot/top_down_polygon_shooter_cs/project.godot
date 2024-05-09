@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="top_down_polygon_shooter"
+config/name="top_down_polygon_shooter_cs"
 run/main_scene="res://World.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://assets/icon.svg"
 
 [dotnet]
 
-project/assembly_name="top_down_polygon_shooter"
+project/assembly_name="top_down_polygon_shooter_cs"
 
 [input]
 

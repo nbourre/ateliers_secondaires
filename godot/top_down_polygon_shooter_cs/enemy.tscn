@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwp3iiyjtyehu"]
 
-[ext_resource type="Script" path="res://enemy.cs" id="1_kirny"]
+[ext_resource type="Script" path="res://Enemy.cs" id="1_sngjd"]
 [ext_resource type="Texture2D" uid="uid://ve0g1xw5bnyi" path="res://extras/me_gusta_small.png" id="2_m1jgs"]
 [ext_resource type="PackedScene" uid="uid://cvqxbvip3ocig" path="res://generic_bar.tscn" id="3_so5go"]
 
@@ -10,7 +10,7 @@ polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 1
 motion_mode = 1
-script = ExtResource("1_kirny")
+script = ExtResource("1_sngjd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
@@ -48,4 +48,4 @@ grow_horizontal = 2
 grow_vertical = 2
 show_text = false
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="OnArea2DAreaEntered"]

@@ -9,7 +9,7 @@ public partial class HUD : CanvasLayer
     public int BestScore
     { 
         get { return _bestScore; }
-        private set
+        set
         {
             if (value > _bestScore)
             {

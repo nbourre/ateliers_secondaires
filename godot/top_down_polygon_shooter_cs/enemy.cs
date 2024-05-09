@@ -3,7 +3,7 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
-    public Player Player;
+    public Player _player;
     private int _hp = 1;
     private int _speed = 5;
 
@@ -13,7 +13,7 @@ public partial class Enemy : CharacterBody2D
 
     [Export]
     private NodePath _progBarContainerPath;
-    private Node _progBarContainer;
+    private Node2D _progBarContainer;
 
     [Export]
     private NodePath _lifeBarPath;
@@ -23,20 +23,21 @@ public partial class Enemy : CharacterBody2D
     private Vector2 _startPos;
 
     [Signal]
-    public delegate void EnemyKilled();
+    public delegate void EnemyKilledEventHandler();
     
     [Signal]
-    public delegate void EnemiesAllDead();
+    public delegate void EnemiesAllDeadEventHandler();
 
     public override void _Ready()
     {
         GD.Randomize();
-        Player = GetNode<Player>("/root/world/Player");
-        Player.Connect("player_died", this, nameof(PlayerDied));
+        _player = GetNode<Player>("/root/world/Player");
+        //_player.Connect("player_died", this, nameof(PlayerDied));
+        _player.PlayerDied += PlayerDied;
 
         // Load nodes
         _shape = GetNode<Polygon2D>(_polygon2DPath);
-        _progBarContainer = GetNode<Node>(_progBarContainerPath);
+        _progBarContainer = GetNode<Node2D>(_progBarContainerPath);
         _lifeBar = GetNode<GenericBar>(_lifeBarPath);
 
         _startPos = Position;
@@ -44,11 +45,11 @@ public partial class Enemy : CharacterBody2D
         Reset();
     }
 
-    public override void _Process(float delta)
+    public override void _Process(double delta)
     {
-        var direction = (Player.Position - Position).Normalized() * _speed;
+        var direction = (_player.Position - Position).Normalized() * _speed;
 
-        LookAt(Player.Position);
+        LookAt(_player.Position);
 
         var collision = MoveAndCollide(direction);
 
@@ -58,7 +59,7 @@ public partial class Enemy : CharacterBody2D
 
     private void OnArea2DAreaEntered(Area2D area)
     {
-        var areaName = area.GetParent().Name;
+        var areaName = area.GetParent().Name.ToString();
 
         if (areaName.Contains("Bullet") || areaName.Contains("RigidBody2D"))
         {
@@ -96,7 +97,7 @@ public partial class Enemy : CharacterBody2D
 
         if (Count > 5)
         {
-            _hp = GD.Randi() % 6 + 1;
+            _hp = (int)(GD.Randi() % 6 + 1);
         }
 
         switch (_hp)
@@ -116,7 +117,7 @@ public partial class Enemy : CharacterBody2D
                 Scale = new Vector2(1.5f, 1.5f);
                 break;
             case 6:
-                GetNode<Sprite>("MeGustaSmall").Visible = true;
+                GetNode<Sprite2D>("MeGustaSmall").Visible = true;
                 _shape.Visible = false;
                 Scale = new Vector2(2, 2);
                 break;

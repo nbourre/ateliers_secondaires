@@ -4,7 +4,7 @@ using System;
 public partial class Player : CharacterBody2D
 {
     [Signal]
-    public delegate void PlayerDied();
+    public delegate void PlayerDiedEventHandler();
 
     [Export]
     public int Speed = 1000;
@@ -18,10 +18,10 @@ public partial class Player : CharacterBody2D
     private int _bulletSpeed = 1000;
     private PackedScene _bullet = (PackedScene)ResourceLoader.Load("res://Bullet.tscn");
 
-    public override void _PhysicsProcess(float delta)
+    public override void _PhysicsProcess(double delta)
     {
-        _direction.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
-        _direction.y = Input.GetActionStrength("down") - Input.GetActionStrength("up");
+        _direction.X = Input.GetActionStrength("right") - Input.GetActionStrength("left");
+        _direction.Y = Input.GetActionStrength("down") - Input.GetActionStrength("up");
 
         _direction = _direction.Normalized();
 
@@ -34,11 +34,11 @@ public partial class Player : CharacterBody2D
 
         if (_direction.Length() > 0)
         {
-            Velocity = Velocity.LinearInterpolate(_direction * Speed, Acceleration);
+            Velocity = Velocity.Lerp(_direction * Speed, Acceleration);
         }
         else
         {
-            Velocity = Velocity.LinearInterpolate(Vector2.Zero, Friction);
+            Velocity = Velocity.Lerp(Vector2.Zero, Friction);
         }
 
         MoveAndSlide();
@@ -46,7 +46,7 @@ public partial class Player : CharacterBody2D
 
     private void Fire()
     {
-        Bullet bulletInstance = (Bullet)_bullet.Instance();
+        Bullet bulletInstance = (Bullet)_bullet.Instantiate();
         bulletInstance.Position = GlobalPosition + (Vector2.Right.Rotated(Rotation) * 25);
         bulletInstance.RotationDegrees = RotationDegrees;
         bulletInstance.ApplyImpulse(Vector2.Zero, new Vector2(_bulletSpeed, 0).Rotated(Rotation));

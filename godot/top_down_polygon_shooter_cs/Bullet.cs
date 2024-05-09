@@ -3,7 +3,8 @@ using System;
 
 public partial class Bullet : RigidBody2D
 {
-    private string _realName = "";
+    public string RealName { get; set; } = "Bullet";
+
 
     // This function is called when the timer times out
     private void OnTimerTimeout()
