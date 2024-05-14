@@ -22,7 +22,7 @@ Quand tu ouvres Godot pour la première fois, tu découvriras une interface util
 ![alt text](assets/key_concepts_main_menu.webp)
 
 # Langages de programmation
-Godot utilise son propre langage de programmation appelé GDScript, qui est spécialement conçu pour la création de jeux. GDScript est assez simple à apprendre, surtout si tu as déjà une petite idée de ce qu'est la programmation. Il ressemble beaucoup à Python, un langage connu pour sa facilité de lecture et d'écriture. Ne t'inquiète pas si tu es complètement nouveau dans ce domaine : on va explorer ensemble les bases de GDScript et comment l'utiliser pour animer tes idées de jeux.
+Godot utilise son propre langage de programmation appelé GDScript, qui est spécialement conçu pour la création de jeux. GDScript est assez simple à apprendre, surtout si tu as déjà une petite idée de ce qu'est la programmation. Il ressemble beaucoup à [Python](https://openclassrooms.com/fr/courses/7168871-apprenez-les-bases-du-langage-python), un langage connu pour sa facilité de lecture et d'écriture. Ne t'inquiète pas si tu es complètement nouveau dans ce domaine : on va explorer ensemble les bases de GDScript et comment l'utiliser pour animer tes idées de jeux.
 
 ![alt text](assets/Godot_v4.2-stable_mono_win64_Zz0SuNSp6J.png)
 

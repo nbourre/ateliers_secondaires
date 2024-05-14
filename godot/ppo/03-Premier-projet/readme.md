@@ -2,7 +2,7 @@
 # Créer un premier projet avec Godot <!-- omit in toc -->
 
 # Objectifs <!-- omit in toc -->
-- Créer un nouveau projet avec Godot
+- Créer un nouveau projet vide avec Godot
 - Explorer les bases de l'interface de Godot
 
 # Table des matières <!-- omit in toc -->
@@ -15,6 +15,9 @@
   - [Système de fichiers](#système-de-fichiers)
   - [Zone de travail](#zone-de-travail)
   - [Boutons d'exécution](#boutons-dexécution)
+  - [Boutons de vue](#boutons-de-vue)
+- [Conclusion](#conclusion)
+  - [Exercices](#exercices)
 
 
 # Créer un nouveau projet
@@ -50,8 +53,7 @@ Avant de créer le projet, nous allons explorer les différentes options qui s'o
 2. Choisis un emplacement pour ton projet.
 3. Si l'avertissement jaune apparaît, clique sur le bouton "Créer un dossier".
 4. Clique sur le bouton "Créer et ouvrir".
-5. 
-![alt text](assets/godot_premier_projet_d.png)
+   ![alt text](assets/godot_premier_projet_d.png)
 
 ---
 
@@ -74,7 +76,7 @@ Dans la capture d'écran suivante, j'ai mis en évidence les éléments les plus
 1. [**Volet Scène**](#volet-scène) : C'est le volet où tu pourras voir les éléments de la scène active.
 2. [**Système de fichiers**](#système-de-fichiers) : C'est l'endroit où tu pourras voir les fichiers de ton projet.
 3. [**Zone de travail**](#zone-de-travail) : C'est la zone où tu pourras voir et modifier les éléments de la scène active. C'est ton terrain de jeu visuel.
-4. **Boutons d'exécution** : C'est l'endroit où tu devras cliquer pour exécuter ton jeu et ta scène.
+4. [**Boutons d'exécution**](#boutons-dexécution) : C'est l'endroit où tu devras cliquer pour exécuter ton jeu et ta scène.
 5. **Volet de débogage** : C'est le volet où tu pourras voir les messages d'erreur et débogage de ton jeu. On y reviendra plus tard.
 6. **Boutons de vue** : C'est l'endroit où tu pourras changer la vue de la zone de travail. Par exemple, tu pourras passer de la vue 2D à la vue 3D ou encore celle de scripts. Pour l'atelier, nous allons voir la vue 2D et la vue de scripts.
 
@@ -114,4 +116,27 @@ Les boutons d'exécution sont l'endroit où tu devras cliquer pour exécuter ton
 
 ![alt text](assets/boutons_execution.png)
 
-Il ressemble à des boutons que l'on retrouve sur les lecteurs de musique. Tu peux cliquer sur le bouton "Play" pour exécuter ton jeu.
+Il ressemble à des boutons que l'on retrouve sur les lecteurs de musique. Tu peux cliquer sur le bouton "Play" (triangle) pour exécuter ton jeu.
+
+Il se peut que le bouton "Play" soit remplacé par un bouton avec des flèches circulaires si tu as déjà exécuté ton jeu.
+
+## Boutons de vue
+Les boutons de vue sont l'endroit où tu pourras changer la vue de la zone de travail. Par exemple, tu pourras passer de la vue 2D à la vue 3D ou encore celle de scripts.
+
+Si jamais tu te retrouves une fenêtre pleine de code et que tu ne sais pas comment revenir à la vue 2D, tu peux cliquer sur le bouton "2D" pour revenir à la vue 2D.
+
+![alt text](assets/godot_switch_view.gif)
+
+---
+
+# Conclusion
+Dans cette partie, tu as appris à créer un nouveau projet avec Godot et à explorer les bases de l'interface de Godot pour les jeux en 2D.
+
+Il est maintenant temps de passer à l'action en créant ton premier jeu avec Godot!
+
+---
+
+## Exercices
+1. Dans le projet que tu viens de créer, crée un nouveau dossier nommé "assets".
+2. Bascule entre la vue 2D et la vue de scripts.
+3. Exécute le jeu en cliquant sur le bouton "Play".
