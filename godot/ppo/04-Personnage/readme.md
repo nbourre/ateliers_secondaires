@@ -34,6 +34,8 @@ Voici un exemple de la hiérarchie des noeuds pour un joueur typique dans Godot 
 
 ![alt text](assets/godot_player_nodes.png)
 
+TODO : Ajouter le diagramme en arbre
+
 ## Pourquoi les noeuds sont-ils importants ?
 
 Les noeuds sont au cœur de chaque projet dans Godot. Ils vous permettent de :

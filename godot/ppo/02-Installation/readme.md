@@ -31,7 +31,8 @@ Dans la page principale, tu n'as qu'à cliquer sur le bouton de "Download Latest
 
 Cette action va télécharger un ***fichier compressé*** contenant le logiciel. Sur les appareils Windows, le fichier devrait être dans le dossier "Téléchargements".
 
-> **Note** : Un ***fichier compressé***, communément appelé *fichier zip*, est un fichier qui contient d'autres fichiers. Il est compressé pour réduire sa taille et faciliter le téléchargement. Généralement, tu dois extraire le contenu du fichier zip avant de pouvoir utiliser les fichiers qu'il contient.
+> **Note** : Un ***fichier compressé***, communément appelé *fichier zip*, est un fichier qui contient d'autres fichiers. Il est compressé pour réduire sa taille et faciliter le téléchargement. Au lieu de télécharger disons 10 fichiers différents, tu n'as qu'un seul fichier à télécharger.
+> Généralement, tu dois extraire le contenu du fichier zip avant de pouvoir utiliser les fichiers qu'il contient.
 
 Si tu sais comment extraire un fichier zip, tu peux passer à la section suivante. Sinon, continue à lire pour savoir comment extraire le contenu du fichier zip.
 
@@ -40,13 +41,13 @@ Suis les étapes suivantes pour extraire le contenu du fichier zip :
 
 1. Pour extraire le contenu du fichier zip, tu peux faire un clic droit sur le fichier et sélectionner "Extraire tout...".
 2. Dans la fenêtre qui s'ouvre, tu peux choisir l'emplacement où tu veux extraire le contenu du fichier zip. Tu peux laisser l'emplacement par défaut ou choisir un autre dossier.
-   - J'aime bien avec le programme disponible rapidement, alors je l'extrait sur le bureau. Tu peux choisir un autre endroit si tu préfères.
+   - J'aime bien avec le programme disponible rapidement, alors je l'extrais sur le bureau. Tu peux choisir un autre endroit si tu préfères.
 3. Une fois que tu as extrait le contenu du fichier zip, tu devrais voir un dossier avec le nom `Godot_v4.xyz` (ou une version similaire). Ouvre ce dossier pour voir le contenu.
 
 ---
 
 # Première exécution de Godot
-Si tu as téléchargé Godot via Steam, tu n'as qu'à ouvrir Steam et lancer Godot. Si tu as téléchargé Godot depuis le site officiel, tu devras ouvrir le logiciel à partir du fichier exécutable que tu as extrait du fichier zip. Le nom du fichier exécutable devrait ressembler à ceci `Godot_v4.xyz` (ou une version similaire).
+Si tu as téléchargé Godot via Steam, tu n'as qu'à ouvrir Steam et lancer Godot. Si tu as téléchargé Godot depuis le site officiel, tu devras ouvrir le logiciel à partir du fichier exécutable que tu as extrait du fichier zip. Le nom du fichier exécutable devrait ressembler à ceci `Godot_v4.X-stable_win64` (ou une version similaire).
 
 Pour l'ouvrir, il suffit de double-cliquer sur le fichier exécutable.
 
@@ -66,3 +67,7 @@ Dans la capture d'écran, il y déjà plusieurs projets qui sont listés. Tu n'a
 
 # Conclusion
 Dans cette section, tu as appris à télécharger Godot et à l'exécuter pour la première fois. Dans la prochaine section, tu apprendras à créer un nouveau projet dans Godot.
+
+---
+
+**Prochaine section : [Créer un projet](../03-Premier-projet/readme.md)**

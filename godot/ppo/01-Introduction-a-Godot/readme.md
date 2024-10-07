@@ -36,4 +36,4 @@ Pour commencer avec Godot, tu n'as pas besoin de beaucoup : un ordinateur pour f
 
 # Suite
 - Retour à la [page principale](../readme.md)
-- [Installation de Godot et l'environnement](../02-Installation/readme.md)
+- **Prochaine section : [Installation de Godot](../02-Installation/readme.md)**

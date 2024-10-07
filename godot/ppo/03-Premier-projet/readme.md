@@ -84,9 +84,9 @@ Dans la capture d'écran suivante, j'ai mis en évidence les éléments les plus
 > Il y a de forte chance que tu ne comprennes pas tout de suite. C'est normal. Nous allons explorer chaque élément de l'interface de Godot dans les prochains exercices.
 
 ## Volet Scène
-Le volet Scène est l'endroit où tu pourras voir les éléments de la scène active, c'est-à-dire la scène que tu es en train de modifier dans la zone de travail.
+Le **volet Scène** est l'endroit où tu pourras voir les éléments de la scène active, c'est-à-dire la scène que tu es en train de modifier dans la zone de travail.
 
-Voici ce à quoi pourrait ressembler le contenu du volet Scène avece un jeu déjà en cours de développement.
+Voici ce à quoi pourrait ressembler le contenu du volet Scène avec un jeu déjà en cours de développement.
 
 ![alt text](assets/volet_scene.png)
 
@@ -137,6 +137,10 @@ Il est maintenant temps de passer à l'action en créant ton premier jeu avec Go
 ---
 
 ## Exercices
-1. Dans le projet que tu viens de créer, crée un nouveau dossier nommé "assets".
+1. Dans le projet que tu viens de créer, crée un nouveau dossier nommé `assets`.
 2. Bascule entre la vue 2D et la vue de scripts.
 3. Exécute le jeu en cliquant sur le bouton "Play".
+
+---
+
+**Prochaine section : [Créer un personnage](../04-Personnage/readme.md)**
