@@ -10,6 +10,9 @@ Dans les sections précédentes, nous avons vu comment installer, démarrer et c
   - [Qu'est-ce qu'un nœud ?](#quest-ce-quun-nœud-)
   - [Pourquoi les nœuds sont-ils importants ?](#pourquoi-les-nœuds-sont-ils-importants-)
   - [Comment travailler avec les nœuds ?](#comment-travailler-avec-les-nœuds-)
+- [Ajouter des nœuds](#ajouter-des-nœuds)
+  - [Première image](#première-image)
+  - [Le personnage principal](#le-personnage-principal)
 
 # Objectifs
 - Comprendre le concept de nœud dans Godot
@@ -56,5 +59,62 @@ Travailler avec des nœuds dans Godot est comme jouer à un jeu de construction 
 2. **Configurer le nœud** : Chaque nœud a des propriétés que vous pouvez modifier. Par exemple, pour un nœud de type "Sprite", vous pouvez charger une image que vous voulez afficher.
 3. **Relier les nœuds** : Vous pouvez faire en sorte que les nœuds réagissent aux actions dans le jeu en les connectant. Par exemple, vous pourriez connecter un nœud de type "Area" à un script qui déclenche une alarme lorsque le joueur entre dans une zone spécifique.
 
-// TODO : Continuer la section
+---
+
+# Ajouter des nœuds
+## Première image
+La première chose que l'on va faire c'est de créer le monde dans lequel le personnage évoluera. Pour cela, nous allons ajouter un nœud 2D à notre scène. Voici comment faire :
+
+1. Si le projet n'est pas déjà ouvert, ouvrez-le dans Godot. (Voir la section précédente pour plus de détails)
+2. Dans le volet Scène (à gauche), cliquez sur le bouton `Scène 2D` pour ajouter un nœud 2D à la scène. Ce sera la racine de notre scène.
+3. Renommez le nœud 2D en `Monde` en double-cliquant sur son nom.
+
+![alt text](assets/godot_monde_racine.gif)
+
+Pour l'instant, notre monde est vide. Nous n'avons créé qu'un nœud vide, mais celui-ci servira de conteneur pour tous les autres éléments de notre jeu.
+
+4. Sélectionnez le nœud `Monde` dans le volet Scène.
+5. Cliquez sur le bouton `+` pour ajouter un nœud enfant à `Monde`. Une fenêtre s'ouvrira avec une liste de nœuds que vous pouvez ajouter.
+6. Cherchez et sélectionnez le nœud `Sprite2D` dans la liste, puis cliquez sur le bouton `Créer`.
+
+![alt text](assets/sprite2D.png)
+
+Un `Sprite2D` est un nœud qui affiche une image à l'écran. Nous allons l'utiliser pour afficher une plateforme sur laquelle notre personnage pourra marcher.
+
+7. Renommez le nœud `Sprite2D` en `Plateforme` en double-cliquant sur son nom.
+8. Repérez le champ `Texture` dans l'inspecteur (à droite). Il devrait y être inscrit `<vide>`.
+9. Dans le système de fichiers en bas à gauche, vous devriez avoir un fichier appelé `icon.svg`. Faites glisser ce fichier sur le champ `Texture` du nœud `Plateforme`.
+
+![alt text](assets/plateformeA.gif)
+
+10. Dézoomez dans la vue de la scène jusqu'à ce que vous puissiez voir un rectangle bleu-violet. Il s'agit de la dimension par défaut de la fenêtre de jeu.
+11. Déplacez l'image de la plateforme dans la partie inférieure de la fenêtre de jeu.
+
+![alt text](assets/plateformeB.gif)
+
+12. Nous allons exécutez le jeu pour voir ce que cela donne. Cliquez sur le bouton `Exécuter la scène actuelle` en haut à droite.
+    - Le bouton est représenté par un clap de cinéma.
+13. Si c'est la première fois que vous exécutez le jeu, vous devrez enregistrer la scène. Pour l'instant, enregistrez-la sous le nom `Monde.tscn`.
+14. Une fenêtre de jeu s'ouvrira, et vous devriez voir la plateforme que vous avez ajoutée.
+15. Appuyez sur le `X` en haut à droite de la fenêtre pour quitter le jeu.
+
+![alt text](assets/premiere_execution.gif)
+
+---
+
+## Le personnage principal
+Maintenant que nous avons créé notre monde, il est temps d'ajouter notre personnage principal. Nous allons créer un nœud `Personnage` qui contiendra le sprite de notre personnage et les animations associées.
+
+1. Sélectionnez le nœud `Monde` dans le volet Scène.
+2. Cliquez sur le bouton `+` pour ajouter un nœud enfant à `Monde`.
+3. Cherchez et sélectionnez le nœud `CharacterBody2D`
+4. Cliquez sur le bouton `Créer`.
+5. Renommez le nœud `CharacterBody2D` en `Personnage` en double-cliquant sur son nom.
+
+Cela ajoutera un nœud `CharacterBody2D` à la scène. Ce nœud contiendra la physique et les animations de notre personnage.
+Remarquez le petit point d'exclamation à côté du nœud `CharacterBody2D`. Cela signifie que le nœud a des erreurs. C'est parce que nous n'avons pas encore configuré les éléments nécessaires pour qu'il fonctionne correctement.
+
+![alt text](assets/personnage_init.gif)
+
+
 

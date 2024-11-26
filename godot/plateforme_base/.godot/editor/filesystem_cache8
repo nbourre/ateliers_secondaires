@@ -1,0 +1,16 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1732627524
+backup.gd::GDScript::-1::1669315816::0::1::::<>KinematicBody2D<>::
+default_env.tres::Environment::-1::1669314057::0::1::::<><>::
+Player.tscn::PackedScene::-1::1669314057::0::1::::<><>::res://assets/sprites/fox/player_sheet.png
+World.tscn::PackedScene::-1::1669313977::0::1::::<><>::res://assets/sprites/logo_cegep.png
+::res://assets/::1669314011
+::res://assets/sprites/::1663851306
+logo_cegep.png::CompressedTexture2D::1654078767583219014::1663851294::1732627529::1::::<><>::
+::res://assets/sprites/fox/::1663779071
+Player.gd::GDScript::-1::1663777879::0::1::::<>KinematicBody2D<>::
+player_code.txt::TextFile::-1::1663779087::0::1::::<><>::
+player_sheet.png::CompressedTexture2D::2847590174434648865::1663777814::1732627529::1::::<><>::
+::res://assets/tilesets/::1663778639
+tiles1.tres::TileSet::-1::1663778508::0::1::::<><>::res://assets/tilesets/tileset.png
+tileset.png::CompressedTexture2D::1100322726382112896::1663778121::1732627529::1::::<><>::
