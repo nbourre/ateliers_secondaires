@@ -13,13 +13,17 @@ Dans les sections précédentes, nous avons vu comment installer, démarrer et c
 - [Ajouter des nœuds](#ajouter-des-nœuds)
   - [Première image](#première-image)
   - [Le personnage principal](#le-personnage-principal)
+    - [L'image du personnage](#limage-du-personnage)
+    - [Ajouter le code de base](#ajouter-le-code-de-base)
+    - [Ajouter la physique à la plateforme](#ajouter-la-physique-à-la-plateforme)
+    - [Ajouter la caméra](#ajouter-la-caméra)
+- [Conclusion](#conclusion)
+- [Références](#références)
 
 # Objectifs
 - Comprendre le concept de nœud dans Godot
 - Ajouter des nœuds
-- Créer une scène pour le personnage principal
 - Créer un personnage principal
-- Animer le personnage principal
 - Déplacer le personnage principal
 
 ---
@@ -87,6 +91,8 @@ Un `Sprite2D` est un nœud qui affiche une image à l'écran. Nous allons l'util
 
 ![alt text](assets/plateformeA.gif)
 
+> **Note** : Un `Sprite2D` peut afficher n'importe quelle image que vous avez dans votre projet. Vous pouvez utiliser des images de personnages, de décors, d'objets, ou même des images que vous avez créées vous-même.
+
 10. Dézoomez dans la vue de la scène jusqu'à ce que vous puissiez voir un rectangle bleu-violet. Il s'agit de la dimension par défaut de la fenêtre de jeu.
 11. Déplacez l'image de la plateforme dans la partie inférieure de la fenêtre de jeu.
 
@@ -100,21 +106,151 @@ Un `Sprite2D` est un nœud qui affiche une image à l'écran. Nous allons l'util
 
 ![alt text](assets/premiere_execution.gif)
 
+Nous n'avons pas encore terminer la base, mais nous y reviendrons plus tard. Maintenant place au personnage principal.
+
 ---
 
 ## Le personnage principal
 Maintenant que nous avons créé notre monde, il est temps d'ajouter notre personnage principal. Nous allons créer un nœud `Personnage` qui contiendra le sprite de notre personnage et les animations associées.
 
-1. Sélectionnez le nœud `Monde` dans le volet Scène.
-2. Cliquez sur le bouton `+` pour ajouter un nœud enfant à `Monde`.
-3. Cherchez et sélectionnez le nœud `CharacterBody2D`
-4. Cliquez sur le bouton `Créer`.
-5. Renommez le nœud `CharacterBody2D` en `Personnage` en double-cliquant sur son nom.
+### L'image du personnage
+
+Pour le personnage, j'ai utilisé les images de l'artiste [Elthen](https://elthen.itch.io/pixel-art-adventurer-sprites) sur itch.io.
+
+![alt text](<assets/Adventurer Sprite Sheet v1.5.png>)
+
+Vous pouvez le télécharger en cliquant sur l'image ci-dessus avec le bouton de droite et faire `Enregistrer l'image sous...`.
+
+
+1. Repérez le fichier `Adventurer Sprite Sheet v1.5.png` sauvegarder précédemment.
+2. Glissez-déposez le fichier dans le système de fichiers de Godot.
+3. Repérez le fichier `Adventurer Sprite Sheet v1.5.png` dans le système de fichiers de Godot.
+
+![alt text](assets/add_player_file.gif)  
+
+Maintenant que nous avons l'image de notre personnage, nous allons créer un nœud `Personnage` pour le contenir.
+
+4. Sélectionnez le nœud `Monde` dans le volet Scène.
+6. Cliquez sur le bouton `+` pour ajouter un nœud enfant à `Monde`.
+7. Cherchez et sélectionnez le nœud `CharacterBody2D`
+8. Cliquez sur le bouton `Créer`.
+9. Renommez le nœud `CharacterBody2D` en `Personnage` en double-cliquant sur son nom.
 
 Cela ajoutera un nœud `CharacterBody2D` à la scène. Ce nœud contiendra la physique et les animations de notre personnage.
 Remarquez le petit point d'exclamation à côté du nœud `CharacterBody2D`. Cela signifie que le nœud a des erreurs. C'est parce que nous n'avons pas encore configuré les éléments nécessaires pour qu'il fonctionne correctement.
 
 ![alt text](assets/personnage_init.gif)
 
+6. Sélectionnez le nœud `Personnage` dans le volet Scène.
+7. Cliquez sur le bouton `+` pour ajouter un nœud enfant à `Personnage`.
+8. Ajoutez un nœud `Sprite2D` comme nous l'avons fait pour la plateforme.
+9. Sélectionnez le fichier `Adventurer Sprite Sheet v1.5.png` et glissez-le sur le champ `Texture` du nœud `Sprite2D`.
+
+![alt text](assets/add_player_sprite.gif)
+
+- Vous devriez maintenant voir les images de votre personnage dans la zone de travail.
+- On remarque qu'il y a plusieurs images dans le fichier. Cela nous permettra de créer des animations pour notre personnage.
+
+> **Note** : Les animations dans les jeux vidéo 2D sont généralement créées en affichant une série d'images à une vitesse supérieure à ce que l'œil humain peut distinguer. Cela donne l'illusion de mouvement. Dans notre cas, nous allons créer une animation pour faire marcher notre personnage.
+
+10. Sélectionnez le nœud `Sprite2D` dans le volet Scène.
+11. Dans l'inspecteur, repérez la section `Animation` et cliquez dessus.
+12. Repérez les propriétés `HFrames` et `VFrames`
+    - `HFrames` : Le nombre maximum d'images horizontales dans la feuille de sprite.
+    - `VFrames` : Le nombre maximum d'images verticales dans la feuille de sprite.
+    - Pour notre personnage, nous avons 13 images horizontales et 15 images verticales. Entrez ces valeurs dans les champs correspondants.
+13. Modifiez les valeurs de `HFrames` et `VFrames` pour correspondre respectivement 13 et 15.
+    - Ou selon les valeurs de votre image.
+
+![alt text](assets/add_player_HVFrames.gif)
+
+Maintenant, nous allons régler le problème du point d'exclamation sur le nœud `Personnage`. Ce point est présent car les nœuds `CharacterBody2D` attendent un nœud `CollisionShape2D` ou `CollisionPolygon2D` pour définir la forme de la collision du personnage.
+
+14. Sélectionnez le nœud `Personnage`.
+15. Ajoutez un nœud `CollisionShape2D` au nœud `Personnage`.
+
+Vous remarquerez que le point d'exclamation a disparu du nœud `Personnage`, mais qu'un nouveau point d'exclamation est apparu sur le nœud `CollisionShape2D`. Cela signifie que le nœud `CollisionShape2D` attend une forme de collision pour fonctionner correctement.
+
+![alt text](assets/collisionShape_exclamation.png)
+
+16. Sélectionnez le nœud `CollisionShape2D`.
+17. Dans l'inspecteur, repérez la propriété `Shape` et cliquez dessus le mot `vide`.
+18. Pour notre personnage, on va utiliser une forme rectangulaire pour la collision. Cliquez sur `RectangleShape2D`.
+19. Ajuster la taille du rectangle pour qu'il corresponde à la taille de votre personnage.
+    - Assurez vous que la base du rectangle soit alignée avec les pieds du personnage.
+
+![alt text](assets/collisionshape_rectangle.png)
+
+### Ajouter le code de base
+
+Avant de créer le code, nous allons grouper le nœud `Personnage` pour éviter de le déplacer les éléments par erreur.
+
+20. Sélectionnez le nœud `Personnage`.
+21. Cliquez sur le bouton `Grouper` en haut à droite.
+    - Il est à droite du cadenas.
+    - Ou faites `Ctrl + G`.
+
+22. Dans la zone de travail, sélectionnez `Personnage`
+23. Glissez-le un peu au-dessus de la plateforme.
+
+![alt text](assets/move_player_over_platform.gif)
+
+Maintenant que nous avons notre personnage en place, nous allons ajouter un script pour le faire bouger.
+
+24. Sélectionnez le nœud `Personnage`.
+25. Repérez le bouton `Ajouter un script` qui est dans la partie supérieure du volet Scène. Il est représenté par un parchemin avec un `+` vert.
+26. Cliquer sur le bouton `Ajouter un script`.
+
+![alt text](assets/player_add_script.gif)
+
+27. Dans la fenêtre qui s'ouvre, assurez-vous d'avoir les paramètres suivants :
+    - `Langage` : GDScript
+    - `Hérite de` : CharacterBody2D
+    - `Modèle` : CharacterBody2D: Basic Movement
+    - `Chemin` : res://personnage.gd
+28. Cliquez sur le bouton `Créer`.
+29. Une fenêtre s'ouvrira avec le code du script. Vous pouvez le laisser tel quel pour l'instant.
+
+![alt text](assets/player_script_window.png)
+
+Exécutez le jeu pour voir le personnage en action.
+
+Que se passe-t-il? Le personnage tombe à travers la plateforme. C'est parce que nous n'avons pas encore configuré la physique pour la plateforme.
+
+### Ajouter la physique à la plateforme
+30. Sélectionnez le nœud `Plateforme`.
+31. Ajouter un nœud `StaticBody2D` au nœud `Plateforme`.
+    - Il y a un point d'exclamation sur le nœud `StaticBody2D`. Cela signifie que le nœud attend un nœud `CollisionShape2D` pour définir la forme de la collision de la plateforme.
+32. Sélectionnez le nœud `StaticBody2D`.
+33. Ajoutez un nœud `CollisionShape2D` au nœud `StaticBody2D`.
+34. Dans l'inspecteur, repérez la propriété `Shape` et cliquez dessus le mot `vide`.
+35. Pour la plateforme, on va utiliser une forme rectangulaire pour la collision. Cliquez sur `RectangleShape2D`.  
+
+Exécutez le jeu pour voir le personnage en action.
+
+![alt text](assets/player_moving.gif)
+
+Cool! Notre personnage bouge maintenant. Cependant, il est un peu petit et il n'y a pas d'animation pour le moment. Nous allons en premier lieu fixer le problème du petit personnage et ensuite nous allons voir comment ajouter une animation de marche à notre personnage.
+
+### Ajouter la caméra
+Le problème du petit personnage est dû à la taille de la fenêtre de jeu. Pour régler ce problème, nous allons ajouter une caméra qui suivra le personnage.
+
+36. Sélectionnez le nœud `Personnage`.
+37. Ajoutez un nœud `Camera2D` au nœud `Personnage`.
+38. Dans l'inpecteur, repérez la propriété `Zoom` et ajustez-la pour que le personnage soit à la taille que vous voulez.
+    - La caméra est représentée par un rectangle rose. Vous pouvez ajuster la taille de la caméra en déplaçant les poignées autour du rectangle.
+    - Dans mon cas, j'ai mis le `Zoom` à 4.
+
+Exécutez le jeu pour voir le personnage en action.
+
+![alt text](assets/player_zoom.gif)
+
+# Conclusion
+
+Le personnage est maintenant à la bonne taille. Cependant, il n'y a pas d'animation pour le moment. Dans le prochain chapitre, nous allons voir comment ajouter les animations de base pour le personnage.
 
 
+---
+
+# Références
+- [KidsCanCode - Spritesheet animation](https://kidscancode.org/godot_recipes/4.x/animation/spritesheet_animation/index.html)
