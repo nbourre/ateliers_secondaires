@@ -15,6 +15,10 @@ func _ready():
 	
 	load_game()
 
+func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("ui_cancel")) :
+		get_tree().quit()
+
 func start_spawning():
 	if has_node("MobTimer"):
 		$MobTimer.start()
