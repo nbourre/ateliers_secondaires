@@ -1,18 +1,33 @@
+# ...existing code...
 # Created by https://www.toptal.com/developers/gitignore/api/godot,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=godot,visualstudiocode
 
 ### Godot ###
-# Godot-specific ignores
+
+# Ignore Godot generated folders/files anywhere in the repo
 .import/
+*.translation
+.mono/
 export.cfg
 export_presets.cfg
-
-# Imported translations (automatically generated from CSV files)
-*.translation
-
-# Mono-specific ignores
-.mono/
 data_*/
+
+# Ignore Godot editor folder (local settings/caches)
+.godot/
+
+# If all Godot projects are under "godot/", be explicit:
+# - ignore per-project generated files inside each project
+# - but keep project definition files (project.godot) and sources
+godot/*/.import/
+godot/*/.mono/
+godot/*/.godot/
+godot/*/export.cfg
+godot/*/export_presets.cfg
+godot/*/*.translation
+godot/*/data_*/
+
+# Keep project definition files tracked
+!godot/*/project.godot
 
 ### VisualStudioCode ###
 .vscode/*
@@ -36,4 +51,4 @@ data_*/
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/godot,visualstudiocode
-
+// ...existing code...
