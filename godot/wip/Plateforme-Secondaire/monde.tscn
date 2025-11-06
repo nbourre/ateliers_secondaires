@@ -1,34 +1,51 @@
-[gd_scene load_steps=4 format=4 uid="uid://y0cqb8q1v17o"]
+[gd_scene load_steps=5 format=4 uid="uid://y0cqb8q1v17o"]
 
 [ext_resource type="Texture2D" uid="uid://b0cssdnutemj5" path="res://assets/sprites/world_tileset.png" id="1_mplmx"]
+[ext_resource type="PackedScene" uid="uid://6k2qvt1nhvo5" path="res://joueur.tscn" id="2_0uhqp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uhqp"]
 texture = ExtResource("1_mplmx")
 0:0/0 = 0
-0:0/0/terrain_set = 0
+0:0/0/terrain_set = 1
 0:0/0/terrain = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:0/0/terrains_peering_bit/bottom_side = 0
 1:0/0 = 0
-1:0/0/terrain_set = 0
+1:0/0/terrain_set = 1
 1:0/0/terrain = 0
 1:0/0/probability = 0.33
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0/terrains_peering_bit/top_side = 0
 2:0/0 = 0
+2:0/0/terrain_set = 1
+2:0/0/terrain = 1
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
+3:0/0/terrain_set = 1
+3:0/0/terrain = 1
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/terrains_peering_bit/top_side = 1
 4:0/0 = 0
+4:0/0/terrain_set = 1
+4:0/0/terrain = 2
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:0/0 = 0
+5:0/0/terrain_set = 1
+5:0/0/terrain = 2
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/terrains_peering_bit/top_side = 2
 6:0/0 = 0
+6:0/0/terrain_set = 1
+6:0/0/terrain = 4
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
+7:0/0/terrain_set = 1
+7:0/0/terrain = 3
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0 = 0
+8:0/0/terrain_set = 1
+8:0/0/terrain = 5
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0/terrains_peering_bit/top_side = 5
 9:0/0 = 0
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -6, 8, 1, -8, -1)
 10:0/0 = 0
@@ -36,31 +53,51 @@ texture = ExtResource("1_mplmx")
 11:0/0 = 0
 11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -8, 8, -1, -8, 1)
 0:1/0 = 0
-0:1/0/terrain_set = 0
+0:1/0/terrain_set = 1
 0:1/0/terrain = 0
 0:1/0/probability = 0.33
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0/terrains_peering_bit/top_side = 0
 1:1/0 = 0
-1:1/0/terrain_set = 0
+1:1/0/terrain_set = 1
 1:1/0/terrain = 0
 1:1/0/probability = 0.33
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0/terrains_peering_bit/top_side = 0
 2:1/0 = 0
+2:1/0/terrain_set = 1
+2:1/0/terrain = 1
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0/terrains_peering_bit/top_side = 1
 3:1/0 = 0
+3:1/0/terrain_set = 1
+3:1/0/terrain = 1
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/terrains_peering_bit/top_side = 1
 4:1/0 = 0
+4:1/0/terrain_set = 1
+4:1/0/terrain = 2
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0/terrains_peering_bit/top_side = 2
 5:1/0 = 0
+5:1/0/terrain_set = 1
+5:1/0/terrain = 2
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0/terrains_peering_bit/top_side = 2
 6:1/0 = 0
+6:1/0/terrain_set = 1
+6:1/0/terrain = 4
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/terrains_peering_bit/top_side = 4
 7:1/0 = 0
+7:1/0/terrain_set = 1
+7:1/0/terrain = 5
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
+8:1/0/terrain_set = 1
+8:1/0/terrain = 5
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0/terrains_peering_bit/top_side = 5
 9:1/0 = 0
 9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -6, 8, 1, -8, -1)
 10:1/0 = 0
@@ -75,6 +112,9 @@ texture = ExtResource("1_mplmx")
 4:2/0 = 0
 5:2/0 = 0
 6:2/0 = 0
+6:2/0/terrain_set = 1
+6:2/0/terrain = 3
+6:2/0/terrains_peering_bit/top_side = 3
 7:2/0 = 0
 8:2/0 = 0
 9:2/0 = 0
@@ -170,9 +210,20 @@ texture = ExtResource("1_mplmx")
 
 [sub_resource type="TileSet" id="TileSet_peue8"]
 physics_layer_0/collision_layer = 1
-terrain_set_0/mode = 2
-terrain_set_0/terrain_0/name = "Vert"
-terrain_set_0/terrain_0/color = Color(0.5019608, 0.34509805, 0.8784314, 1)
+terrain_set_0/mode = 0
+terrain_set_1/mode = 2
+terrain_set_1/terrain_0/name = "Vert"
+terrain_set_1/terrain_0/color = Color(0.5019608, 0.34509805, 0.8784314, 1)
+terrain_set_1/terrain_1/name = "Brun"
+terrain_set_1/terrain_1/color = Color(0.2576723, 0.4674399, 0.613331, 1)
+terrain_set_1/terrain_2/name = "Jaune"
+terrain_set_1/terrain_2/color = Color(0.68118614, 0.32787877, 0.5978855, 1)
+terrain_set_1/terrain_3/name = "Glace"
+terrain_set_1/terrain_3/color = Color(0.6304093, 0.3873798, 0.24579692, 1)
+terrain_set_1/terrain_4/name = "Toundra"
+terrain_set_1/terrain_4/color = Color(0.73246497, 0.24132141, 0.30385944, 1)
+terrain_set_1/terrain_5/name = "Neige"
+terrain_set_1/terrain_5/color = Color(0.25, 0.5, 0.3125, 1)
 sources/0 = SubResource("TileSetAtlasSource_0uhqp")
 
 [node name="Monde" type="Node2D"]
@@ -180,5 +231,8 @@ sources/0 = SubResource("TileSetAtlasSource_0uhqp")
 [node name="Niveau" type="Node" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Niveau"]
-tile_map_data = PackedByteArray("AAAXABEAAAAAAAAAAAAYABEAAAAAAAAAAAAZABEAAAAAAAAAAAAaABEAAAAAAAAAAAAbABEAAAAAAAAAAAAcABEAAAAAAAAAAAAdABEAAAAAAAAAAAAXABIAAAABAAAAAAAYABIAAAABAAAAAAAZABIAAAABAAAAAAAaABIAAAABAAAAAAAbABIAAAABAAAAAAAcABIAAAABAAAAAAAdABIAAAABAAAAAAAhABAAAAAAAAEAAAAiABAAAAABAAAAAAAjABAAAAAAAAEAAAAkABAAAAAAAAEAAAAlABAAAAABAAAAAAAmABAAAAABAAEAAAAnABAAAAABAAAAAAAoABAAAAABAAEAAAAoAA8AAAAAAAAAAAAnAA8AAAAAAAAAAAAmAA8AAAAAAAAAAAAlAA8AAAAAAAAAAAAkAA8AAAAAAAAAAAAjAA8AAAAAAAAAAAAiAA8AAAAAAAAAAAAhAA8AAAAAAAAAAAAhABEAAAABAAEAAAAiABEAAAABAAAAAAAjABEAAAABAAEAAAAkABEAAAABAAEAAAAlABEAAAABAAEAAAAmABEAAAABAAEAAAAnABEAAAABAAAAAAAoABEAAAAAAAEAAAAlABIAAAABAAEAAAAkABIAAAABAAEAAAAjABIAAAABAAEAAAAiABIAAAAAAAEAAAAhABIAAAAAAAEAAAAdAA4AAAABAAAAAAAdAA0AAAAAAAAAAAAZABMAAAABAAEAAAAaABMAAAABAAAAAAAbABMAAAABAAEAAAAcABMAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAATACMAAAAAAAEAAAATACIAAAAAAAAAAAASACMAAAABAAEAAAASACIAAAAAAAAAAAARACMAAAABAAEAAAARACIAAAAAAAAAAAAQACMAAAABAAEAAAAQACIAAAAAAAAAAAAPACMAAAAAAAEAAAAPACIAAAAAAAAAAAAOACMAAAABAAAAAAAOACIAAAAAAAAAAAANACMAAAABAAEAAAANACIAAAAAAAAAAAAMACMAAAABAAEAAAAMACIAAAAAAAAAAAALACMAAAABAAAAAAALACIAAAAAAAAAAAAKACMAAAABAAAAAAAKACIAAAAAAAAAAAAJACMAAAAAAAEAAAAJACIAAAAAAAAAAAAIACMAAAABAAEAAAAIACIAAAAAAAAAAAAHACMAAAAAAAEAAAAHACIAAAAAAAAAAAAGACMAAAABAAEAAAAGACIAAAAAAAAAAAAbACQAAAADAAAAAAAaACQAAAADAAEAAAAZACQAAAACAAEAAAAYACQAAAADAAEAAAAXACQAAAADAAEAAAAWACUAAAADAAAAAAAWACQAAAACAAAAAAAdACEAAAACAAAAAAAcACEAAAACAAAAAAAbACEAAAACAAAAAAAaACEAAAACAAAAAAAcACQAAAADAAAAAAAcACMAAAACAAAAAAAbACMAAAACAAAAAAAaACMAAAACAAAAAAAZACMAAAACAAAAAAAYACMAAAACAAAAAAAXACMAAAACAAAAAAAcACYAAAACAAAAAAAbACYAAAACAAAAAAAaACYAAAACAAAAAAAZACYAAAACAAAAAAAWACcAAAADAAAAAAAWACYAAAADAAAAAAAVACcAAAADAAAAAAAVACYAAAACAAAAAAAUACcAAAADAAEAAAAUACYAAAACAAAAAAATACcAAAACAAEAAAATACYAAAACAAAAAAAbACcAAAADAAEAAAAaACcAAAACAAEAAAAZACcAAAADAAEAAAAZACoAAAAHAAEAAAAYACoAAAAHAAEAAAAXACoAAAAHAAEAAAAWACoAAAAHAAEAAAAVACoAAAAHAAEAAAAUACoAAAAHAAEAAAATACoAAAAHAAEAAAASACoAAAAHAAEAAAARACoAAAAHAAEAAAAQACoAAAAHAAEAAAA=")
 tile_set = SubResource("TileSet_peue8")
+
+[node name="Joueur" parent="." instance=ExtResource("2_0uhqp")]
+position = Vector2(179, 529)

@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	# Jouer les animations
 	if is_on_floor():
 		if direction == 0:
-			animated_sprite.play("inactif")
+			animated_sprite.play("repos")
 		else:
 			animated_sprite.play("courir")
 	else:
