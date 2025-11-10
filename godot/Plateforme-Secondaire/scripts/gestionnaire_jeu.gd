@@ -9,7 +9,8 @@ func _ready() -> void:
 		pointage = $Pointage
 
 func ajouter_point():
-	if pointage != null:
-		pointage.text = "Tu as récolté " + str(score) + " pièces."
 	score += 1
 	print (score)
+	if pointage != null:
+		pointage.text = "Tu as récolté " + str(score) + " pièces."
+	

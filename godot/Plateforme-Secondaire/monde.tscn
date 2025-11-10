@@ -240,5 +240,5 @@ script = ExtResource("1_5o5ke")
 
 [node name="Niveau" type="Node" parent="."]
 
-[node name="Niveau" type="TileMapLayer" parent="Niveau"]
+[node name="Map" type="TileMapLayer" parent="Niveau"]
 tile_set = SubResource("TileSet_peue8")

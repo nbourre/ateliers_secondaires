@@ -1,7 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://6k2qvt1nhvo5"]
+[gd_scene load_steps=41 format=3 uid="uid://6k2qvt1nhvo5"]
 
 [ext_resource type="Texture2D" uid="uid://pl14bl88yuw0" path="res://assets/sprites/knight.png" id="1_2d0qe"]
-[ext_resource type="Script" uid="uid://bncalnt67qcsi" path="res://scripts/joueur.gd" id="1_mc3kx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqiic"]
 atlas = ExtResource("1_2d0qe")
@@ -302,7 +301,6 @@ height = 12.0
 [node name="Joueur" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 2
-script = ExtResource("1_mc3kx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
