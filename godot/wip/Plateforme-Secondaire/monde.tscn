@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://y0cqb8q1v17o"]
+[gd_scene load_steps=6 format=3 uid="uid://y0cqb8q1v17o"]
 
 [ext_resource type="Script" uid="uid://dg7weue4ccqu2" path="res://scripts/gestionnaire_jeu.gd" id="1_5o5ke"]
 [ext_resource type="Texture2D" uid="uid://b0cssdnutemj5" path="res://assets/sprites/world_tileset.png" id="1_mplmx"]
-[ext_resource type="PackedScene" uid="uid://6k2qvt1nhvo5" path="res://scenes/joueur.tscn" id="2_0uhqp"]
-[ext_resource type="PackedScene" uid="uid://piep80cvhc14" path="res://scenes/plateforme.tscn" id="2_13bj3"]
+[ext_resource type="Texture2D" uid="uid://dqodxbq7xfs1s" path="res://assets/logo_cegep.png" id="1_pguex"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uhqp"]
 texture = ExtResource("1_mplmx")
@@ -228,45 +227,12 @@ terrain_set_1/terrain_5/name = "Neige"
 terrain_set_1/terrain_5/color = Color(0.25, 0.5, 0.3125, 1)
 sources/0 = SubResource("TileSetAtlasSource_0uhqp")
 
-[sub_resource type="Animation" id="Animation_5o5ke"]
-resource_name = "bouge"
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(337, 535), Vector2(399, 535)]
-}
-
-[sub_resource type="Animation" id="Animation_pguex"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(337, 535)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xy4bk"]
-_data = {
-&"RESET": SubResource("Animation_pguex"),
-&"bouge": SubResource("Animation_5o5ke")
-}
-
 [node name="Monde" type="Node2D"]
+
+[node name="LogoCegep" type="Sprite2D" parent="."]
+position = Vector2(568, 335)
+scale = Vector2(0.27419356, 0.27419356)
+texture = ExtResource("1_pguex")
 
 [node name="GestionnaireJeu" type="Node" parent="."]
 unique_name_in_owner = true
@@ -275,17 +241,4 @@ script = ExtResource("1_5o5ke")
 [node name="Niveau" type="Node" parent="."]
 
 [node name="Niveau" type="TileMapLayer" parent="Niveau"]
-tile_map_data = PackedByteArray("AAATACMAAAAAAAEAAAATACIAAAAAAAAAAAASACMAAAABAAEAAAASACIAAAAAAAAAAAARACMAAAABAAEAAAARACIAAAAAAAAAAAAQACMAAAABAAEAAAAQACIAAAAAAAAAAAAPACMAAAAAAAEAAAAPACIAAAAAAAAAAAAOACMAAAABAAAAAAAOACIAAAAAAAAAAAANACMAAAABAAEAAAANACIAAAAAAAAAAAAMACMAAAABAAEAAAAMACIAAAAAAAAAAAALACMAAAABAAAAAAALACIAAAAAAAAAAAAKACMAAAABAAAAAAAKACIAAAAAAAAAAAAJACMAAAAAAAEAAAAJACIAAAAAAAAAAAAIACMAAAABAAEAAAAIACIAAAAAAAAAAAAHACMAAAAAAAEAAAAHACIAAAAAAAAAAAAGACMAAAABAAEAAAAGACIAAAAAAAAAAAAbACQAAAADAAAAAAAaACQAAAADAAEAAAAZACQAAAACAAEAAAAYACQAAAADAAEAAAAXACQAAAADAAEAAAAWACUAAAADAAAAAAAWACQAAAACAAAAAAAdACEAAAACAAAAAAAcACEAAAACAAAAAAAbACEAAAACAAAAAAAaACEAAAACAAAAAAAcACQAAAADAAAAAAAcACMAAAACAAAAAAAbACMAAAACAAAAAAAaACMAAAACAAAAAAAZACMAAAACAAAAAAAYACMAAAACAAAAAAAXACMAAAACAAAAAAAcACYAAAACAAAAAAAbACYAAAACAAAAAAAaACYAAAACAAAAAAAZACYAAAACAAAAAAAWACcAAAADAAAAAAAWACYAAAADAAAAAAAVACcAAAADAAAAAAAVACYAAAACAAAAAAAUACcAAAADAAEAAAAUACYAAAACAAAAAAATACcAAAACAAEAAAATACYAAAACAAAAAAAbACcAAAADAAEAAAAaACcAAAACAAEAAAAZACcAAAADAAEAAAAZACoAAAAHAAEAAAAYACoAAAAHAAEAAAAXACoAAAAHAAEAAAAWACoAAAAHAAEAAAAVACoAAAAHAAEAAAAUACoAAAAHAAEAAAATACoAAAAHAAEAAAASACoAAAAHAAEAAAARACoAAAAHAAEAAAAQACoAAAAHAAEAAAA=")
 tile_set = SubResource("TileSet_peue8")
-
-[node name="Plateforme" parent="Niveau" instance=ExtResource("2_13bj3")]
-position = Vector2(337, 535)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Niveau/Plateforme"]
-libraries = {
-&"": SubResource("AnimationLibrary_xy4bk")
-}
-autoplay = "bouge"
-
-[node name="Joueur" parent="." instance=ExtResource("2_0uhqp")]
-position = Vector2(179, 529)

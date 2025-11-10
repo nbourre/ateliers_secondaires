@@ -15,6 +15,14 @@ run/main_scene="uid://y0cqb8q1v17o"
 config/features=PackedStringArray("4.5")
 config/icon="res://assets/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://assets/default_bus_layout.tres"
+
+[autoload]
+
+Musique="*res://musique.tscn"
+
 [input]
 
 gauche={
