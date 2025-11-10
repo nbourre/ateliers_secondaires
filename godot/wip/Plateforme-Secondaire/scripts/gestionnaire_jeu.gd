@@ -2,9 +2,14 @@ extends Node
 
 var score : int = 0
 
-#@onready var pointage: Label = $Pointage
+var pointage: Label
+
+func _ready() -> void:
+	if (has_node("Pointage")):
+		pointage = $Pointage
 
 func ajouter_point():
-	#pointage.text = "Tu as récolté " + str(score) + " pièces."
+	if pointage != null:
+		pointage.text = "Tu as récolté " + str(score) + " pièces."
 	score += 1
 	print (score)
