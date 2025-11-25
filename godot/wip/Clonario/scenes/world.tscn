@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bivxu61xgkfgb"]
+
+[ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scenes/world.gd" id="1_k0juu"]
+[ext_resource type="PackedScene" uid="uid://b4j8e8fp0awhf" path="res://scenes/player.tscn" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://j07qfp2pghxd" path="res://scenes/food_spawner.tscn" id="3_4wyf3"]
+[ext_resource type="Texture2D" uid="uid://dphamfya8f6om" path="res://assets/grid.png" id="5_hesiw"]
+
+[node name="world" type="Node"]
+script = ExtResource("1_k0juu")
+
+[node name="Grid" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.23921569)
+z_index = -1
+texture_repeat = 2
+texture = ExtResource("5_hesiw")
+region_enabled = true
+region_rect = Rect2(0, 0, 12000, 8000)
+
+[node name="Player" parent="." instance=ExtResource("2_rwgxs")]
+z_index = 2
+
+[node name="FoodSpawner" parent="." instance=ExtResource("3_4wyf3")]

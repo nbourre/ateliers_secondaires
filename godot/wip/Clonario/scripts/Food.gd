@@ -1,3 +1,4 @@
+class_name Food
 extends Area2D
 
 var size
