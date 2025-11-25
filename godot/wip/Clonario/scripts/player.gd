@@ -20,17 +20,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var direction := get_global_mouse_position() - global_position
-
+	direction = get_global_mouse_position() - global_position
 
 	if direction.length() < dir_stop:
-		direction = Vector2.ZERO	
-
-	direction = direction.normalized()
+		velocity = velocity.lerp(Vector2.ZERO, 0.1)
+	else:
+		direction = direction.normalized()
+		velocity = velocity.lerp(direction * speed * delta, 0.1)
 
 
 	
-	velocity = velocity.lerp(direction * speed * delta, 0.1)
+	
 	move_and_slide()
 
 func get_no_spawn_radius() -> float:

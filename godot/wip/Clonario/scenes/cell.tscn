@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c66t164fxigbs"]
+[gd_scene load_steps=4 format=3 uid="uid://c66t164fxigbs"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_x37sj"]
-radius = 50.0
-height = 100.0
+[ext_resource type="Script" uid="uid://c5kalp5lkspjt" path="res://scenes/cell.gd" id="1_0s7o3"]
+[ext_resource type="Texture2D" uid="uid://djm856udwyc6r" path="res://assets/circle.svg" id="1_upbjj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lrfj"]
 radius = 51.0
 
-[node name="Cell" type="MeshInstance2D"]
-modulate = Color(0.0470588, 0.678431, 0.211765, 1)
-mesh = SubResource("SphereMesh_x37sj")
+[node name="Cell" type="Area2D"]
+script = ExtResource("1_0s7o3")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Circle" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_upbjj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4lrfj")
