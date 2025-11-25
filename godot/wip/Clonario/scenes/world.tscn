@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bivxu61xgkfgb"]
 
-[ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scenes/world.gd" id="1_k0juu"]
+[ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://b4j8e8fp0awhf" path="res://scenes/player.tscn" id="2_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://j07qfp2pghxd" path="res://scenes/food_spawner.tscn" id="3_4wyf3"]
 [ext_resource type="Texture2D" uid="uid://dphamfya8f6om" path="res://assets/grid.png" id="5_hesiw"]
