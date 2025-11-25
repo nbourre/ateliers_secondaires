@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cchyjv0qpasbl"]
+
+[ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cell.tscn" id="1_cwism"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qpkb6"]
+
+[node name="Bot" type="CharacterBody2D"]
+
+[node name="Cell" parent="." instance=ExtResource("1_cwism")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qpkb6")

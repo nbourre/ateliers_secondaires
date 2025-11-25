@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c66t164fxigbs"]
 
-[ext_resource type="Script" uid="uid://c5kalp5lkspjt" path="res://scenes/cell.gd" id="1_0s7o3"]
+[ext_resource type="Script" uid="uid://c5kalp5lkspjt" path="res://scripts/cell.gd" id="1_0s7o3"]
 [ext_resource type="Texture2D" uid="uid://djm856udwyc6r" path="res://assets/circle.svg" id="1_upbjj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lrfj"]
@@ -13,5 +13,8 @@ script = ExtResource("1_0s7o3")
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_upbjj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Activation" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4lrfj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

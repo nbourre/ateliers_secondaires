@@ -8,13 +8,12 @@ var direction := Vector2.ZERO
 
 var dir_stop := 50.0
 
-# radius around player where food will not spawn
-
-
+var cell : Cell
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		
+	cell = $Cell
+	cell.set_controller(PlayerController.new())
 	pass # Replace with function body.
 
 
