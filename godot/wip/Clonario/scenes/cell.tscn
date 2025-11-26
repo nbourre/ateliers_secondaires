@@ -7,6 +7,7 @@
 radius = 51.0
 
 [node name="Cell" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_0s7o3")
 
 [node name="Circle" type="Sprite2D" parent="."]
@@ -17,3 +18,6 @@ texture = ExtResource("1_upbjj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Activation"]
 shape = SubResource("CircleShape2D_4lrfj")
+
+[connection signal="area_entered" from="Activation" to="." method="_on_activation_area_entered"]
+[connection signal="area_exited" from="Activation" to="." method="_on_activation_area_exited"]

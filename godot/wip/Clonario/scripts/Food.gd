@@ -8,9 +8,11 @@ func _ready():
 	$Sprite2D.modulate = Color8(randi_range(0, 255), randi_range(0, 255), randi_range(0, 255), 255)
 
 
-func _on_body_entered(body: Node2D) -> void:
-	var cell := body.get_node_or_null("Cell")
-	if cell != null:
-		print("Food eaten!")
-		cell.grow(1)
-		queue_free()
+func _on_area_entered(area: Area2D) -> void:
+	if area.get_parent() is Cell:
+		var cell : Cell = area.get_parent() as Cell
+
+		if cell != null:
+			print("Food eaten!")
+			cell.grow(1)
+			queue_free()

@@ -14,7 +14,7 @@ var sprite : Sprite2D
 
 var is_overlapped : bool = false
 
-
+var activation : Area2D
 var direction := Vector2.ZERO
 
 func _ready() -> void:
@@ -22,6 +22,9 @@ func _ready() -> void:
 	start_scale = scale.x
 	radius = sqrt(life / PI)
 	radius_ratio = start_scale / radius
+
+	activation = $Activation
+
 
 	if controller == null:
 		push_warning("This cell has no brain assigned!")
@@ -50,12 +53,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.name != self.get_parent().name:
-		is_overlapped = true
-		
 
-func _on_body_exited(_body: Node2D) -> void:
+func _on_activation_area_entered(area: Area2D) -> void:
+	print("From Cell Body entered: " + area.name)
+	if area.name != self.get_parent().name:
+		is_overlapped = true
+
+func _on_activation_area_exited(area: Area2D) -> void:
 	is_overlapped = false
 
 func overlap_monitoring() -> void:
