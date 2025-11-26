@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lrfj"]
 radius = 51.0
 
-[node name="Cell" type="CharacterBody2D"]
+[node name="Cell" type="CharacterBody2D" groups=["Cells"]]
 z_index = 1
 script = ExtResource("1_0s7o3")
 

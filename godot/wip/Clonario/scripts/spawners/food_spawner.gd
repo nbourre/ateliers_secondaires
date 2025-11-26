@@ -16,6 +16,7 @@ func spawn_food():
 	# This function can be expanded to respawn food while respecting the no-spawn area
 	for i in nb_food:
 		var f = food.instantiate() as Food
+		f.name = "Food_%d" % i
 		add_child(f)
 		randomize()
 

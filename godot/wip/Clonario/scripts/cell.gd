@@ -17,6 +17,10 @@ var is_overlapped : bool = false
 var activation : Area2D
 var direction := Vector2.ZERO
 
+var no_controller_msg := true
+
+var objects_in_activation_area := []
+
 func _ready() -> void:
 	sprite = $Circle
 	start_scale = scale.x
@@ -25,9 +29,6 @@ func _ready() -> void:
 
 	activation = $Activation
 
-
-	if controller == null:
-		push_warning("This cell has no brain assigned!")
 
 func grow(value : float) -> void:
 	life += value;
@@ -50,17 +51,30 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.lerp(direction.normalized() * speed * delta, 0.1)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, 0.1)
+	else:
+		if no_controller_msg:
+			print("No controller assigned to Cell: " + str(self.name))
+			no_controller_msg = false
 	
 	move_and_slide()
 
 
 func _on_activation_area_entered(area: Area2D) -> void:
-	print("From Cell Body entered: " + area.name)
+	if (area.get_parent() is Cell):
+		objects_in_activation_area.append(area.get_parent() as Cell)
+	elif (area is Food):
+		objects_in_activation_area.append(area as Food)
+	
 	if area.name != self.get_parent().name:
 		is_overlapped = true
 
 func _on_activation_area_exited(area: Area2D) -> void:
-	is_overlapped = false
+	if (area.get_parent() is Cell):
+		objects_in_activation_area.erase(area.get_parent() as Cell)
+	elif (area is Food):
+		objects_in_activation_area.erase(area as Food)
+
+	is_overlapped = objects_in_activation_area.size() > 1
 
 func overlap_monitoring() -> void:
 	if is_overlapped:
@@ -71,3 +85,4 @@ func overlap_monitoring() -> void:
 func set_controller(the_controller : Controller) -> void:
 	controller = the_controller
 	add_child(controller)
+	no_controller_msg = false
