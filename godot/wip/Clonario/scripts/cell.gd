@@ -66,13 +66,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_activation_area_entered(area: Area2D) -> void:
+func _on_activation_area_entered(_area: Area2D) -> void:
 	is_overlapped = activation.get_overlapping_areas().size() > 0
 	
-	# if area.name != self.get_parent().name:
-	# 	is_overlapped = true
 
-func _on_activation_area_exited(area: Area2D) -> void:
+func _on_activation_area_exited(_area: Area2D) -> void:
 	is_overlapped = activation.get_overlapping_areas().size() > 0
 
 func overlap_monitoring() -> void:
