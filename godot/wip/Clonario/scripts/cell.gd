@@ -1,7 +1,6 @@
 class_name Cell
 extends CharacterBody2D
 
-
 @export var controller : Controller
 @export var speed := 6000.0
 @export var spawn_free_radius := 500.0

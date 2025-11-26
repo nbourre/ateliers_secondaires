@@ -5,5 +5,4 @@
     "files.exclude": {
         "**/*.gd.uid": true
     },
-    "godotTools.editorPath.godot4": "c:\\Users\\nicol\\Godot\\Editors\\4.5.1-stable\\Godot_v4.5.1-stable_win64.exe"
 }
