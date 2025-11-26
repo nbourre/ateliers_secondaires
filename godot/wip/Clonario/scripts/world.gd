@@ -12,9 +12,3 @@ func _ready() -> void:
 	food_spawner.spawn_food()
 
 	cell_spawner.spawn()
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
