@@ -1,9 +1,12 @@
 class_name Cell
-extends Area2D
+extends CharacterBody2D
 
+
+@export var controller : Controller
+@export var speed := 6000.0
+@export var spawn_free_radius := 500.0
 
 var life := 10.0;
-
 var start_scale : float
 var radius : float
 var radius_ratio : float
@@ -12,7 +15,7 @@ var sprite : Sprite2D
 
 var is_overlapped : bool = false
 
-@export var controller : Controller
+
 var direction := Vector2.ZERO
 
 func _ready() -> void:
@@ -20,6 +23,9 @@ func _ready() -> void:
 	start_scale = scale.x
 	radius = sqrt(life / PI)
 	radius_ratio = start_scale / radius
+
+	if controller == null:
+		push_warning("This cell has no brain assigned!")
 
 func grow(value : float) -> void:
 	life += value;
@@ -29,13 +35,21 @@ func grow(value : float) -> void:
 
 	print("Life : " + str(life))
 
-func _physics_process(_delta: float) -> void:
+func get_no_spawn_radius() -> float:
+	return spawn_free_radius
+
+func _physics_process(delta: float) -> void:
 	overlap_monitoring()
 
 	if controller != null:
-		controller._process(_delta)
 		direction = controller.get_movement()
+		
+		if direction.length() > 0:
+			velocity = velocity.lerp(direction.normalized() * speed * delta, 0.1)
+		else:
+			velocity = velocity.lerp(Vector2.ZERO, 0.1)
 	
+	move_and_slide()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name != self.get_parent().name:
@@ -43,7 +57,6 @@ func _on_body_entered(body: Node2D) -> void:
 		
 
 func _on_body_exited(_body: Node2D) -> void:
-	
 	is_overlapped = false
 
 func overlap_monitoring() -> void:
@@ -54,3 +67,4 @@ func overlap_monitoring() -> void:
 
 func set_controller(the_controller : Controller) -> void:
 	controller = the_controller
+	add_child(controller)

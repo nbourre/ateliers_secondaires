@@ -9,12 +9,11 @@
 [node name="world" type="Node"]
 script = ExtResource("1_k0juu")
 
-[node name="Player" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("2_k0juu")]
-controller = NodePath("PlayerController")
+[node name="Player" parent="." instance=ExtResource("2_k0juu")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="PlayerController" type="Node" parent="Player"]
+[node name="Controller" type="Node" parent="Player"]
 script = ExtResource("3_71j4m")
 
 [node name="Grid" type="Sprite2D" parent="."]
