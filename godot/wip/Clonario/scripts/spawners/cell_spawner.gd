@@ -35,3 +35,6 @@ func spawn():
 							c.position.x = randi_range(-square_range, square_range)
 							c.position.y = randi_range(-square_range, square_range)
 							break
+
+func get_pool() -> Array:
+	return object_pool

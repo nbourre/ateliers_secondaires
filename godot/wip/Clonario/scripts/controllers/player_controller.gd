@@ -2,10 +2,13 @@ class_name PlayerController
 extends Controller
 
 var direction := Vector2.ZERO
-var dir_stop := 50.0
+var dir_stop := 150.0
 
 func get_movement() -> Vector2:
 	return direction
+
+func die() -> void:
+	get_tree().reload_current_scene()
 
 # Returns a normalized vector pointing from the center of the screen to the mouse position
 func get_mouse_direction() -> Vector2:
@@ -22,6 +25,8 @@ func _process(_delta: float) -> void:
 	var dir := get_mouse_direction()
 
 	if dir.length() < dir_stop:
+		# FIXME: Not stopping
 		direction = direction.lerp(Vector2.ZERO, 0.1)
+		print("Stopping")
 	else:
 		direction = direction.lerp(dir.normalized(), 0.1)

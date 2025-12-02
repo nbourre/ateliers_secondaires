@@ -7,6 +7,7 @@ extends Node2D
 
 var no_spawn_point : Vector2
 
+var object_pool := []
 
 func set_no_spawn_area(center : Vector2, radius: float) -> void:
 	no_spawn_point = center
@@ -18,6 +19,7 @@ func spawn_food():
 		var f = food.instantiate() as Food
 		f.name = "Food_%d" % i
 		add_child(f)
+		object_pool.append(f)
 		randomize()
 
 		f.position.x = randi_range(-2000, 2000)
@@ -26,3 +28,6 @@ func spawn_food():
 		while f.position.distance_to(no_spawn_point) < no_spawn_radius:
 			f.position.x = randi_range(-2000, 2000)
 			f.position.y = randi_range(-2000, 2000)
+
+func get_pool() -> Array:
+	return object_pool

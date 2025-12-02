@@ -21,6 +21,8 @@ var no_controller_msg := true
 
 var objects_in_activation_area := []
 
+
+
 func _ready() -> void:
 	sprite = $Circle
 	start_scale = scale.x
@@ -65,7 +67,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-
 func _on_activation_area_entered(_area: Area2D) -> void:
 	is_overlapped = activation.get_overlapping_areas().size() > 0
 	
@@ -74,6 +75,7 @@ func _on_activation_area_exited(_area: Area2D) -> void:
 	is_overlapped = activation.get_overlapping_areas().size() > 0
 
 func overlap_monitoring() -> void:
+	is_overlapped = activation.get_overlapping_areas().size() > 0
 	if not is_overlapped :
 		sprite.modulate = Color(sprite.modulate.r, sprite.modulate.g, sprite.modulate.b, 1.0)
 		return
@@ -83,7 +85,31 @@ func overlap_monitoring() -> void:
 	for obj in activation.get_overlapping_areas():
 		# For debugging purposes
 		if obj is Area2D and obj.get_parent() is Cell:
-			print(name + " is overlapping with: " + str(obj.get_parent().name))
+
+			var other_cell : Cell = obj.get_parent() as Cell
+
+			if other_cell.get_size() == size:
+				# Only care about different sized cells
+				continue
+
+			var distance := global_position.distance_to(other_cell.global_position)
+
+			# Fix : The distance is not good enough, we need to check the actual radii
+			if (distance < get_size()/3):
+				print("Distance: " + str(distance) + "\t Size : " + str(other_cell.get_size()))
+			
+				if other_cell.get_size() < size:
+					print("Distance: " + str(distance) + "\t Size : " + str(other_cell.get_size()))
+					other_cell.die()
+					grow(other_cell.get_life() * 0.25)
+					continue
+				else:
+					die()
+					continue
+
+func die() -> void:
+	if controller != null:
+		controller.die()	
 
 func set_controller(the_controller : Controller) -> void:
 	controller = the_controller
@@ -108,3 +134,8 @@ func set_size(new_size : float) -> void:
 func set_label(new_name : String) -> void:
 	name = new_name
 	$NameLabel.text = new_name
+
+func set_all_eatable_objects(objects : Array) -> void:
+	var all_eatable_objects := []
+	all_eatable_objects = objects
+	controller.set_eatable_objects(all_eatable_objects)
