@@ -4,6 +4,8 @@ extends Controller
 var direction := Vector2.ZERO
 var dir_stop := 150.0
 
+var move_speed := 4000.0
+
 func get_movement() -> Vector2:
 	return direction
 
@@ -20,13 +22,13 @@ func get_mouse_direction() -> Vector2:
 	return dir
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	var dir := get_mouse_direction()
 
 	if dir.length() < dir_stop:
 		# FIXME: Not stopping
 		direction = direction.lerp(Vector2.ZERO, 0.1)
-		print("Stopping")
+		#print("Stopping")
 	else:
-		direction = direction.lerp(dir.normalized(), 0.1)
+		direction = direction.lerp(dir.normalized() * move_speed * delta, 0.1)

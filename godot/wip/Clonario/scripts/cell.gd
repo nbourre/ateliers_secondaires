@@ -2,7 +2,6 @@ class_name Cell
 extends CharacterBody2D
 
 @export var controller : Controller
-@export var speed := 6000.0
 @export var spawn_free_radius := 500.0
 
 var life := 10.0;
@@ -57,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		direction = controller.get_movement()
 		
 		if direction.length() > 0:
-			velocity = velocity.lerp(direction.normalized() * speed * delta, 0.1)
+			velocity = velocity.lerp(direction, 0.1)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, 0.1)
 	else:
@@ -69,7 +68,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_activation_area_entered(_area: Area2D) -> void:
 	is_overlapped = activation.get_overlapping_areas().size() > 0
-	
 
 func _on_activation_area_exited(_area: Area2D) -> void:
 	is_overlapped = activation.get_overlapping_areas().size() > 0

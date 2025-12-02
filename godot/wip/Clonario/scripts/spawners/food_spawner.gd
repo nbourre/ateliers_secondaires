@@ -9,6 +9,9 @@ var no_spawn_point : Vector2
 
 var object_pool := []
 
+func _ready() -> void:
+	pass # Called when the node enters the scene tree for the first time.
+
 func set_no_spawn_area(center : Vector2, radius: float) -> void:
 	no_spawn_point = center
 	no_spawn_radius = radius
@@ -18,6 +21,7 @@ func spawn_food():
 	for i in nb_food:
 		var f = food.instantiate() as Food
 		f.name = "Food_%d" % i
+		f.connect("eaten", Callable(self, "_on_food_eaten"))
 		add_child(f)
 		object_pool.append(f)
 		randomize()
@@ -31,3 +35,20 @@ func spawn_food():
 
 func get_pool() -> Array:
 	return object_pool
+
+func _on_food_eaten(food_item : Food) -> void:
+	food_item.position.x = randi_range(-2000, 2000)
+	food_item.position.y = randi_range(-2000, 2000)
+	while food_item.position.distance_to(no_spawn_point) < no_spawn_radius:
+			food_item.position.x = randi_range(-2000, 2000)
+			food_item.position.y = randi_range(-2000, 2000)
+
+		
+
+func disable_food(food_item : Food) -> void:
+	food_item.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	food_item.hide()
+
+func enable_food(food_item : Food) -> void:
+	food_item.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+	food_item.show()

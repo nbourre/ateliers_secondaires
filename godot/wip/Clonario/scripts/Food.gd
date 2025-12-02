@@ -1,6 +1,8 @@
 class_name Food
 extends Area2D
 
+signal eaten
+
 var size
 
 func _ready():
@@ -13,6 +15,19 @@ func _on_area_entered(area: Area2D) -> void:
 		var cell : Cell = area.get_parent() as Cell
 
 		if cell != null:
-			print("Food eaten!")
 			cell.grow(1)
-			queue_free()
+			eaten.emit(self)	
+			#queue_free()
+
+		
+func disable() -> void:
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	hide()
+
+func enable() -> void:
+	set_deferred("monitoring", true)
+	set_deferred("monitorable", true)
+	set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+	show()
