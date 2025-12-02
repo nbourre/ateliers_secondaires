@@ -35,11 +35,15 @@ var closest_object: Node2D = null
 @export var flee_distance: float = 400.0
 @export var debug_mode: bool = true
 
+var debug_shapes : Array[DebugShape] = []
+
 # Debug colors
 var chase_color := Color(0, 1, 0, 0.2)  # Green
 var flee_color := Color(1, 0, 0, 0.3)   # Red
 
 var my_cell : Cell
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,24 +51,34 @@ func _ready() -> void:
 	set_process(true)
 	my_cell = get_parent() as Cell
 
+	if debug_mode:
+		add_debug_shapes()
+
+func add_debug_shapes() -> void:
+	var dir_arrow := DebugShape.new()
+	my_cell.add_child(dir_arrow)
+	dir_arrow.set_shape_type (DebugShape.ShapeType.ARROW)
+	dir_arrow.set_position(my_cell.position)
+	dir_arrow.size = flee_distance
+
+	debug_shapes.append(dir_arrow)
+#	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	state_manager(delta)
+	
+	_draw()
 
 func _draw() -> void:
 	if not debug_mode:
 		return
 	
+	for shape in debug_shapes:
+		shape.rotation = direction.angle()
+		pass
 
-	# Draw flee distance (inner circle, red)
-	my_cell.draw_circle(Vector2.ZERO, flee_distance, flee_color)
 	
-	# Draw chase distance (outer circle, green)
-	my_cell.draw_circle(Vector2.ZERO, chase_distance, chase_color)
-	
-	# Draw border lines for clarity
-	my_cell.draw_arc(Vector2.ZERO, flee_distance, 0, TAU, 64, Color.RED, 2.0)
-	my_cell.draw_arc(Vector2.ZERO, chase_distance, 0, TAU, 64, Color.GREEN, 2.0)
 
 func get_movement() -> Vector2:
 	return movement_vector

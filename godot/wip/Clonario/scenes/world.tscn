@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bivxu61xgkfgb"]
+[gd_scene load_steps=9 format=3 uid="uid://bivxu61xgkfgb"]
 
 [ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scripts/world.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cell.tscn" id="2_k0juu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dphamfya8f6om" path="res://assets/grid.png" id="5_hesiw"]
 [ext_resource type="PackedScene" uid="uid://dhex75jakjh2e" path="res://scenes/cell_spawner.tscn" id="6_qfnet"]
 [ext_resource type="Script" uid="uid://dnw51w78yp1ir" path="res://scripts/controllers/cell_controller.gd" id="7_i7141"]
+[ext_resource type="PackedScene" uid="uid://b3smidrcs01i3" path="res://scenes/debug_shape.tscn" id="8_4mrxx"]
 
 [node name="world" type="Node"]
 script = ExtResource("1_k0juu")
@@ -18,6 +19,8 @@ controller = NodePath("PlayerController")
 
 [node name="PlayerController" type="Node" parent="Player"]
 script = ExtResource("3_71j4m")
+
+[node name="DebugShape" parent="Player" instance=ExtResource("8_4mrxx")]
 
 [node name="Grid" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.23921569)

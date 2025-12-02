@@ -1,8 +1,9 @@
 {
+    "godotTools.editorPath.godot4": "/home/nick/Godot/Editors/.editor_config/Clonario/Godot_v4.5.1-stable_linux.x86_64",
     "editor.tabSize": 4,
     "editor.insertSpaces": false,
     "files.eol": "\n",
     "files.exclude": {
         "**/*.gd.uid": true
-    },
+    }
 }
