@@ -33,15 +33,38 @@ var closest_object: Node2D = null
 
 @export var chase_distance: float = 800.0
 @export var flee_distance: float = 400.0
+@export var debug_mode: bool = true
 
+# Debug colors
+var chase_color := Color(0, 1, 0, 0.2)  # Green
+var flee_color := Color(1, 0, 0, 0.3)   # Red
+
+var my_cell : Cell
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_state = State.IDLE
+	set_process(true)
+	my_cell = get_parent() as Cell
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	state_manager(delta)
+
+func _draw() -> void:
+	if not debug_mode:
+		return
+	
+
+	# Draw flee distance (inner circle, red)
+	my_cell.draw_circle(Vector2.ZERO, flee_distance, flee_color)
+	
+	# Draw chase distance (outer circle, green)
+	my_cell.draw_circle(Vector2.ZERO, chase_distance, chase_color)
+	
+	# Draw border lines for clarity
+	my_cell.draw_arc(Vector2.ZERO, flee_distance, 0, TAU, 64, Color.RED, 2.0)
+	my_cell.draw_arc(Vector2.ZERO, chase_distance, 0, TAU, 64, Color.GREEN, 2.0)
 
 func get_movement() -> Vector2:
 	return movement_vector
@@ -63,12 +86,21 @@ func state_manager(delta : float) -> void:
 			chase_state(delta)
 		State.FLEE:
 			flee_state(delta)
+	
+	# Update debug visualization
+	if debug_mode:
+		my_cell.queue_redraw()
 
 func idle_state(delta : float) -> void:
 	idle_time += delta
 	if idle_time > 3.0:
 		current_state = State.MOVE
 		idle_time = 0.0
+
+func set_debug_mode(enabled : bool) -> void:
+	debug_mode = enabled
+	if not debug_mode:
+		my_cell.update()  # Clear any existing drawings
 
 func move_state(delta : float) -> void:
 	move_time += delta
@@ -175,7 +207,6 @@ func find_closest_eatable_object() -> Node2D:
 func find_closest_prey() -> Node2D:
 	var closest_prey: Node2D = null
 	var closest_distance: float = INF
-	var my_cell = get_parent() as Cell
 	
 	if my_cell == null:
 		return null
@@ -206,7 +237,6 @@ func find_closest_prey() -> Node2D:
 func find_closest_threat() -> Node2D:
 	var closest_threat: Node2D = null
 	var closest_distance: float = INF
-	var my_cell = get_parent() as Cell
 	
 	if my_cell == null:
 		return null

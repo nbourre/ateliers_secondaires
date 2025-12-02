@@ -22,8 +22,7 @@ func spawn_food():
 		var f = food.instantiate() as Food
 		f.name = "Food_%d" % i
 		f.connect("eaten", Callable(self, "_on_food_eaten"))
-		add_child(f)
-		object_pool.append(f)
+
 		randomize()
 
 		f.position.x = randi_range(-2000, 2000)
@@ -32,6 +31,9 @@ func spawn_food():
 		while f.position.distance_to(no_spawn_point) < no_spawn_radius:
 			f.position.x = randi_range(-2000, 2000)
 			f.position.y = randi_range(-2000, 2000)
+
+		add_child(f)
+		object_pool.append(f)
 
 func get_pool() -> Array:
 	return object_pool
