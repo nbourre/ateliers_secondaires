@@ -3,18 +3,22 @@ extends Node2D
 
 @export var food : PackedScene
 @export var nb_food : int = 100
-@export var no_spawn_radius : float = 0.0
 
-var no_spawn_point : Vector2
+var no_spawn_areas : Array[Dictionary] = []  # Array of {position: Vector2, radius: float}
 
 var object_pool := []
 
 func _ready() -> void:
 	pass # Called when the node enters the scene tree for the first time.
 
-func set_no_spawn_area(center : Vector2, radius: float) -> void:
-	no_spawn_point = center
-	no_spawn_radius = radius
+func set_no_spawn_areas(areas: Array[Dictionary]) -> void:
+	no_spawn_areas = areas
+
+func is_position_valid(pos: Vector2) -> bool:
+	for area in no_spawn_areas:
+		if pos.distance_to(area.position) < area.radius:
+			return false
+	return true
 
 func spawn_food():
 	# This function can be expanded to respawn food while respecting the no-spawn area
@@ -28,7 +32,7 @@ func spawn_food():
 		f.position.x = randi_range(-2000, 2000)
 		f.position.y = randi_range(-2000, 2000)
 
-		while f.position.distance_to(no_spawn_point) < no_spawn_radius:
+		while not is_position_valid(f.position):
 			f.position.x = randi_range(-2000, 2000)
 			f.position.y = randi_range(-2000, 2000)
 
@@ -41,9 +45,9 @@ func get_pool() -> Array:
 func _on_food_eaten(food_item : Food) -> void:
 	food_item.position.x = randi_range(-2000, 2000)
 	food_item.position.y = randi_range(-2000, 2000)
-	while food_item.position.distance_to(no_spawn_point) < no_spawn_radius:
-			food_item.position.x = randi_range(-2000, 2000)
-			food_item.position.y = randi_range(-2000, 2000)
+	while not is_position_valid(food_item.position):
+		food_item.position.x = randi_range(-2000, 2000)
+		food_item.position.y = randi_range(-2000, 2000)
 
 		
 

@@ -2,7 +2,7 @@ class_name Cell
 extends CharacterBody2D
 
 @export var controller : Controller
-@export var spawn_free_radius := 500.0
+@export var spawn_free_radius := 250.0
 
 var life := 10.0;
 var start_scale : float
@@ -19,8 +19,6 @@ var direction := Vector2.ZERO
 var no_controller_msg := true
 
 var objects_in_activation_area := []
-
-
 
 func _ready() -> void:
 	sprite = $Circle
