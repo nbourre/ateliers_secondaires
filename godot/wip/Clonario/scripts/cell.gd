@@ -71,23 +71,20 @@ func _physics_process(delta: float) -> void:
 		# Energy management based on what the cell is doing
 		if behavior == "chase":
 			if can_chase:
-				# Using chase energy!
+				# Using chase energy! No recharge while chasing
 				chase_energy = max(0, chase_energy - delta)
-			else:
-				# Out of chase energy, recharge it
-				chase_energy = min(max_chase_energy, chase_energy + chase_recharge_speed * delta)
-			# Always recharge flee energy when not fleeing
-			flee_energy = min(max_flee_energy, flee_energy + flee_recharge_speed * delta)
+			# No recharge for either energy while actively chasing
 			
 		elif behavior == "flee":
 			if can_flee:
-				# Using flee energy!
+				# Using flee energy! No recharge while fleeing
 				flee_energy = max(0, flee_energy - delta)
-			else:
-				# Out of flee energy, recharge it (faster!)
-				flee_energy = min(max_flee_energy, flee_energy + flee_recharge_speed * delta)
-			# Always recharge chase energy when not chasing
+			# No recharge for either energy while actively fleeing
+			
+		elif behavior == "graze":
+			# Grazing = eating food = recovering energy!
 			chase_energy = min(max_chase_energy, chase_energy + chase_recharge_speed * delta)
+			flee_energy = min(max_flee_energy, flee_energy + flee_recharge_speed * delta)
 			
 		else:  # idle or moving normally
 			# Resting - recharge both energies!
