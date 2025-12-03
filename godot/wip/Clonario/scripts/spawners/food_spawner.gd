@@ -8,6 +8,8 @@ var no_spawn_areas : Array[Dictionary] = []  # Array of {position: Vector2, radi
 
 var object_pool := []
 
+var sandbox_size : float = 2000.0
+
 func _ready() -> void:
 	pass # Called when the node enters the scene tree for the first time.
 
@@ -29,12 +31,12 @@ func spawn_food():
 
 		randomize()
 
-		f.position.x = randi_range(-2000, 2000)
-		f.position.y = randi_range(-2000, 2000)
+		f.position.x = randi_range(-sandbox_size, sandbox_size)
+		f.position.y = randi_range(-sandbox_size, sandbox_size)
 
 		while not is_position_valid(f.position):
-			f.position.x = randi_range(-2000, 2000)
-			f.position.y = randi_range(-2000, 2000)
+			f.position.x = randi_range(-sandbox_size, sandbox_size)
+			f.position.y = randi_range(-sandbox_size, sandbox_size)
 
 		add_child(f)
 		object_pool.append(f)
@@ -43,13 +45,11 @@ func get_pool() -> Array:
 	return object_pool
 
 func _on_food_eaten(food_item : Food) -> void:
-	food_item.position.x = randi_range(-2000, 2000)
-	food_item.position.y = randi_range(-2000, 2000)
+	food_item.position.x = randi_range(-sandbox_size, sandbox_size)
+	food_item.position.y = randi_range(-sandbox_size, sandbox_size)
 	while not is_position_valid(food_item.position):
-		food_item.position.x = randi_range(-2000, 2000)
-		food_item.position.y = randi_range(-2000, 2000)
-
-		
+		food_item.position.x = randi_range(-sandbox_size, sandbox_size)
+		food_item.position.y = randi_range(-sandbox_size, sandbox_size)
 
 func disable_food(food_item : Food) -> void:
 	food_item.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)

@@ -43,8 +43,6 @@ var flee_color := Color(1, 0, 0, 0.3)   # Red
 
 var my_cell : Cell
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_state = State.IDLE
@@ -78,10 +76,27 @@ func _draw() -> void:
 		shape.rotation = direction.angle()
 		pass
 
-	
-
 func get_movement() -> Vector2:
 	return movement_vector
+
+func get_behavior() -> String:
+	# Tell the cell what we're doing so it can manage energy
+	match current_state:
+		State.CHASE:
+			return "chase"
+		State.FLEE:
+			return "flee"
+		_:
+			return "idle"
+
+func get_movement_with_energy(can_chase: bool, can_flee: bool) -> Vector2:
+	# If out of energy, slow down!
+	if current_state == State.CHASE and not can_chase:
+		return movement_vector * 0.5  # Half speed when tired
+	elif current_state == State.FLEE and not can_flee:
+		return movement_vector * 0.3  # Very slow when can't flee!
+	else:
+		return movement_vector
 
 func die() -> void:
 	get_parent().queue_free()
