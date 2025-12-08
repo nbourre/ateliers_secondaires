@@ -47,3 +47,7 @@ func _ready() -> void:
 	# Provide each cell with the list of all eatable objects
 	for c in cells:
 		c.set_all_eatable_objects(merged_objects)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
