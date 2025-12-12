@@ -96,19 +96,19 @@ func get_comportement() -> String:
 		_:
 			return "inactif"
 
-func get_mouvement_avec_energie(can_chase: bool, can_flee: bool) -> Vector2:
-	var size_multiplier := ma_cellule.get_multiplicateur_vitesse()
-	var energy_multiplier := 1.0
+func get_mouvement_avec_energie(peut_chasser: bool, peut_fuir: bool) -> Vector2:
+	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
+	var multiplicateur_energie := 1.0
 
 	# If out of energy, slow down!
-	if etat_actuel == Etat.CHASSE and not can_chase:
-		energy_multiplier = 0.5  # Half speed when tired
-	elif etat_actuel == Etat.FUITE and not can_flee:
-		energy_multiplier = 0.3  # Very slow when can't flee!
+	if etat_actuel == Etat.CHASSE and not peut_chasser:
+		multiplicateur_energie = 0.5  # Half speed when tired
+	elif etat_actuel == Etat.FUITE and not peut_fuir:
+		multiplicateur_energie = 0.3  # Very slow when can't flee!
 	
-	var total_multiplier := size_multiplier * energy_multiplier
+	var multiplicateur_total := multiplicateur_dim * multiplicateur_energie
 
-	return vecteur_deplacement * total_multiplier
+	return vecteur_deplacement * multiplicateur_total
 
 func mourir() -> void:
 	get_parent().queue_free()

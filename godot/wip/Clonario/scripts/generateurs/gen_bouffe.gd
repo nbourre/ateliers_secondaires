@@ -2,7 +2,7 @@ class_name GenerateurBouffe
 extends Node2D
 
 @export var food : PackedScene
-@export var nb_food : int = 100
+@export var nb_food : int = 250
 
 var no_spawn_areas : Array[Dictionary] = []  # Array of {position: Vector2, radius: float}
 
