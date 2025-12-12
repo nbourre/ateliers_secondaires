@@ -147,7 +147,7 @@ func die() -> void:
 	if controleur != null:
 		controleur.mourir()	
 
-func set_controller(the_controller : Controleur) -> void:
+func set_controleur(the_controller : Controleur) -> void:
 	controleur = the_controller
 	add_child(controleur)
 	message_pas_controleur = false
@@ -167,7 +167,7 @@ func get_dimension() -> float:
 func set_taille(new_size : float) -> void:
 	taille = new_size
 
-func set_label(new_name : String) -> void:
+func set_nom(new_name : String) -> void:
 	name = new_name
 	$NameLabel.text = new_name
 

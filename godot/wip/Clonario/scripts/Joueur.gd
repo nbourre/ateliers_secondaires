@@ -14,7 +14,7 @@ var cell : Cellule
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cell = $Cellule
-	cell.set_controller(ControleurJoueur.new())
+	cell.set_controleur(ControleurJoueur.new())
 	pass # Replace with function body.
 
 
@@ -22,6 +22,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	move_and_slide()
 
-func get_no_spawn_radius() -> float:
+func get_zone_sans_apparition() -> float:
 	return spawn_free_radius
 	

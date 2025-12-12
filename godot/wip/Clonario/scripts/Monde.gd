@@ -15,10 +15,10 @@ func _ready() -> void:
 		"position": player.global_position,
 		"radius": player.get_rayon_sans_apparition()
 	}]
-	generateur_cellule.set_no_spawn_areas(cellule_rayons_sans_apparition)
+	generateur_cellule.set_zones_sans_apparition(cellule_rayons_sans_apparition)
 	
 	# Spawn cells first
-	generateur_cellule.spawn()
+	generateur_cellule.generer()
 	
 	# Build no-spawn areas from player and spawned cells
 	var zones_sans_apparition : Array[Dictionary] = []
