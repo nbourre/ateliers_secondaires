@@ -13,7 +13,7 @@ var sandbox_size : float = 2000.0
 func _ready() -> void:
 	pass # Called when the node enters the scene tree for the first time.
 
-func set_no_spawn_areas(areas: Array[Dictionary]) -> void:
+func set_zones_sans_apparition(areas: Array[Dictionary]) -> void:
 	no_spawn_areas = areas
 
 func is_position_valid(pos: Vector2) -> bool:
@@ -22,7 +22,7 @@ func is_position_valid(pos: Vector2) -> bool:
 			return false
 	return true
 
-func spawn_food():
+func generer_bouffe():
 	# This function can be expanded to respawn food while respecting the no-spawn area
 	for i in nb_food:
 		var f = food.instantiate() as Bouffe
@@ -41,7 +41,7 @@ func spawn_food():
 		add_child(f)
 		object_pool.append(f)
 
-func get_pool() -> Array:
+func get_bassin() -> Array:
 	return object_pool
 
 func _on_food_eaten(food_item : Bouffe) -> void:

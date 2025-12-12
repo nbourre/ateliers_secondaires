@@ -1,14 +1,14 @@
 @abstract class_name Controleur
 extends Node
 
-@abstract func get_movement() -> Vector2
+@abstract func get_mouvement() -> Vector2
 
 # Returns what the cell is doing: "chase", "flee", or "idle"
-@abstract func get_behavior() -> String
+@abstract func get_comportement() -> String
 
 # Get movement considering energy availability
-@abstract func get_movement_with_energy(can_chase: bool, can_flee: bool) -> Vector2
+@abstract func get_mouvement_avec_energie(peut_chasser: bool, peut_fuire: bool) -> Vector2
 
-@abstract func die() -> void
+@abstract func mourir() -> void
 
 	

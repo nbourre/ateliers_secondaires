@@ -2,71 +2,69 @@
 class_name ControleurCellule
 extends Controleur
 
-enum State {
-	IDLE,
-	MOVE,
-	GRAZE,
-	CHASE,
-	FLEE
+enum Etat {
+	INACTIF,
+	BOUGE,
+	BROUTE,
+	CHASSE,
+	FUITE
 }
 
+var etat_actuel: Etat = Etat.INACTIF
 
-
-var current_state: State = State.IDLE
-
-var all_eatable_objects := []
+var tous_objets_mangeables := []
 
 var direction: Vector2 = Vector2.ZERO
 
-var idle_time: float = 0.0
+var temps_inactif: float = 0.0
 
-var move_first_time: bool = true
-var move_time: float = 0.0
-var move_speed: float = 4000.0
+var deplacement_premiere_fois: bool = true
+var deplacement_temps: float = 0.0
+var deplacement_vitesse: float = 4000.0
 
-var graze_first_time: bool = true
-var graze_time: float = 0.0
-var graze_speed: float = 2000.0  # Slower when grazing (eating food)
+var broute_premiere_fois: bool = true
+var broute_temps: float = 0.0
+var broute_vitesse: float = 2000.0  # Slower when grazing (eating food)
 
-var chase_first_time: bool = true
-var chase_time: float = 0.0
-var chase_speed: float = 6000.0
+var chasse_premiere_fois: bool = true
+var chasse_temps: float = 0.0
+var chasse_vitesse: float = 6000.0
 
-var flee_speed: float = 8000.0
+var fuite_vitesse: float = 8000.0
 
-var movement_vector: Vector2 = Vector2.ZERO
+var vecteur_deplacement: Vector2 = Vector2.ZERO
 
-var closest_object: Node2D = null
+var objet_plus_proche: Node2D = null
 
-@export var chase_distance: float = 800.0
-@export var flee_distance: float = 400.0
-@export var debug_mode: bool = true
+@export var chasse_distance: float = 800.0
+@export var fuite_distance: float = 400.0
+@export var mode_deboggage: bool = false
 
-var debug_shapes : Array[DebugShape] = []
+var deboggage_formes : Array[DebugShape] = []
 
-# Debug colors
-var chase_color := Color(0, 1, 0, 0.2)  # Green
-var flee_color := Color(1, 0, 0, 0.3)   # Red
+# Couleurs de déboggage
+var couleur_chasse := Color(0, 1, 0, 0.2)  # Green
+var couleur_fuite := Color(1, 0, 0, 0.3)   # Red
 
-var my_cell : Cellule
+var ma_cellule : Cellule
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	current_state = State.IDLE
+	etat_actuel = Etat.INACTIF
 	set_process(true)
-	my_cell = get_parent() as Cellule
+	ma_cellule = get_parent() as Cellule
 
-	if debug_mode:
-		add_debug_shapes()
+	if mode_deboggage:
+		ajout_formes_deboggage()
 
-func add_debug_shapes() -> void:
-	var dir_arrow := DebugShape.new()
-	my_cell.add_child(dir_arrow)
-	dir_arrow.set_shape_type (DebugShape.ShapeType.ARROW)
-	dir_arrow.set_position(my_cell.position)
-	dir_arrow.size = flee_distance
+func ajout_formes_deboggage() -> void:
+	var fleche_direction := DebugShape.new()
+	ma_cellule.add_child(fleche_direction)
+	fleche_direction.set_shape_type (DebugShape.ShapeType.ARROW)
+	fleche_direction.set_position(ma_cellule.position)
+	fleche_direction.size = fuite_distance
 
-	debug_shapes.append(dir_arrow)
+	deboggage_formes.append(fleche_direction)
 #	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,198 +74,198 @@ func _process(delta: float) -> void:
 	_draw()
 
 func _draw() -> void:
-	if not debug_mode:
+	if not mode_deboggage:
 		return
 	
-	for shape in debug_shapes:
+	for shape in deboggage_formes:
 		shape.rotation = direction.angle()
 		pass
 
-func get_movement() -> Vector2:
-	return movement_vector
+func get_mouvement() -> Vector2:
+	return vecteur_deplacement
 
-func get_behavior() -> String:
+func get_comportement() -> String:
 	# Tell the cell what we're doing so it can manage energy
-	match current_state:
-		State.CHASE:
-			return "chase"
-		State.FLEE:
-			return "flee"
-		State.GRAZE:
-			return "graze"
+	match etat_actuel:
+		Etat.CHASSE:
+			return "chasse"
+		Etat.FUITE:
+			return "fuite"
+		Etat.BROUTE:
+			return "broute"
 		_:
-			return "idle"
+			return "inactif"
 
-func get_movement_with_energy(can_chase: bool, can_flee: bool) -> Vector2:
-	var size_multiplier := my_cell.get_speed_multiplier()
+func get_mouvement_avec_energie(can_chase: bool, can_flee: bool) -> Vector2:
+	var size_multiplier := ma_cellule.get_multiplicateur_vitesse()
 	var energy_multiplier := 1.0
 
 	# If out of energy, slow down!
-	if current_state == State.CHASE and not can_chase:
+	if etat_actuel == Etat.CHASSE and not can_chase:
 		energy_multiplier = 0.5  # Half speed when tired
-	elif current_state == State.FLEE and not can_flee:
+	elif etat_actuel == Etat.FUITE and not can_flee:
 		energy_multiplier = 0.3  # Very slow when can't flee!
 	
 	var total_multiplier := size_multiplier * energy_multiplier
 
-	return movement_vector * total_multiplier
+	return vecteur_deplacement * total_multiplier
 
-func die() -> void:
+func mourir() -> void:
 	get_parent().queue_free()
 	print("Cellule has died.")
 
-func set_eatable_objects(objects : Array) -> void:
-	all_eatable_objects = objects
+func set_tous_objets_mangeables(objects : Array) -> void:
+	tous_objets_mangeables = objects
 
 func state_manager(delta : float) -> void:
-	match current_state:
-		State.IDLE:
+	match etat_actuel:
+		Etat.INACTIF:
 			idle_state(delta)
-		State.MOVE:
+		Etat.BOUGE:
 			move_state(delta)
-		State.GRAZE:
+		Etat.BROUTE:
 			graze_state(delta)
-		State.CHASE:
+		Etat.CHASSE:
 			chase_state(delta)
-		State.FLEE:
+		Etat.FUITE:
 			flee_state(delta)
 	
 	# Update debug visualization
-	if debug_mode:
-		my_cell.queue_redraw()
+	if mode_deboggage:
+		ma_cellule.queue_redraw()
 
 func idle_state(delta : float) -> void:
-	idle_time += delta
-	if idle_time > 3.0:
-		current_state = State.MOVE
-		idle_time = 0.0
+	temps_inactif += delta
+	if temps_inactif > 3.0:
+		etat_actuel = Etat.BOUGE
+		temps_inactif = 0.0
 
 func set_debug_mode(enabled : bool) -> void:
-	debug_mode = enabled
-	if not debug_mode:
-		my_cell.update()  # Clear any existing drawings
+	mode_deboggage = enabled
+	if not mode_deboggage:
+		ma_cellule.update()  # Clear any existing drawings
 
 func move_state(delta : float) -> void:
-	move_time += delta
-	if move_first_time:
-		move_first_time = false
+	deplacement_temps += delta
+	if deplacement_premiere_fois:
+		deplacement_premiere_fois = false
 		direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
 	
-	if move_time > 5.0:
+	if deplacement_temps > 5.0:
 		direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
-		move_time = 0.0
+		deplacement_temps = 0.0
 	
-	movement_vector = direction * move_speed * delta
+	vecteur_deplacement = direction * deplacement_vitesse * delta
 
 	# Check for threats first (priority!)
 	var threat = find_closest_threat()
 	if threat != null:
 		var distance_to_threat = get_parent().position.distance_to(threat.position)
-		if distance_to_threat < flee_distance:
-			closest_object = threat
-			current_state = State.FLEE
-			move_first_time = true
-			move_time = 0.0
+		if distance_to_threat < fuite_distance:
+			objet_plus_proche = threat
+			etat_actuel = Etat.FUITE
+			deplacement_premiere_fois = true
+			deplacement_temps = 0.0
 			return
 
 	# Look for food to graze on
 	var food = find_closest_food()
 	if food != null:
 		var distance_to_food = get_parent().position.distance_to(food.position)
-		if distance_to_food < chase_distance:
-			closest_object = food
-			current_state = State.GRAZE
-			move_first_time = true
-			graze_first_time = true
-			move_time = 0.0
+		if distance_to_food < chasse_distance:
+			objet_plus_proche = food
+			etat_actuel = Etat.BROUTE
+			deplacement_premiere_fois = true
+			broute_premiere_fois = true
+			deplacement_temps = 0.0
 			return
 	
 	# Check for prey (smaller cells) to chase
 	var prey = find_closest_smaller_cell()
 	if prey != null:
 		var distance_to_prey = get_parent().position.distance_to(prey.position)
-		if distance_to_prey < chase_distance:
-			closest_object = prey
-			current_state = State.CHASE
-			move_first_time = true
-			move_time = 0.0
+		if distance_to_prey < chasse_distance:
+			objet_plus_proche = prey
+			etat_actuel = Etat.CHASSE
+			deplacement_premiere_fois = true
+			deplacement_temps = 0.0
 			return
 
 func graze_state(delta : float) -> void:
-	graze_time += delta
-	if graze_first_time:
-		graze_first_time = false
+	broute_temps += delta
+	if broute_premiere_fois:
+		broute_premiere_fois = false
 	
 	# Check for threats while grazing (stop eating and flee!)
 	var threat = find_closest_threat()
 	if threat != null:
 		var distance_to_threat = get_parent().position.distance_to(threat.position)
-		if distance_to_threat < flee_distance:
-			closest_object = threat
-			current_state = State.FLEE
-			graze_first_time = true
-			graze_time = 0.0
+		if distance_to_threat < fuite_distance:
+			objet_plus_proche = threat
+			etat_actuel = Etat.FUITE
+			broute_premiere_fois = true
+			broute_temps = 0.0
 			return
 	
 	# Look for food to graze on
 	var food = find_closest_food()
 	if food != null:
-		closest_object = food
+		objet_plus_proche = food
 		var distance_to_food = get_parent().position.distance_to(food.position)
 		
 		# If food is too far, go back to move state
-		if distance_to_food > chase_distance * 1.5:
-			current_state = State.MOVE
-			graze_first_time = true
-			graze_time = 0.0
+		if distance_to_food > chasse_distance * 1.5:
+			etat_actuel = Etat.BOUGE
+			broute_premiere_fois = true
+			broute_temps = 0.0
 			return
 		
 		# Move towards food slowly
 		direction = (food.position - get_parent().position).normalized()
-		movement_vector = direction * graze_speed * delta
+		vecteur_deplacement = direction * broute_vitesse * delta
 	else:
 		# No more food, go back to move state
-		current_state = State.MOVE
-		graze_first_time = true
-		graze_time = 0.0
+		etat_actuel = Etat.BOUGE
+		broute_premiere_fois = true
+		broute_temps = 0.0
 
 func chase_state(delta : float) -> void:
-	chase_time += delta
-	if chase_first_time:
-		chase_first_time = false
+	chasse_temps += delta
+	if chasse_premiere_fois:
+		chasse_premiere_fois = false
 	
 	# Check if a threat is nearby while chasing
 	var threat = find_closest_threat()
 	if threat != null:
 		var distance_to_threat = get_parent().position.distance_to(threat.position)
-		if distance_to_threat < flee_distance:
-			closest_object = threat
-			current_state = State.FLEE
-			chase_first_time = true
-			chase_time = 0.0
+		if distance_to_threat < fuite_distance:
+			objet_plus_proche = threat
+			etat_actuel = Etat.FUITE
+			chasse_premiere_fois = true
+			chasse_temps = 0.0
 			return
 	
 	# Update closest prey (smaller cells only)
 	var prey = find_closest_smaller_cell()
 	if prey != null:
-		closest_object = prey
+		objet_plus_proche = prey
 		var distance_to_prey = get_parent().position.distance_to(prey.position)
 		
 		# If prey is too far, go back to move state
-		if distance_to_prey > chase_distance * 1.5:
-			current_state = State.MOVE
-			chase_first_time = true
-			chase_time = 0.0
+		if distance_to_prey > chasse_distance * 1.5:
+			etat_actuel = Etat.BOUGE
+			chasse_premiere_fois = true
+			chasse_temps = 0.0
 			return
 		
 		# Move towards prey
 		direction = (prey.position - get_parent().position).normalized()
-		movement_vector = direction * chase_speed * delta
+		vecteur_deplacement = direction * chasse_vitesse * delta
 	else:
 		# No more prey, go back to move state
-		current_state = State.MOVE
-		chase_first_time = true
-		chase_time = 0.0
+		etat_actuel = Etat.BOUGE
+		chasse_premiere_fois = true
+		chasse_temps = 0.0
 
 func flee_state(delta : float) -> void:
 	var threat = find_closest_threat()
@@ -275,22 +273,22 @@ func flee_state(delta : float) -> void:
 		var distance_to_threat = get_parent().position.distance_to(threat.position)
 		
 		# If threat is far enough, go back to move state
-		if distance_to_threat > flee_distance * 1.5:
-			current_state = State.MOVE
+		if distance_to_threat > fuite_distance * 1.5:
+			etat_actuel = Etat.BOUGE
 			return
 		
 		# Move away from threat
 		direction = (get_parent().position - threat.position).normalized()
-		movement_vector = direction * flee_speed * delta
+		vecteur_deplacement = direction * fuite_vitesse * delta
 	else:
 		# No more threats, go back to move state
-		current_state = State.MOVE
+		etat_actuel = Etat.BOUGE
 
 func find_closest_eatable_object() -> Node2D:
 	var closest_object: Node2D = null
 	var closest_distance: float = INF
 	
-	for obj in all_eatable_objects:
+	for obj in tous_objets_mangeables:
 		if obj is Node2D:
 			var dist = get_parent().position.distance_to(obj.position)
 			if dist < closest_distance:
@@ -303,10 +301,10 @@ func find_closest_prey() -> Node2D:
 	var closest_prey: Node2D = null
 	var closest_distance: float = INF
 	
-	if my_cell == null:
+	if ma_cellule == null:
 		return null
 	
-	for obj in all_eatable_objects:
+	for obj in tous_objets_mangeables:
 		if obj == null or not is_instance_valid(obj):
 			continue
 		
@@ -318,11 +316,11 @@ func find_closest_prey() -> Node2D:
 		# Check if it's a smaller cell
 		elif obj is Cellule:
 			var other_cell = obj as Cellule
-			if other_cell.get_size() < my_cell.get_size() * 0.8:
+			if other_cell.get_dimension() < ma_cellule.get_dimension() * 0.8:
 				is_prey = true
 		
 		if is_prey:
-			var dist = my_cell.position.distance_to(obj.position)
+			var dist = ma_cellule.position.distance_to(obj.position)
 			if dist < closest_distance:
 				closest_distance = dist
 				closest_prey = obj
@@ -333,18 +331,18 @@ func find_closest_threat() -> Node2D:
 	var closest_threat: Node2D = null
 	var closest_distance: float = INF
 	
-	if my_cell == null:
+	if ma_cellule == null:
 		return null
 	
-	for obj in all_eatable_objects:
+	for obj in tous_objets_mangeables:
 		if obj == null or not is_instance_valid(obj):
 			continue
 		
 		# Only cells can be threats
 		if obj is Cellule:
 			var other_cell = obj as Cellule
-			if other_cell.get_size() > my_cell.get_size() * 1.25:
-				var dist = my_cell.position.distance_to(obj.position)
+			if other_cell.get_dimension() > ma_cellule.get_dimension() * 1.25:
+				var dist = ma_cellule.position.distance_to(obj.position)
 				if dist < closest_distance:
 					closest_distance = dist
 					closest_threat = obj
@@ -355,16 +353,16 @@ func find_closest_food() -> Node2D:
 	var closest_food: Node2D = null
 	var closest_distance: float = INF
 	
-	if my_cell == null:
+	if ma_cellule == null:
 		return null
 	
-	for obj in all_eatable_objects:
+	for obj in tous_objets_mangeables:
 		if obj == null or not is_instance_valid(obj):
 			continue
 		
 		# Only look for Bouffe objects
 		if obj is Bouffe:
-			var dist = my_cell.position.distance_to(obj.position)
+			var dist = ma_cellule.position.distance_to(obj.position)
 			if dist < closest_distance:
 				closest_distance = dist
 				closest_food = obj
@@ -375,18 +373,18 @@ func find_closest_smaller_cell() -> Node2D:
 	var closest_cell: Node2D = null
 	var closest_distance: float = INF
 	
-	if my_cell == null:
+	if ma_cellule == null:
 		return null
 	
-	for obj in all_eatable_objects:
+	for obj in tous_objets_mangeables:
 		if obj == null or not is_instance_valid(obj):
 			continue
 		
 		# Only look for smaller cells
 		if obj is Cellule:
 			var other_cell = obj as Cellule
-			if other_cell.get_size() < my_cell.get_size():
-				var dist = my_cell.position.distance_to(obj.position)
+			if other_cell.get_dimension() < ma_cellule.get_dimension():
+				var dist = ma_cellule.position.distance_to(obj.position)
 				if dist < closest_distance:
 					closest_distance = dist
 					closest_cell = obj

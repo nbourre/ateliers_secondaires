@@ -1,179 +1,177 @@
 class_name Cellule
 extends CharacterBody2D
 
-@export var controller : Controleur
-@export var spawn_free_radius := 250.0
+@export var controleur : Controleur
+@export var rayon_sans_apparition := 250.0
 
 # Energy System - How long can the cell run fast?
 @export_group("Energy")
-@export var max_chase_energy := 5.0  # Seconds of chasing before tired
-@export var max_flee_energy := 3.0   # Seconds of fleeing before tired
-@export var chase_recharge_speed := 1.0  # How fast chase energy comes back
-@export var flee_recharge_speed := 2.0   # Flee recharges 2x faster!
+@export var energie_chasse_max := 5.0  # Seconds of chasing before tired
+@export var energie_fuite_max := 3.0   # Seconds of fleeing before tired
+@export var vitesse_recharge_chasse := 1.0  # How fast chase energy comes back
+@export var vitesse_recharge_fuite := 2.0   # Flee recharges 2x faster!
 
-var chase_energy := max_chase_energy  # Current chase energy
-var flee_energy := max_flee_energy     # Current flee energy
+var energie_chasse := energie_chasse_max  # Current chase energy
+var energie_fuite := energie_fuite_max     # Current flee energy
 
-const SPEED_BASE_FACTOR := 1000.0
+const VITESSE_BASE := 1000.0
 
-var life := 10.0;
-var start_scale : float
-var radius : float
-var radius_ratio : float
+var vie := 10.0;
+var echelle_initiale : float
+var rayon : float
+var ratio_rayon : float
 
 var sprite : Sprite2D
-var size : float
-var is_overlapped : bool = false
+var taille : float
+var est_chevauchee : bool = false
 
-var activation : Area2D
+var zone_activation : Area2D
 var direction := Vector2.ZERO
 
-var no_controller_msg := true
+var message_pas_controleur := true
 
-var objects_in_activation_area := []
+var objets_zone_activation := []
 
 func _ready() -> void:
 	sprite = $Circle
-	start_scale = scale.x
-	radius = sqrt(life / PI)
-	radius_ratio = start_scale / radius
+	echelle_initiale = scale.x
+	rayon = sqrt(vie / PI)
+	ratio_rayon = echelle_initiale / rayon
 
-	activation = $Activation
-	set_life(life)
+	zone_activation = $Activation
+	set_vie(vie)
 
 
-func set_life(new_life : float) -> void:
-	life = new_life
+func set_vie(nouvelle_vie : float) -> void:
+	vie = nouvelle_vie
 	
-	radius = sqrt(life / PI)
-	scale.x = radius * radius_ratio
+	rayon = sqrt(vie / PI)
+	scale.x = rayon * ratio_rayon
 	scale.y = scale.x
 	
-	set_size(sprite.texture.get_size().x * scale.x)
+	set_taille(sprite.texture.get_size().x * scale.x)
 
-func grow(value : float) -> void:
-	set_life(life + value)
+func grandir(value : float) -> void:
+	set_vie(vie + value)
 
-	print("Life : " + str(life))
-
-func get_speed_multiplier() -> float:
-	var speed_multiplier := SPEED_BASE_FACTOR / (life + SPEED_BASE_FACTOR)
+func get_multiplicateur_vitesse() -> float:
+	var speed_multiplier := VITESSE_BASE / (vie + VITESSE_BASE)
 	return max(0.1, speed_multiplier)
 
-func get_no_spawn_radius() -> float:
-	return spawn_free_radius
+func get_rayon_sans_apparition() -> float:
+	return rayon_sans_apparition
 
 func _physics_process(delta: float) -> void:
-	overlap_monitoring()
+	suivi_intersection()
 
-	if controller != null:
-		# Ask the controller what it wants to do
-		var behavior = controller.get_behavior()  # "chase", "flee", or "idle"
-		var can_chase = chase_energy > 0
-		var can_flee = flee_energy > 0
+	if controleur != null:
+		# Ask the controleur what it wants to do
+		var comportement = controleur.get_comportement()  # "chasse", "fuite", or "inactif"
+		var peut_chasser = energie_chasse > 0
+		var peut_fuire = energie_fuite > 0
 		
-		var target_velocity = controller.get_movement_with_energy(can_chase, can_flee)
+		var vitesse_cible = controleur.get_mouvement_avec_energie(peut_chasser, peut_fuire)
 		
 		# Energy management based on what the cell is doing
-		if behavior == "chase":
-			if can_chase:
+		if comportement == "chasse":
+			if peut_chasser:
 				# Using chase energy! No recharge while chasing
-				chase_energy = max(0, chase_energy - delta)
+				energie_chasse = max(0, energie_chasse - delta)
 			# No recharge for either energy while actively chasing
 			
-		elif behavior == "flee":
-			if can_flee:
+		elif comportement == "fuite":
+			if peut_fuire:
 				# Using flee energy! No recharge while fleeing
-				flee_energy = max(0, flee_energy - delta)
+				energie_fuite = max(0, energie_fuite - delta)
 			# No recharge for either energy while actively fleeing
 			
-		elif behavior == "graze":
+		elif comportement == "broute":
 			# Grazing = eating food = recovering energy!
-			chase_energy = min(max_chase_energy, chase_energy + chase_recharge_speed * delta)
-			flee_energy = min(max_flee_energy, flee_energy + flee_recharge_speed * delta)
+			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * delta)
+			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
 			
-		else:  # idle or moving normally
+		else:  # inactif or moving normalement
 			# Resting - recharge both energies!
-			chase_energy = min(max_chase_energy, chase_energy + chase_recharge_speed * delta)
-			flee_energy = min(max_flee_energy, flee_energy + flee_recharge_speed * delta)
+			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * delta)
+			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
 		
-		velocity = velocity.lerp(target_velocity, 0.1)
+		velocity = velocity.lerp(vitesse_cible, 0.1)
 		
 	else:
-		if no_controller_msg:
-			print("No controller assigned to Cellule: " + str(self.name))
-			no_controller_msg = false
+		if message_pas_controleur:
+			print("Aucun contrôleur assigné à la cellule: " + str(self.name))
+			message_pas_controleur = false
 	
 	move_and_slide()
 
 func _on_activation_area_entered(_area: Area2D) -> void:
-	is_overlapped = activation.get_overlapping_areas().size() > 0
+	est_chevauchee = zone_activation.get_overlapping_areas().size() > 0
 
 func _on_activation_area_exited(_area: Area2D) -> void:
-	is_overlapped = activation.get_overlapping_areas().size() > 0
+	est_chevauchee = zone_activation.get_overlapping_areas().size() > 0
 
-func overlap_monitoring() -> void:
-	is_overlapped = activation.get_overlapping_areas().size() > 0
-	if not is_overlapped :
+func suivi_intersection() -> void:
+	est_chevauchee = zone_activation.get_overlapping_areas().size() > 0
+	if not est_chevauchee :
 		sprite.modulate = Color(sprite.modulate.r, sprite.modulate.g, sprite.modulate.b, 1.0)
 		return
 
 	sprite.modulate = Color(sprite.modulate.r, sprite.modulate.g, sprite.modulate.b, 0.5)
 
-	for obj in activation.get_overlapping_areas():
+	for obj in zone_activation.get_overlapping_areas():
 		# For debugging purposes
 		if obj is Area2D and obj.get_parent() is Cellule:
 
-			var other_cell : Cellule = obj.get_parent() as Cellule
+			var autre_cellule : Cellule = obj.get_parent() as Cellule
 
-			if other_cell.get_size() == size:
+			if autre_cellule.get_dimension() == taille:
 				# Only care about different sized cells
 				continue
 
-			var distance := global_position.distance_to(other_cell.global_position)
+			var distance := global_position.distance_to(autre_cellule.global_position)
 
-			# Fix : The distance is not good enough, we need to check the actual radii
-			if (distance < get_size()/3):
-				print("Distance: " + str(distance) + "\t Size : " + str(other_cell.get_size()))
+			# Fix : La distance n'est pas assez précise, nous devons vérifier les rayons réels
+			if (distance < get_dimension()/3):
+				print("Distance: " + str(distance) + "\t Size : " + str(autre_cellule.get_dimension()))
 			
-				if other_cell.get_size() < size:
-					print("Distance: " + str(distance) + "\t Size : " + str(other_cell.get_size()))
-					other_cell.die()
-					grow(other_cell.get_life() * 0.25)
+				if autre_cellule.get_dimension() < taille:
+					print("Distance: " + str(distance) + "\t Size : " + str(autre_cellule.get_dimension()))
+					autre_cellule.die()
+					grandir(autre_cellule.get_life() * 0.25)
 					continue
 				else:
 					die()
 					continue
 
 func die() -> void:
-	if controller != null:
-		controller.die()	
+	if controleur != null:
+		controleur.mourir()	
 
 func set_controller(the_controller : Controleur) -> void:
-	controller = the_controller
-	add_child(controller)
-	no_controller_msg = false
+	controleur = the_controller
+	add_child(controleur)
+	message_pas_controleur = false
 
 func get_sprite() -> Sprite2D:
 	return sprite
 
 func get_life() -> float:
-	return life
+	return vie
 
 func get_radius() -> float:
-	return radius
+	return rayon
 
-func get_size() -> float:
-	return size
+func get_dimension() -> float:
+	return taille
 
-func set_size(new_size : float) -> void:
-	size = new_size
+func set_taille(new_size : float) -> void:
+	taille = new_size
 
 func set_label(new_name : String) -> void:
 	name = new_name
 	$NameLabel.text = new_name
 
-func set_all_eatable_objects(objects : Array) -> void:
-	var all_eatable_objects := []
-	all_eatable_objects = objects
-	controller.set_eatable_objects(all_eatable_objects)
+func set_tous_objets_mangeables(objets : Array) -> void:
+	var tous_objets_mangeables := []
+	tous_objets_mangeables = objets
+	controleur.set_tous_objets_mangeables(tous_objets_mangeables)

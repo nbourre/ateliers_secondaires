@@ -15,7 +15,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var cell : Cellule = area.get_parent() as Cellule
 
 		if cell != null:
-			cell.grow(1)
+			cell.grandir(1)
 			eaten.emit(self)	
 			#queue_free()
 

@@ -12,8 +12,8 @@
 [node name="Monde" type="Node"]
 script = ExtResource("1_k0juu")
 
-[node name="Joueur" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("2_k0juu")]
-controller = NodePath("PlayerController")
+[node name="Joueur" parent="." node_paths=PackedStringArray("controleur") instance=ExtResource("2_k0juu")]
+controleur = NodePath("PlayerController")
 
 [node name="Camera2D" type="Camera2D" parent="Joueur"]
 

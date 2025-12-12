@@ -1,52 +1,52 @@
 class_name Monde
 extends Node
 
-@onready var food_spawner : GenerateurBouffe = $GenerateurBouffe
+@onready var generateur_bouffe : GenerateurBouffe = $GenerateurBouffe
 @onready var player : Cellule = $Joueur
-@onready var cell_spawner : GenerateurCellule = $GenerateurCellule
+@onready var generateur_cellule : GenerateurCellule = $GenerateurCellule
 
-var merged_objects := []
+var objets_fusionnes := []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Set no-spawn area around player for cell spawner
-	var cell_no_spawn_areas : Array[Dictionary] = [{
+	var cellule_rayons_sans_apparition : Array[Dictionary] = [{
 		"position": player.global_position,
-		"radius": player.get_no_spawn_radius()
+		"radius": player.get_rayon_sans_apparition()
 	}]
-	cell_spawner.set_no_spawn_areas(cell_no_spawn_areas)
+	generateur_cellule.set_no_spawn_areas(cellule_rayons_sans_apparition)
 	
 	# Spawn cells first
-	cell_spawner.spawn()
+	generateur_cellule.spawn()
 	
 	# Build no-spawn areas from player and spawned cells
-	var no_spawn_areas : Array[Dictionary] = []
-	no_spawn_areas.append({
+	var zones_sans_apparition : Array[Dictionary] = []
+	zones_sans_apparition.append({
 		"position": player.global_position,
-		"radius": player.get_no_spawn_radius()
+		"radius": player.get_rayon_sans_apparition()
 	})
 	
 	# Add all spawned cells to no-spawn areas
-	var cells = cell_spawner.get_pool()
+	var cells = generateur_cellule.get_bassin()
 	for cell in cells:
-		no_spawn_areas.append({
+		zones_sans_apparition.append({
 			"position": cell.global_position,
-			"radius": cell.get_no_spawn_radius()
+			"radius": cell.get_rayon_sans_apparition()
 		})
 	
-	food_spawner.set_no_spawn_areas(no_spawn_areas)
-	food_spawner.spawn_food()
+	generateur_bouffe.set_zones_sans_apparition(zones_sans_apparition)
+	generateur_bouffe.generer_bouffe()
 
 	# Get the pool of food for further use
-	var foods = food_spawner.get_pool()
+	var foods = generateur_bouffe.get_bassin()
 
-	merged_objects = cells + foods
-	merged_objects.append(player)
+	objets_fusionnes = cells + foods
+	objets_fusionnes.append(player)
 
 	# Provide each cell with the list of all eatable objects
 	for c in cells:
-		c.set_all_eatable_objects(merged_objects)
+		c.set_tous_objets_mangeables(objets_fusionnes)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
