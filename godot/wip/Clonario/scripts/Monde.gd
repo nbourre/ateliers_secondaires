@@ -1,9 +1,9 @@
 class_name World
 extends Node
 
-@onready var food_spawner : FoodSpawner = $FoodSpawner
-@onready var player : Cell = $Player
-@onready var cell_spawner : CellSpawner = $CellSpawner
+@onready var food_spawner : FoodSpawner = $GenerateurBouffe
+@onready var player : Cell = $Joueur
+@onready var cell_spawner : CellSpawner = $GenerateurCellule
 
 var merged_objects := []
 
@@ -48,6 +48,8 @@ func _ready() -> void:
 	for c in cells:
 		c.set_all_eatable_objects(merged_objects)
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		var key_event := event as InputEventKey
+		if key_event.is_action_pressed("ui_cancel"):
+			get_tree().quit()

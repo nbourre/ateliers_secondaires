@@ -14,6 +14,8 @@ extends CharacterBody2D
 var chase_energy := max_chase_energy  # Current chase energy
 var flee_energy := max_flee_energy     # Current flee energy
 
+const SPEED_BASE_FACTOR := 1000.0
+
 var life := 10.0;
 var start_scale : float
 var radius : float
@@ -54,6 +56,10 @@ func grow(value : float) -> void:
 
 	print("Life : " + str(life))
 
+func get_speed_multiplier() -> float:
+	var speed_multiplier := SPEED_BASE_FACTOR / (life + SPEED_BASE_FACTOR)
+	return max(0.1, speed_multiplier)
+
 func get_no_spawn_radius() -> float:
 	return spawn_free_radius
 
@@ -66,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		var can_chase = chase_energy > 0
 		var can_flee = flee_energy > 0
 		
-		direction = controller.get_movement_with_energy(can_chase, can_flee)
+		var target_velocity = controller.get_movement_with_energy(can_chase, can_flee)
 		
 		# Energy management based on what the cell is doing
 		if behavior == "chase":
@@ -91,10 +97,8 @@ func _physics_process(delta: float) -> void:
 			chase_energy = min(max_chase_energy, chase_energy + chase_recharge_speed * delta)
 			flee_energy = min(max_flee_energy, flee_energy + flee_recharge_speed * delta)
 		
-		if direction.length() > 0:
-			velocity = velocity.lerp(direction, 0.1)
-		else:
-			velocity = velocity.lerp(Vector2.ZERO, 0.1)
+		velocity = velocity.lerp(target_velocity, 0.1)
+		
 	else:
 		if no_controller_msg:
 			print("No controller assigned to Cell: " + str(self.name))

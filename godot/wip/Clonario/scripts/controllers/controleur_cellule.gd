@@ -10,6 +10,8 @@ enum State {
 	FLEE
 }
 
+
+
 var current_state: State = State.IDLE
 
 var all_eatable_objects := []
@@ -97,13 +99,18 @@ func get_behavior() -> String:
 			return "idle"
 
 func get_movement_with_energy(can_chase: bool, can_flee: bool) -> Vector2:
+	var size_multiplier := my_cell.get_speed_multiplier()
+	var energy_multiplier := 1.0
+
 	# If out of energy, slow down!
 	if current_state == State.CHASE and not can_chase:
-		return movement_vector * 0.5  # Half speed when tired
+		energy_multiplier = 0.5  # Half speed when tired
 	elif current_state == State.FLEE and not can_flee:
-		return movement_vector * 0.3  # Very slow when can't flee!
-	else:
-		return movement_vector
+		energy_multiplier = 0.3  # Very slow when can't flee!
+	
+	var total_multiplier := size_multiplier * energy_multiplier
+
+	return movement_vector * total_multiplier
 
 func die() -> void:
 	get_parent().queue_free()
@@ -311,7 +318,7 @@ func find_closest_prey() -> Node2D:
 		# Check if it's a smaller cell
 		elif obj is Cell:
 			var other_cell = obj as Cell
-			if other_cell.get_size() < my_cell.get_size():
+			if other_cell.get_size() < my_cell.get_size() * 0.8:
 				is_prey = true
 		
 		if is_prey:
@@ -336,7 +343,7 @@ func find_closest_threat() -> Node2D:
 		# Only cells can be threats
 		if obj is Cell:
 			var other_cell = obj as Cell
-			if other_cell.get_size() > my_cell.get_size():
+			if other_cell.get_size() > my_cell.get_size() * 1.25:
 				var dist = my_cell.position.distance_to(obj.position)
 				if dist < closest_distance:
 					closest_distance = dist

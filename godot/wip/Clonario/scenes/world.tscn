@@ -1,28 +1,28 @@
 [gd_scene load_steps=9 format=3 uid="uid://bivxu61xgkfgb"]
 
-[ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scripts/world.gd" id="1_k0juu"]
-[ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cell.tscn" id="2_k0juu"]
-[ext_resource type="PackedScene" uid="uid://j07qfp2pghxd" path="res://scenes/food_spawner.tscn" id="3_4wyf3"]
-[ext_resource type="Script" uid="uid://db0n1ismamwn" path="res://scripts/controllers/player_controller.gd" id="3_71j4m"]
+[ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scripts/Monde.gd" id="1_k0juu"]
+[ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cellule.tscn" id="2_k0juu"]
+[ext_resource type="PackedScene" uid="uid://j07qfp2pghxd" path="res://scenes/gen_bouffe.tscn" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://db0n1ismamwn" path="res://scripts/controllers/controleur_joueur.gd" id="3_71j4m"]
 [ext_resource type="Texture2D" uid="uid://dphamfya8f6om" path="res://assets/grid.png" id="5_hesiw"]
-[ext_resource type="PackedScene" uid="uid://dhex75jakjh2e" path="res://scenes/cell_spawner.tscn" id="6_qfnet"]
-[ext_resource type="Script" uid="uid://dnw51w78yp1ir" path="res://scripts/controllers/cell_controller.gd" id="7_i7141"]
+[ext_resource type="PackedScene" uid="uid://dhex75jakjh2e" path="res://scenes/gen_cellule.tscn" id="6_qfnet"]
+[ext_resource type="Script" uid="uid://dnw51w78yp1ir" path="res://scripts/controllers/controleur_cellule.gd" id="7_i7141"]
 [ext_resource type="PackedScene" uid="uid://b3smidrcs01i3" path="res://scenes/debug_shape.tscn" id="8_4mrxx"]
 
-[node name="world" type="Node"]
+[node name="Monde" type="Node"]
 script = ExtResource("1_k0juu")
 
-[node name="Player" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("2_k0juu")]
+[node name="Joueur" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("2_k0juu")]
 controller = NodePath("PlayerController")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Joueur"]
 
-[node name="PlayerController" type="Node" parent="Player"]
+[node name="PlayerController" type="Node" parent="Joueur"]
 script = ExtResource("3_71j4m")
 
-[node name="DebugShape" parent="Player" instance=ExtResource("8_4mrxx")]
+[node name="DebugShape" parent="Joueur" instance=ExtResource("8_4mrxx")]
 
-[node name="Grid" type="Sprite2D" parent="."]
+[node name="Fond" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.23921569)
 z_index = -1
 texture_repeat = 2
@@ -30,7 +30,7 @@ texture = ExtResource("5_hesiw")
 region_enabled = true
 region_rect = Rect2(0, 0, 12000, 8000)
 
-[node name="FoodSpawner" parent="." instance=ExtResource("3_4wyf3")]
+[node name="GenerateurBouffe" parent="." instance=ExtResource("3_4wyf3")]
 
-[node name="CellSpawner" parent="." instance=ExtResource("6_qfnet")]
+[node name="GenerateurCellule" parent="." instance=ExtResource("6_qfnet")]
 cell_controller = ExtResource("7_i7141")
