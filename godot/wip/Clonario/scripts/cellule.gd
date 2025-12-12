@@ -1,7 +1,7 @@
-class_name Cell
+class_name Cellule
 extends CharacterBody2D
 
-@export var controller : Controller
+@export var controller : Controleur
 @export var spawn_free_radius := 250.0
 
 # Energy System - How long can the cell run fast?
@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		
 	else:
 		if no_controller_msg:
-			print("No controller assigned to Cell: " + str(self.name))
+			print("No controller assigned to Cellule: " + str(self.name))
 			no_controller_msg = false
 	
 	move_and_slide()
@@ -122,9 +122,9 @@ func overlap_monitoring() -> void:
 
 	for obj in activation.get_overlapping_areas():
 		# For debugging purposes
-		if obj is Area2D and obj.get_parent() is Cell:
+		if obj is Area2D and obj.get_parent() is Cellule:
 
-			var other_cell : Cell = obj.get_parent() as Cell
+			var other_cell : Cellule = obj.get_parent() as Cellule
 
 			if other_cell.get_size() == size:
 				# Only care about different sized cells
@@ -149,7 +149,7 @@ func die() -> void:
 	if controller != null:
 		controller.die()	
 
-func set_controller(the_controller : Controller) -> void:
+func set_controller(the_controller : Controleur) -> void:
 	controller = the_controller
 	add_child(controller)
 	no_controller_msg = false

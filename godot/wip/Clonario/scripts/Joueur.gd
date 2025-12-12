@@ -1,5 +1,6 @@
+class_name Joueur
 extends CharacterBody2D
-class_name Player
+
 
 @export var speed := 6000.0
 @export var spawn_free_radius := 500.0
@@ -8,12 +9,12 @@ var direction := Vector2.ZERO
 
 var dir_stop := 50.0
 
-var cell : Cell
+var cell : Cellule
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cell = $Cell
-	cell.set_controller(PlayerController.new())
+	cell = $Cellule
+	cell.set_controller(ControleurJoueur.new())
 	pass # Replace with function body.
 
 

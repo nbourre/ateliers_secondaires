@@ -1,5 +1,5 @@
-class_name PlayerController
-extends Controller
+class_name ControleurJoueur
+extends Controleur
 
 var direction := Vector2.ZERO
 var dir_stop := 150.0
@@ -10,11 +10,11 @@ func get_movement() -> Vector2:
 	return direction
 
 func get_behavior() -> String:
-	# Player is always in "idle" mode (no energy system for player)
+	# Joueur is always in "idle" mode (no energy system for player)
 	return "idle"
 
 func get_movement_with_energy(_can_chase: bool, _can_flee: bool) -> Vector2:
-	# Player doesn't use energy system
+	# Joueur doesn't use energy system
 	return direction
 
 func die() -> void:

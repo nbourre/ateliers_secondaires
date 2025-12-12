@@ -1,9 +1,9 @@
-class_name World
+class_name Monde
 extends Node
 
-@onready var food_spawner : FoodSpawner = $GenerateurBouffe
-@onready var player : Cell = $Joueur
-@onready var cell_spawner : CellSpawner = $GenerateurCellule
+@onready var food_spawner : GenerateurBouffe = $GenerateurBouffe
+@onready var player : Cellule = $Joueur
+@onready var cell_spawner : GenerateurCellule = $GenerateurCellule
 
 var merged_objects := []
 

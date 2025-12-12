@@ -1,6 +1,6 @@
 # This is the AI controller for non-player cells.
-class_name CellController
-extends Controller
+class_name ControleurCellule
+extends Controleur
 
 enum State {
 	IDLE,
@@ -48,13 +48,13 @@ var debug_shapes : Array[DebugShape] = []
 var chase_color := Color(0, 1, 0, 0.2)  # Green
 var flee_color := Color(1, 0, 0, 0.3)   # Red
 
-var my_cell : Cell
+var my_cell : Cellule
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_state = State.IDLE
 	set_process(true)
-	my_cell = get_parent() as Cell
+	my_cell = get_parent() as Cellule
 
 	if debug_mode:
 		add_debug_shapes()
@@ -114,7 +114,7 @@ func get_movement_with_energy(can_chase: bool, can_flee: bool) -> Vector2:
 
 func die() -> void:
 	get_parent().queue_free()
-	print("Cell has died.")
+	print("Cellule has died.")
 
 func set_eatable_objects(objects : Array) -> void:
 	all_eatable_objects = objects
@@ -313,11 +313,11 @@ func find_closest_prey() -> Node2D:
 		var is_prey := false
 		
 		# Check if it's food
-		if obj is Food:
+		if obj is Bouffe:
 			is_prey = true
 		# Check if it's a smaller cell
-		elif obj is Cell:
-			var other_cell = obj as Cell
+		elif obj is Cellule:
+			var other_cell = obj as Cellule
 			if other_cell.get_size() < my_cell.get_size() * 0.8:
 				is_prey = true
 		
@@ -341,8 +341,8 @@ func find_closest_threat() -> Node2D:
 			continue
 		
 		# Only cells can be threats
-		if obj is Cell:
-			var other_cell = obj as Cell
+		if obj is Cellule:
+			var other_cell = obj as Cellule
 			if other_cell.get_size() > my_cell.get_size() * 1.25:
 				var dist = my_cell.position.distance_to(obj.position)
 				if dist < closest_distance:
@@ -362,8 +362,8 @@ func find_closest_food() -> Node2D:
 		if obj == null or not is_instance_valid(obj):
 			continue
 		
-		# Only look for Food objects
-		if obj is Food:
+		# Only look for Bouffe objects
+		if obj is Bouffe:
 			var dist = my_cell.position.distance_to(obj.position)
 			if dist < closest_distance:
 				closest_distance = dist
@@ -383,8 +383,8 @@ func find_closest_smaller_cell() -> Node2D:
 			continue
 		
 		# Only look for smaller cells
-		if obj is Cell:
-			var other_cell = obj as Cell
+		if obj is Cellule:
+			var other_cell = obj as Cellule
 			if other_cell.get_size() < my_cell.get_size():
 				var dist = my_cell.position.distance_to(obj.position)
 				if dist < closest_distance:

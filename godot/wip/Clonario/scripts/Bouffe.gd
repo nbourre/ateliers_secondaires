@@ -1,4 +1,4 @@
-class_name Food
+class_name Bouffe
 extends Area2D
 
 signal eaten
@@ -11,8 +11,8 @@ func _ready():
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Cell:
-		var cell : Cell = area.get_parent() as Cell
+	if area.get_parent() is Cellule:
+		var cell : Cellule = area.get_parent() as Cellule
 
 		if cell != null:
 			cell.grow(1)

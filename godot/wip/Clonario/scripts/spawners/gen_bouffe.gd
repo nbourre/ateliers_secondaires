@@ -1,4 +1,4 @@
-class_name FoodSpawner
+class_name GenerateurBouffe
 extends Node2D
 
 @export var food : PackedScene
@@ -25,7 +25,7 @@ func is_position_valid(pos: Vector2) -> bool:
 func spawn_food():
 	# This function can be expanded to respawn food while respecting the no-spawn area
 	for i in nb_food:
-		var f = food.instantiate() as Food
+		var f = food.instantiate() as Bouffe
 		f.name = "Food_%d" % i
 		f.connect("eaten", Callable(self, "_on_food_eaten"))
 
@@ -44,17 +44,17 @@ func spawn_food():
 func get_pool() -> Array:
 	return object_pool
 
-func _on_food_eaten(food_item : Food) -> void:
+func _on_food_eaten(food_item : Bouffe) -> void:
 	food_item.position.x = randi_range(-sandbox_size, sandbox_size)
 	food_item.position.y = randi_range(-sandbox_size, sandbox_size)
 	while not is_position_valid(food_item.position):
 		food_item.position.x = randi_range(-sandbox_size, sandbox_size)
 		food_item.position.y = randi_range(-sandbox_size, sandbox_size)
 
-func disable_food(food_item : Food) -> void:
+func disable_food(food_item : Bouffe) -> void:
 	food_item.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	food_item.hide()
 
-func enable_food(food_item : Food) -> void:
+func enable_food(food_item : Bouffe) -> void:
 	food_item.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 	food_item.show()

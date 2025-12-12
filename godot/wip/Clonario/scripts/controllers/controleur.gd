@@ -1,4 +1,4 @@
-@abstract class_name Controller
+@abstract class_name Controleur
 extends Node
 
 @abstract func get_movement() -> Vector2

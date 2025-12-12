@@ -1,4 +1,4 @@
-class_name CellSpawner
+class_name GenerateurCellule
 extends Node
 
 @export var cell_scene : PackedScene
@@ -21,12 +21,12 @@ func is_position_valid(pos: Vector2) -> bool:
 
 func spawn():
 	for i in nb_cells:
-		var c = cell_scene.instantiate() as Cell
+		var c = cell_scene.instantiate() as Cellule
 		object_pool.append(c)
 		c.name = "Cell_%d" % i
 		c.set_label(c.name)
 		add_child(c)
-		c.set_controller(cell_controller.new() as Controller)
+		c.set_controller(cell_controller.new() as Controleur)
 		randomize()
 		c.get_sprite().modulate = Color(randf(), randf(), randf())
 
