@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bivxu61xgkfgb"]
+[gd_scene load_steps=7 format=3 uid="uid://bivxu61xgkfgb"]
 
 [ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scripts/Monde.gd" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cellule.tscn" id="2_k0juu"]
 [ext_resource type="PackedScene" uid="uid://j07qfp2pghxd" path="res://scenes/gen_bouffe.tscn" id="3_4wyf3"]
-[ext_resource type="Script" uid="uid://db0n1ismamwn" path="res://scripts/controllers/controleur_joueur.gd" id="3_71j4m"]
+[ext_resource type="Script" uid="uid://db0n1ismamwn" path="res://scripts/controleurs/controleur_joueur.gd" id="3_71j4m"]
 [ext_resource type="Texture2D" uid="uid://dphamfya8f6om" path="res://assets/grid.png" id="5_hesiw"]
 [ext_resource type="PackedScene" uid="uid://dhex75jakjh2e" path="res://scenes/gen_cellule.tscn" id="6_qfnet"]
-[ext_resource type="Script" uid="uid://dnw51w78yp1ir" path="res://scripts/controllers/controleur_cellule.gd" id="7_i7141"]
-[ext_resource type="PackedScene" uid="uid://b3smidrcs01i3" path="res://scenes/debug_shape.tscn" id="8_4mrxx"]
 
 [node name="Monde" type="Node"]
 script = ExtResource("1_k0juu")
@@ -20,8 +18,6 @@ controleur = NodePath("PlayerController")
 [node name="PlayerController" type="Node" parent="Joueur"]
 script = ExtResource("3_71j4m")
 
-[node name="DebugShape" parent="Joueur" instance=ExtResource("8_4mrxx")]
-
 [node name="Fond" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.23921569)
 z_index = -1
@@ -33,4 +29,3 @@ region_rect = Rect2(0, 0, 12000, 8000)
 [node name="GenerateurBouffe" parent="." instance=ExtResource("3_4wyf3")]
 
 [node name="GenerateurCellule" parent="." instance=ExtResource("6_qfnet")]
-cell_controller = ExtResource("7_i7141")
