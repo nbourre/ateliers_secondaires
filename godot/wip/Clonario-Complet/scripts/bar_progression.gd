@@ -10,8 +10,16 @@ extends TextureProgressBar
 	set(value):
 		if value != bar_name:
 			bar_name = value
-					
+
 @onready var etiquette : Label = $Texte
+
+@export var couleur_progres : Color = Color(1,1,1):
+	get:
+		return tint_progress
+	set(value):
+		if value != tint_progress:
+			tint_progress = value
+
 
 func update_value (new_value : int, value_max : int):
 	value_max = value_max
@@ -36,4 +44,9 @@ func _editor_management() -> void:
 
 			var temp_name := bar_name + " : " if bar_name != "" else ""
 			etiquette.text = str(temp_name, int(value), "/" , int(max_value))
+		
+		tint_progress = couleur_progres
+	
+func set_couleur_progres(couleur: Color) -> void:
+	tint_progress = couleur
 	

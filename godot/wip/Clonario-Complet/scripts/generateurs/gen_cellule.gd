@@ -39,14 +39,14 @@ func generer():
 			while chevauchement:
 				chevauchement = false
 				
-				# Check no-generer areas
+				# Vérifie les zones sans apparition.
 				if not est_valide_position(c.position):
 					chevauchement = true
 					c.position.x = randi_range(-dimension_terrain, dimension_terrain)
 					c.position.y = randi_range(-dimension_terrain, dimension_terrain)
 					continue
 				
-				# Check other cells
+				# Vérifie les chevauchements avec les autres cellules.
 				for autre_cellule in bassin_objets:
 					if autre_cellule != c:
 						if c.position.distance_to(autre_cellule.position) < (c.get_dimension() + autre_cellule.get_dimension()):

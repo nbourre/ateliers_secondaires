@@ -41,8 +41,8 @@ func _ready() -> void:
 	rayon = sqrt(vie / PI)
 	ratio_rayon = echelle_initiale / rayon
 
-	barre_energie_fuite = get_node_or_null("BarreEnergieFuite")
-	barre_energie_chasse = get_node_or_null("BarreEnergieChasse")
+	barre_energie_fuite = get_node_or_null("EnergieFuite")
+	barre_energie_chasse = get_node_or_null("EnergieChasse")
 
 	mettre_a_jour_barres_energie()
 
