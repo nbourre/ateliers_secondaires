@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://blh7w4gfn7tos"]
+
+[ext_resource type="AudioStream" uid="uid://bnxvn8doqg1rg" path="res://assets/sfx/bouffe.mp3" id="1_a6n5y"]
+[ext_resource type="AudioStream" uid="uid://c0pxmciehdp8g" path="res://assets/sfx/cellule.mp3" id="2_f7b7d"]
+[ext_resource type="AudioStream" uid="uid://nw035oicwy8i" path="res://assets/sfx/fuite.mp3" id="3_6c4nc"]
+
+[node name="Sons" type="Node"]
+
+[node name="Bouffe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_a6n5y")
+
+[node name="Cellule" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_f7b7d")
+
+[node name="Fuite" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6c4nc")

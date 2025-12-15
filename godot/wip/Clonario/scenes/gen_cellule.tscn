@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhex75jakjh2e"]
+
+[ext_resource type="Script" uid="uid://sptym54gyroe" path="res://scripts/generateurs/gen_cellule.gd" id="1_5tkdg"]
+[ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cellule.tscn" id="2_6d0e6"]
+[ext_resource type="Script" uid="uid://dnw51w78yp1ir" path="res://scripts/controleurs/controleur_cellule.gd" id="3_r1yh4"]
+
+[node name="CellSpawner" type="Node2D"]
+script = ExtResource("1_5tkdg")
+scene_cellule = ExtResource("2_6d0e6")
+controleur_cellule = ExtResource("3_r1yh4")
