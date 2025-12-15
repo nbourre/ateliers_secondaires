@@ -5,9 +5,9 @@ var direction := Vector2.ZERO
 var dir_stop := 150.0
 
 # Vitesses pour différents modes
-var vitesse_normale := 4000.0
-var vitesse_chasse := 6000.0
-var vitesse_fuite := 8000.0
+var vitesse_normale := 6000.0
+var vitesse_chasse := 8000.0
+var vitesse_fuite := 10000.0
 
 # État actuel du joueur
 var mode_chasse := false
@@ -93,7 +93,6 @@ func get_direction_souris() -> Vector2:
 	var dir := mouse_vp - screen_center
 	
 	return dir
-
 
 func _process(delta: float) -> void:
 	# Vérifier les touches pour chasse et fuite

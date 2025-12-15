@@ -20,18 +20,18 @@ var temps_inactif: float = 0.0
 
 var deplacement_premiere_fois: bool = true
 var deplacement_temps: float = 0.0
-var deplacement_vitesse: float = 4000.0
+var deplacement_vitesse: float = 6000.0
 
 var broute_premiere_fois: bool = true
 var broute_temps: float = 0.0
-var broute_vitesse: float = 2000.0  # Plus lent quand on broute (mange)
+var broute_vitesse: float = 3000.0  # Plus lent quand on broute (mange)
 
 var chasse_premiere_fois: bool = true
 var chasse_temps: float = 0.0
-var chasse_vitesse: float = 6000.0
+var chasse_vitesse: float = 8000.0
 
 var fuite_premiere_fois: bool = true
-var fuite_vitesse: float = 8000.0
+var fuite_vitesse: float = 10000.0
 
 # Système d'énergie du contrôleur IA
 @export var energie_chasse_max := 5.0
