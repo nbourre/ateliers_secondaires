@@ -1,12 +1,14 @@
 @abstract class_name Controleur
 extends Node
 
+signal change_state(message: String)
+
 @abstract func get_mouvement() -> Vector2
 
-# Returns what the cell is doing: "chase", "flee", or "idle"
+# Renvoie ce que fait la cellule : "chasse", "fuite" ou "repos".
 @abstract func get_comportement() -> String
 
-# Get movement considering energy availability
+# Donne le mouvement en tenant compte de l’énergie disponible.
 @abstract func get_mouvement_avec_energie(peut_chasser: bool, peut_fuire: bool) -> Vector2
 
 @abstract func mourir() -> void

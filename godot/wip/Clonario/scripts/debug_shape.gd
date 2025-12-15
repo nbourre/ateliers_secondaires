@@ -11,12 +11,11 @@ var shape_type : ShapeType = ShapeType.ARROW
 var size : float = 100.0
 var angle : float = 0.0
 
-# Called when the node enters the scene tree for the first time.
+# Point d’entrée du nœud.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass # À remplacer si on ajoute une logique.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Mis à jour à chaque frame.
 func _process(_delta: float) -> void:
 	queue_redraw()
 

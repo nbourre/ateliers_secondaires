@@ -8,26 +8,25 @@ extends Node
 var objets_fusionnes := []
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Set no-spawn area around player for cell spawner
+	# Zone interdite autour du joueur pour ne pas faire apparaître d’autres cellules.
 	var cellule_rayons_sans_apparition : Array[Dictionary] = [{
 		"position": player.global_position,
 		"radius": player.get_rayon_sans_apparition()
 	}]
 	generateur_cellule.set_zones_sans_apparition(cellule_rayons_sans_apparition)
 	
-	# Spawn cells first
+	# Générer d’abord les cellules.
 	generateur_cellule.generer()
 	
-	# Build no-spawn areas from player and spawned cells
+	# Construire les zones interdites à partir du joueur et des cellules générées.
 	var zones_sans_apparition : Array[Dictionary] = []
 	zones_sans_apparition.append({
 		"position": player.global_position,
 		"radius": player.get_rayon_sans_apparition()
 	})
 	
-	# Add all spawned cells to no-spawn areas
+	# Ajouter chaque cellule générée à la liste des zones interdites.
 	var cells = generateur_cellule.get_bassin()
 	for cell in cells:
 		zones_sans_apparition.append({
@@ -38,13 +37,13 @@ func _ready() -> void:
 	generateur_bouffe.set_zones_sans_apparition(zones_sans_apparition)
 	generateur_bouffe.generer_bouffe()
 
-	# Get the pool of food for further use
+	# Récupère la liste de toute la bouffe générée.
 	var foods = generateur_bouffe.get_bassin()
 
 	objets_fusionnes = cells + foods
 	objets_fusionnes.append(player)
 
-	# Provide each cell with the list of all eatable objects
+	# Donne à chaque cellule la liste des objets mangeables.
 	for c in cells:
 		c.set_tous_objets_mangeables(objets_fusionnes)
 

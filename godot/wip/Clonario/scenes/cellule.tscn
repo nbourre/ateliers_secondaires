@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c66t164fxigbs"]
+[gd_scene load_steps=5 format=3 uid="uid://c66t164fxigbs"]
 
 [ext_resource type="Script" uid="uid://c5kalp5lkspjt" path="res://scripts/cellule.gd" id="1_0s7o3"]
 [ext_resource type="Texture2D" uid="uid://djm856udwyc6r" path="res://assets/circle.svg" id="1_upbjj"]
+[ext_resource type="PackedScene" uid="uid://d1x5awxx8vk2j" path="res://scenes/bar_progression.tscn" id="3_18ave"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lrfj"]
 radius = 51.0
@@ -24,9 +25,17 @@ offset_left = -24.0
 offset_top = -11.0
 offset_right = 23.0
 offset_bottom = 12.0
-text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BarreEnergieFuite" parent="." instance=ExtResource("3_18ave")]
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 30.0
+max_value = 3.0
+step = 0.1
+value = 1.2
 
 [connection signal="area_entered" from="Activation" to="." method="_on_activation_area_entered"]
 [connection signal="area_exited" from="Activation" to="." method="_on_activation_area_exited"]

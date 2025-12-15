@@ -6,7 +6,7 @@ extends Node
 @export var controleur_cellule : Script
 
 var bassin_objets := []
-var zone_sans_reapparition : Array[Dictionary] = []  # Array of {position: Vector2, radius: float}
+var zone_sans_reapparition : Array[Dictionary] = []  # Tableau de {position: Vector2, radius: float}
 
 var dimension_terrain : float = 1500.0
 
@@ -33,7 +33,7 @@ func generer():
 		c.position.x = randi_range(-dimension_terrain, dimension_terrain)
 		c.position.y = randi_range(-dimension_terrain, dimension_terrain)
 
-		# Check to avoid overlapping at generer and respect no-generer areas
+		# Vérifie pour éviter les chevauchements et respecter les zones interdites.
 		if (i > 0):
 			var chevauchement := true
 			while chevauchement:

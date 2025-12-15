@@ -4,7 +4,6 @@ extends Node
 var current_state : BaseState
 var states : Dictionary = {}
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for child in get_children():
 		if child is BaseState:
