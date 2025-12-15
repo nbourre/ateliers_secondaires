@@ -37,7 +37,8 @@ var camera : Camera2D
 func _ready() -> void:
 	ma_cellule = get_parent() as Cellule
 	# Trouver la caméra dans la cellule
-	camera = ma_cellule.get_node_or_null("Camera2D")
+	if ma_cellule != null:
+		camera = ma_cellule.get_node_or_null("Camera2D")
 
 func get_mouvement() -> Vector2:
 	return vecteur_deplacement
@@ -51,20 +52,19 @@ func get_comportement() -> String:
 	else:
 		return "repos"
 
-func get_mouvement_avec_energie(peut_chasser: bool, peut_fuir: bool) -> Vector2:
+func get_mouvement_avec_energie() -> Vector2:
 	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
 	var multiplicateur_energie := 1.0
 	
 	# Gestion de l'énergie selon l'action
 	if mode_chasse:
-		if energie_chasse > 0:
-			energie_chasse = max(0, energie_chasse - get_process_delta_time())
+		if energie_chasse > 0.0:
+			energie_chasse = max(0.0, energie_chasse - get_process_delta_time())
 		else:
-			# Si le joueur n'a plus d'énergie, ralentir!
 			multiplicateur_energie = 0.5
 	elif mode_fuite:
-		if energie_fuite > 0:
-			energie_fuite = max(0, energie_fuite - get_process_delta_time())
+		if energie_fuite > 0.0:
+			energie_fuite = max(0.0, energie_fuite - get_process_delta_time())
 		else:
 			multiplicateur_energie = 0.3
 	else:
@@ -72,14 +72,7 @@ func get_mouvement_avec_energie(peut_chasser: bool, peut_fuir: bool) -> Vector2:
 		energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * get_process_delta_time())
 		energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * get_process_delta_time())
 	
-	# Compatibilité avec ancien système (ignoré maintenant)
-	if mode_chasse and not peut_chasser:
-		multiplicateur_energie = 0.5  # Moitié vitesse quand fatigué
-	elif mode_fuite and not peut_fuir:
-		multiplicateur_energie = 0.3  # Très lent quand impossible de fuir!
-	
 	var multiplicateur_total := multiplicateur_dim * multiplicateur_energie
-	
 	return vecteur_deplacement * multiplicateur_total
 
 func mourir() -> void:
@@ -138,3 +131,15 @@ func ajuster_zoom_camera(delta: float) -> void:
 	var nouveau_zoom = lerp(zoom_actuel, zoom_cible, vitesse_transition_zoom * delta)
 	
 	camera.zoom = Vector2(nouveau_zoom, nouveau_zoom)
+
+func get_energie_chasse() -> float:
+	return energie_chasse
+
+func get_energie_fuite() -> float:
+	return energie_fuite
+
+func get_energie_chasse_max() -> float:
+	return energie_chasse_max
+
+func get_energie_fuite_max() -> float:
+	return energie_fuite_max

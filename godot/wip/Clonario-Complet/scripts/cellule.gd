@@ -4,15 +4,6 @@ extends CharacterBody2D
 @export var controleur : Controleur
 @export var rayon_sans_apparition := 250.0
 
-# Système d’énergie : combien de temps la cellule peut aller vite.
-@export_group("Energy")	
-@export var energie_chasse_max := 5.0  # Secondes de chasse avant d’être à plat
-@export var energie_fuite_max := 3.0   # Secondes de fuite avant d’être à plat
-@export var vitesse_recharge_chasse := 1.0  # Vitesse de recharge en chasse
-@export var vitesse_recharge_fuite := 2.0   # La fuite se recharge 2x plus vite
-
-var energie_chasse := energie_chasse_max  # Énergie de chasse actuelle
-var energie_fuite := energie_fuite_max     # Énergie de fuite actuelle
 
 var barre_energie_chasse : TextureProgressBar
 var barre_energie_fuite : TextureProgressBar
@@ -44,8 +35,6 @@ func _ready() -> void:
 	barre_energie_fuite = get_node_or_null("EnergieFuite")
 	barre_energie_chasse = get_node_or_null("EnergieChasse")
 
-	mettre_a_jour_barres_energie()
-
 	zone_activation = $Activation
 	set_vie(vie)
 
@@ -73,44 +62,25 @@ func _physics_process(delta: float) -> void:
 	suivi_intersection()
 
 	if controleur != null:
-		# Demande au contrôleur quoi faire : "chasse", "fuite", "broute" ou "inactif".
-		var comportement = controleur.get_comportement()
-		var peut_chasser = energie_chasse > 0
-		var peut_fuire = energie_fuite > 0
-		
-		var vitesse_cible = controleur.get_mouvement_avec_energie(peut_chasser, peut_fuire)
-		
-		# Gestion de l’énergie selon l’action en cours.
-		if comportement == "chasse":
-			if peut_chasser:
-				# On dépense l’énergie de chasse (pas de recharge pendant la chasse).
-				energie_chasse = max(0, energie_chasse - delta)
-			# Pas de recharge tant qu’on chasse.
-			
-		elif comportement == "fuite":
-			if peut_fuire:
-				# On dépense l’énergie de fuite (pas de recharge pendant la fuite).
-				energie_fuite = max(0, energie_fuite - delta)
-				# Pas de recharge tant qu’on fuit.
-			
-		elif comportement == "broute":
-			# Brouter = manger = ça recharge les deux jauges.
-			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * delta)
-			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
-			
-		else:  # inactif ou déplacement normal
-			# Repos : recharge des deux jauges.
-			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * delta)
-			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
-		
-		mettre_a_jour_barres_energie()
+		# Obtient la vitesse cible du contrôleur
+		# Pense au contrôleur comme le cerveau de la cellule.
+		var vitesse_cible = controleur.get_mouvement_avec_energie()
 
+		# Lisse le mouvement pour éviter les changements brusques.
 		velocity = velocity.lerp(vitesse_cible, 0.1)
-		
-	else:
-		if message_pas_controleur:
-			print("Aucun contrôleur assigné à la cellule: " + str(self.name))
-			message_pas_controleur = false
+
+		# Met à jour les barres avec les valeurs du contrôleur
+		if barre_energie_chasse != null:
+			barre_energie_chasse.update_value(controleur.get_energie_chasse(), controleur.get_energie_chasse_max())
+		if barre_energie_fuite != null:
+			barre_energie_fuite.update_value(controleur.get_energie_fuite(), controleur.get_energie_fuite_max())
+
+			velocity = velocity.lerp(vitesse_cible, 0.1)
+			
+		else:
+			if message_pas_controleur:
+				print("Aucun contrôleur assigné à la cellule: " + str(self.name))
+				message_pas_controleur = false
 	
 	move_and_slide()
 
@@ -182,12 +152,3 @@ func set_tous_objets_mangeables(objets : Array) -> void:
 	var tous_objets_mangeables := []
 	tous_objets_mangeables = objets
 	controleur.set_tous_objets_mangeables(tous_objets_mangeables)
-
-func mettre_a_jour_barres_energie() -> void:
-	if barre_energie_chasse != null:
-		barre_energie_chasse.update_value(energie_chasse, energie_chasse_max)
-	
-	if barre_energie_fuite != null:
-		barre_energie_fuite.update_value(energie_fuite, energie_fuite_max)
-		if energie_fuite != energie_fuite_max:
-			print ("Énergie fuite : " + str(energie_fuite) + " / " + str(energie_fuite_max))
