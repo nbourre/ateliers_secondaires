@@ -42,6 +42,8 @@ var fuite_vitesse: float = 10000.0
 var energie_chasse := energie_chasse_max
 var energie_fuite := energie_fuite_max
 
+var multiplicateur_energie := 1.0
+
 var vecteur_deplacement: Vector2 = Vector2.ZERO
 
 var objet_plus_proche: Node2D = null
@@ -79,7 +81,7 @@ func ajout_formes_deboggage() -> void:
 
 # Boucle principale : met à jour l’IA chaque frame.
 func _process(delta: float) -> void:
-	gestion_etat(delta)
+	gestion_intelligence(delta)
 	
 	_draw()
 
@@ -94,30 +96,42 @@ func _draw() -> void:
 func get_mouvement() -> Vector2:
 	return vecteur_deplacement
 
-func get_mouvement_avec_energie() -> Vector2:
-	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
-	var multiplicateur_energie := 1.0
-
+func get_comportement() -> String:
 	match etat_actuel:
 		Etat.CHASSE:
-			if energie_chasse > 0:
-				energie_chasse = max(0.0, energie_chasse - get_process_delta_time())
+			return "chasse"
+		Etat.FUITE:
+			return "fuite"
+		Etat.BROUTE:
+			return "broute"
+		_:
+			return "inactif"
+
+func mise_a_jour_energie(delta: float) -> void:
+	multiplicateur_energie = 1.0
+	match etat_actuel:
+		Etat.CHASSE:
+			if energie_chasse > 0.0:
+				energie_chasse = max(0.0, energie_chasse - delta)
 			else:
 				multiplicateur_energie = 0.5
 		Etat.FUITE:
-			if energie_fuite > 0:
-				energie_fuite = max(0.0, energie_fuite - get_process_delta_time())
+			if energie_fuite > 0.0:
+				energie_fuite = max(0.0, energie_fuite - delta)
 			else:
 				multiplicateur_energie = 0.3
 		Etat.BROUTE:
-			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * get_process_delta_time())
-			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * get_process_delta_time())
+			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * delta)
+			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
 		_:
-			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * get_process_delta_time())
-			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * get_process_delta_time())
+			energie_chasse = min(energie_chasse_max, energie_chasse + vitesse_recharge_chasse * delta)
+			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
 
-	var multiplicateur_total := multiplicateur_dim * multiplicateur_energie
-	return vecteur_deplacement * multiplicateur_total
+func get_mouvement_avec_energie() -> Vector2:
+	# Ici, l’énergie est déjà appliquée dans vecteur_deplacement.
+	# On applique seulement le multiplicateur de vitesse lié à la taille.
+	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
+	return vecteur_deplacement * multiplicateur_dim
 
 func mourir() -> void:
 	get_parent().queue_free()
@@ -126,7 +140,7 @@ func mourir() -> void:
 func set_tous_objets_mangeables(objects : Array) -> void:
 	tous_objets_mangeables = objects
 
-func gestion_etat(delta : float) -> void:
+func gestion_intelligence(delta : float) -> void:
 	match etat_actuel:
 		Etat.INACTIF:
 			etat_inactif(delta)
@@ -144,6 +158,9 @@ func gestion_etat(delta : float) -> void:
 		ma_cellule.queue_redraw()
 
 func etat_inactif(delta : float) -> void:
+	mise_a_jour_energie(delta)
+	vecteur_deplacement = Vector2.ZERO
+
 	temps_inactif += delta
 	if temps_inactif > 3.0:
 		etat_actuel = Etat.BOUGE
@@ -155,6 +172,7 @@ func set_debug_mode(enabled : bool) -> void:
 		ma_cellule.update()  # Efface les anciens dessins de déboggage
 
 func etat_bouge(delta : float) -> void:
+	mise_a_jour_energie(delta)
 	deplacement_temps += delta
 	if deplacement_premiere_fois:
 		deplacement_premiere_fois = false
@@ -164,7 +182,7 @@ func etat_bouge(delta : float) -> void:
 		direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
 		deplacement_temps = 0.0
 	
-	vecteur_deplacement = direction * deplacement_vitesse * delta
+	vecteur_deplacement = direction * deplacement_vitesse * multiplicateur_energie * delta
 
 	# Priorité : vérifier les menaces avant tout.
 	var threat = trouve_menace_proche()
@@ -203,6 +221,7 @@ func etat_bouge(delta : float) -> void:
 	
 
 func etat_broute(delta : float) -> void:
+	mise_a_jour_energie(delta)
 	broute_temps += delta
 	if broute_premiere_fois:
 		broute_premiere_fois = false
@@ -233,14 +252,16 @@ func etat_broute(delta : float) -> void:
 		
 		# Avance doucement vers la nourriture.
 		direction = (food.position - get_parent().position).normalized()
-		vecteur_deplacement = direction * broute_vitesse * delta
+		vecteur_deplacement = direction * broute_vitesse * multiplicateur_energie * delta
 	else:
 		# Plus de nourriture, on retourne errer.
 		etat_actuel = Etat.BOUGE
 		broute_premiere_fois = true
 		broute_temps = 0.0
+	
 
 func etat_chasse(delta : float) -> void:
+	mise_a_jour_energie(delta)
 	chasse_temps += delta
 	if chasse_premiere_fois:
 		chasse_premiere_fois = false
@@ -274,7 +295,7 @@ func etat_chasse(delta : float) -> void:
 		
 		# Avance vers la proie.
 		direction = (proie.position - get_parent().position).normalized()
-		vecteur_deplacement = direction * chasse_vitesse * delta
+		vecteur_deplacement = direction * chasse_vitesse * multiplicateur_energie * delta
 	else:
 		# Plus de proie, on retourne errer.
 		etat_actuel = Etat.BOUGE
@@ -282,7 +303,7 @@ func etat_chasse(delta : float) -> void:
 		chasse_temps = 0.0
 
 func etat_fuite(delta : float) -> void:
-
+	mise_a_jour_energie(delta)
 	if fuite_premiere_fois:
 		fuite_premiere_fois = false
 		var msg := ma_cellule.name + " fuit " + str(objet_plus_proche.name)
@@ -300,7 +321,7 @@ func etat_fuite(delta : float) -> void:
 		
 		# S’éloigne de la menace.
 		direction = (get_parent().position - menace.position).normalized()
-		vecteur_deplacement = direction * fuite_vitesse * delta
+		vecteur_deplacement = direction * fuite_vitesse * multiplicateur_energie * delta
 	else:
 		# Plus de menace, on retourne errer.
 		etat_actuel = Etat.BOUGE
