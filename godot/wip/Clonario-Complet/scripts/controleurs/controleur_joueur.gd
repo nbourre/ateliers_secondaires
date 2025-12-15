@@ -40,17 +40,34 @@ func _ready() -> void:
 	if ma_cellule != null:
 		camera = ma_cellule.get_node_or_null("Camera2D")
 
+
+func _process(delta: float) -> void:
+	# Vérifier les touches pour chasse et fuite
+	mode_chasse = Input.is_action_pressed("chasse")
+	mode_fuite = Input.is_action_pressed("fuite")
+	
+	# Ajuster le zoom de la caméra
+	ajuster_zoom_camera(delta)
+	
+	var dir := get_direction_souris()
+	
+	# Déterminer la vitesse selon le mode
+	var vitesse_actuelle := vitesse_normale
+	if mode_fuite:
+		vitesse_actuelle = vitesse_fuite
+	elif mode_chasse:
+		vitesse_actuelle = vitesse_chasse
+
+	if dir.length() < dir_stop:
+		# Arrêt progressif
+		direction = direction.lerp(Vector2.ZERO, 0.1)
+		vecteur_deplacement = direction
+	else:
+		direction = direction.lerp(dir.normalized() * vitesse_actuelle * delta, 0.1)
+		vecteur_deplacement = direction
+
 func get_mouvement() -> Vector2:
 	return vecteur_deplacement
-
-func get_comportement() -> String:
-	# Retourner le comportement actuel basé sur les touches pressées
-	if mode_fuite:
-		return "fuite"
-	elif mode_chasse:
-		return "chasse"
-	else:
-		return "repos"
 
 func get_mouvement_avec_energie() -> Vector2:
 	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
@@ -87,30 +104,6 @@ func get_direction_souris() -> Vector2:
 	
 	return dir
 
-func _process(delta: float) -> void:
-	# Vérifier les touches pour chasse et fuite
-	mode_chasse = Input.is_action_pressed("chasse")
-	mode_fuite = Input.is_action_pressed("fuite")
-	
-	# Ajuster le zoom de la caméra
-	ajuster_zoom_camera(delta)
-	
-	var dir := get_direction_souris()
-	
-	# Déterminer la vitesse selon le mode
-	var vitesse_actuelle := vitesse_normale
-	if mode_fuite:
-		vitesse_actuelle = vitesse_fuite
-	elif mode_chasse:
-		vitesse_actuelle = vitesse_chasse
-
-	if dir.length() < dir_stop:
-		# Arrêt progressif
-		direction = direction.lerp(Vector2.ZERO, 0.1)
-		vecteur_deplacement = direction
-	else:
-		direction = direction.lerp(dir.normalized() * vitesse_actuelle * delta, 0.1)
-		vecteur_deplacement = direction
 
 func ajuster_zoom_camera(delta: float) -> void:
 	if ma_cellule == null or camera == null:

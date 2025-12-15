@@ -94,18 +94,6 @@ func _draw() -> void:
 func get_mouvement() -> Vector2:
 	return vecteur_deplacement
 
-func get_comportement() -> String:
-	# Informe la cellule de l’action pour qu’elle gère l’énergie.
-	match etat_actuel:
-		Etat.CHASSE:
-			return "chasse"
-		Etat.FUITE:
-			return "fuite"
-		Etat.BROUTE:
-			return "broute"
-		_:
-			return "inactif"
-
 func get_mouvement_avec_energie() -> Vector2:
 	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
 	var multiplicateur_energie := 1.0
