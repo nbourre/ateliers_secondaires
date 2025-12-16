@@ -12,6 +12,7 @@ func etat_fuite(delta : float) -> void:
 		
 		# Si la menace s’éloigne assez, on retourne errer.
 		if distance_menace > fuite_distance * 1.5:
+			fuite_premiere_fois = true
 			etat_actuel = Etat.BOUGE
 			return
 		
@@ -21,3 +22,4 @@ func etat_fuite(delta : float) -> void:
 	else:
 		# Plus de menace, on retourne errer.
 		etat_actuel = Etat.BOUGE
+		fuite_premiere_fois = true
