@@ -330,21 +330,28 @@ func etat_chasse(delta : float) -> void:
 		chasse_temps = 0.0
 
 func etat_fuite(delta : float) -> void:
-	# TODO: Compléter cet état
-	
-	# Version temporaire pour que le jeu reste fonctionnel:
-	# Les cellules s'arrêtent brièvement puis retournent en BOUGE
 	mise_a_jour_energie(delta)
-	vecteur_deplacement = Vector2.ZERO
-	
 	if fuite_premiere_fois:
 		fuite_premiere_fois = false
-		# Timer de 1 seconde avant de retourner en BOUGE
-		await get_tree().create_timer(1.0).timeout
-		if etat_actuel == Etat.FUITE:
-			etat_actuel = Etat.BOUGE
-			fuite_premiere_fois = true
+		var msg := ma_cellule.name + " fuit " + str(objet_plus_proche.name)
+		print(msg)
+		change_state.emit(msg)
 
+	var menace = trouve_menace_proche()
+	if menace != null:
+		var distance_menace = get_parent().position.distance_to(menace.position)
+		
+		# Si la menace s’éloigne assez, on retourne errer.
+		if distance_menace > fuite_distance * 1.5:
+			etat_actuel = Etat.BOUGE
+			return
+		
+		# S’éloigne de la menace.
+		direction = (get_parent().position - menace.position).normalized()
+		vecteur_deplacement = direction * fuite_vitesse * multiplicateur_energie * delta
+	else:
+		# Plus de menace, on retourne errer.
+		etat_actuel = Etat.BOUGE
 
 # endregion États IA
 

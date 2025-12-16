@@ -1,0 +1,23 @@
+func etat_fuite(delta : float) -> void:
+	mise_a_jour_energie(delta)
+	if fuite_premiere_fois:
+		fuite_premiere_fois = false
+		var msg := ma_cellule.name + " fuit " + str(objet_plus_proche.name)
+		print(msg)
+		change_state.emit(msg)
+
+	var menace = trouve_menace_proche()
+	if menace != null:
+		var distance_menace = get_parent().position.distance_to(menace.position)
+		
+		# Si la menace s’éloigne assez, on retourne errer.
+		if distance_menace > fuite_distance * 1.5:
+			etat_actuel = Etat.BOUGE
+			return
+		
+		# S’éloigne de la menace.
+		direction = (get_parent().position - menace.position).normalized()
+		vecteur_deplacement = direction * fuite_vitesse * multiplicateur_energie * delta
+	else:
+		# Plus de menace, on retourne errer.
+		etat_actuel = Etat.BOUGE

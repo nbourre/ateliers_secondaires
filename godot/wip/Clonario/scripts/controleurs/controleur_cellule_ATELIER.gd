@@ -105,7 +105,7 @@ func afficher_etat_cellule(number : int) -> void:
 # endregion Déboggage
 
 
-# Point d’entrée : on prépare l’état et on récupère la cellule parente.
+# Point d'entrée : on prépare l'état et on récupère la cellule parente.
 func _ready() -> void:
 	etat_actuel = Etat.INACTIF
 	set_process(true)
@@ -114,7 +114,7 @@ func _ready() -> void:
 	if mode_deboggage:
 		ajout_formes_deboggage()
 
-# Boucle principale : met à jour l’IA chaque frame.
+# Boucle principale : met à jour l'IA chaque frame.
 func _process(delta: float) -> void:
 	gestion_intelligence(delta)
 	
@@ -157,7 +157,7 @@ func mise_a_jour_energie(delta: float) -> void:
 			energie_fuite = min(energie_fuite_max, energie_fuite + vitesse_recharge_fuite * delta)
 
 func get_mouvement_avec_energie() -> Vector2:
-	# Ici, l’énergie est déjà appliquée dans vecteur_deplacement.
+	# Ici, l'énergie est déjà appliquée dans vecteur_deplacement.
 	# On applique seulement le multiplicateur de vitesse lié à la taille.
 	var multiplicateur_dim := ma_cellule.get_multiplicateur_vitesse()
 	return vecteur_deplacement * multiplicateur_dim
@@ -214,7 +214,7 @@ func etat_bouge(delta : float) -> void:
 	# Priorité : vérifier les menaces avant tout.
 	var threat = trouve_menace_proche()
 	if threat != null:
-		var distance_to_threat = get_parent().position.distance_to(threat.position)
+		var distance_to_threat = ma_cellule.global_position.distance_to(threat.global_position)
 		if distance_to_threat < fuite_distance:
 			objet_plus_proche = threat
 			etat_actuel = Etat.FUITE
@@ -226,7 +226,7 @@ func etat_bouge(delta : float) -> void:
 	# Puis chercher une proie plus petite à pourchasser.
 	var prey = trouve_proie_plus_petite()
 	if prey != null:
-		var distance_to_prey = get_parent().position.distance_to(prey.position)
+		var distance_to_prey = ma_cellule.global_position.distance_to(prey.global_position)
 		if distance_to_prey < chasse_distance:
 			objet_plus_proche = prey
 			etat_actuel = Etat.CHASSE
@@ -237,7 +237,7 @@ func etat_bouge(delta : float) -> void:
 	# Enfin, chercher de la bouffe à brouter.
 	var food = trouve_bouffe_proche()
 	if food != null:
-		var distance_to_food = get_parent().position.distance_to(food.position)
+		var distance_to_food = ma_cellule.global_position.distance_to(food.global_position)
 		if distance_to_food < chasse_distance:
 			objet_plus_proche = food
 			etat_actuel = Etat.BROUTE
@@ -254,10 +254,10 @@ func etat_broute(delta : float) -> void:
 	if broute_premiere_fois:
 		broute_premiere_fois = false
 	
-	# Pendant qu’on mange, on surveille les menaces et on fuit si besoin.
+	# Pendant qu'on mange, on surveille les menaces et on fuit si besoin.
 	var threat = trouve_menace_proche()
 	if threat != null:
-		var distance_to_threat = get_parent().position.distance_to(threat.position)
+		var distance_to_threat = ma_cellule.global_position.distance_to(threat.global_position)
 		if distance_to_threat < fuite_distance:
 			objet_plus_proche = threat
 			bouffe_cible = null
@@ -299,7 +299,7 @@ func etat_chasse(delta : float) -> void:
 	# Même en chasse, on surveille les gros dangers.
 	var menace = trouve_menace_proche()
 	if menace != null:
-		var distance_menace = get_parent().position.distance_to(menace.position)
+		var distance_menace = ma_cellule.global_position.distance_to(menace.global_position)
 		if distance_menace < fuite_distance:
 			objet_plus_proche = menace
 			etat_actuel = Etat.FUITE
@@ -311,7 +311,7 @@ func etat_chasse(delta : float) -> void:
 	var proie = trouve_proie_plus_petite()
 	if proie != null:
 		objet_plus_proche = proie
-		var distance_proie = get_parent().position.distance_to(proie.position)
+		var distance_proie = ma_cellule.global_position.distance_to(proie.global_position)
 		
 		# Si la proie est trop loin, on arrête la chasse.
 		if distance_proie > chasse_distance * 1.5:
@@ -321,7 +321,7 @@ func etat_chasse(delta : float) -> void:
 			return
 		
 		# Avance vers la proie.
-		direction = (proie.position - get_parent().position).normalized()
+		direction = (proie.global_position - ma_cellule.global_position).normalized()
 		vecteur_deplacement = direction * chasse_vitesse * multiplicateur_energie * delta
 	else:
 		# Plus de proie, on retourne errer.
@@ -329,8 +329,39 @@ func etat_chasse(delta : float) -> void:
 		chasse_premiere_fois = true
 		chasse_temps = 0.0
 
+# ============================================================================
+# ATELIER : PROGRAMMATION DE L'ÉTAT FUITE
+# ============================================================================
+# OBJECTIF: Faire fuir la cellule lorsqu'elle détecte une cellule plus grosse
+# 
+# CONSIGNES:
+# 1. Mettre à jour l'énergie de fuite
+# 2. Si c'est la première fois en fuite, afficher un message de debug
+# 3. Trouver la menace la plus proche
+# 4. Si une menace existe:
+#    a) Calculer la distance entre la cellule et la menace
+#    b) Si la menace est trop loin (> fuite_distance * 1.5), retourner en BOUGE
+#    c) Sinon, calculer la direction OPPOSÉE à la menace
+#    d) Appliquer le mouvement de fuite
+# 5. Si aucune menace, retourner en mode BOUGE
+#
+# VARIABLES UTILES:
+# - ma_cellule.global_position : position de la cellule
+# - menace.global_position : position de la menace
+# - fuite_distance : distance maximale de détection
+# - fuite_vitesse : vitesse de fuite
+# - multiplicateur_energie : facteur d'énergie
+# - delta : temps écoulé depuis la dernière frame
+#
+# FONCTIONS UTILES:
+# - mise_a_jour_energie(delta) : met à jour l'énergie
+# - trouve_menace_proche() : trouve la cellule menaçante la plus proche
+# - Vector2.distance_to() : calcule la distance entre deux points
+# - Vector2.normalized() : normalise un vecteur (longueur = 1)
+# ============================================================================
+
 func etat_fuite(delta : float) -> void:
-	# TODO: Compléter cet état
+	# TODO: Compléter cette fonction
 	
 	# Version temporaire pour que le jeu reste fonctionnel:
 	# Les cellules s'arrêtent brièvement puis retournent en BOUGE
@@ -346,16 +377,54 @@ func etat_fuite(delta : float) -> void:
 			fuite_premiere_fois = true
 
 
+# ============================================================================
+# CODE SOLUTION (à décommenter une fois votre code testé):
+# ============================================================================
+#func etat_fuite(delta : float) -> void:
+#	# 1. Mettre à jour l'énergie
+#	mise_a_jour_energie(delta)
+#	
+#	# 2. Message de debug si première fois
+#	if fuite_premiere_fois:
+#		fuite_premiere_fois = false
+#		var msg := ma_cellule.name + " fuit " + str(objet_plus_proche.name)
+#		print(msg)
+#		change_state.emit(msg)
+#	
+#	# 3. Trouver la menace la plus proche
+#	var menace = trouve_menace_proche()
+#	
+#	# 4. Si une menace existe
+#	if menace != null:
+#		# a) Calculer la distance
+#		var distance_menace = ma_cellule.global_position.distance_to(menace.global_position)
+#		
+#		# b) Si trop loin, retourner en BOUGE
+#		if distance_menace > fuite_distance * 1.5:
+#			etat_actuel = Etat.BOUGE
+#			fuite_premiere_fois = true
+#			return
+#		
+#		# c) Calculer la direction opposée (position_cellule - position_menace)
+#		direction = (ma_cellule.global_position - menace.global_position).normalized()
+#		
+#		# d) Appliquer le mouvement
+#		vecteur_deplacement = direction * fuite_vitesse * multiplicateur_energie * delta
+#	else:
+#		# 5. Aucune menace, retourner en BOUGE
+#		etat_actuel = Etat.BOUGE
+#		fuite_premiere_fois = true
+
 # endregion États IA
 
-# region Fonctions de recherche d’objets
+# region Fonctions de recherche d'objets
 
 func trouve_bouffe_plus_proche() -> Node2D:
 	var distance_plus_proche: float = INF
 	
 	for obj in tous_objets_mangeables:
 		if obj is Node2D:
-			var dist = get_parent().position.distance_to(obj.position)
+			var dist = ma_cellule.global_position.distance_to(obj.global_position)
 			if dist < distance_plus_proche:
 				distance_plus_proche = dist
 				objet_plus_proche = obj
@@ -385,7 +454,7 @@ func trouve_proie_proche() -> Node2D:
 				is_prey = true
 		
 		if is_prey:
-			var dist = ma_cellule.position.distance_to(obj.position)
+			var dist = ma_cellule.global_position.distance_to(obj.global_position)
 			if dist < distance_plus_proche:
 				distance_plus_proche = dist
 				proie_plus_proche = obj
@@ -456,7 +525,7 @@ func trouve_proie_plus_petite() -> Node2D:
 	
 	return cellule_plus_proche
 
-# endregion Fonctions de recherche d’objets
+# endregion Fonctions de recherche d'objets
 
 func get_energie_chasse() -> float:
 	return energie_chasse
