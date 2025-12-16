@@ -27,6 +27,7 @@ var deplacement_vitesse: float = 6000.0
 var broute_premiere_fois: bool = true
 var broute_temps: float = 0.0
 var broute_vitesse: float = 3000.0  # Plus lent quand on broute (mange)
+@export var broute_rayon_arret: float = 40.0  # Distance pour cesser d'avancer et éviter le ping-pong près de la bouffe
 
 var chasse_premiere_fois: bool = true
 var chasse_temps: float = 0.0
@@ -49,6 +50,7 @@ var multiplicateur_energie := 1.0
 var vecteur_deplacement: Vector2 = Vector2.ZERO
 
 var objet_plus_proche: Node2D = null
+var bouffe_cible: Bouffe = null
 
 @export var chasse_distance: float = 800.0
 @export var fuite_distance: float = 400.0
@@ -77,6 +79,29 @@ func set_debug_mode(enabled : bool) -> void:
 	if not mode_deboggage:
 		ma_cellule.update()  # Efface les anciens dessins de déboggage
 
+func _draw() -> void:
+	if not mode_deboggage:
+		return
+	
+	for shape in deboggage_formes:
+		shape.rotation = direction.angle()
+		pass
+
+func afficher_etat_cellule(number : int) -> void:
+
+	if not (ma_cellule.name.ends_with(str(number))):
+		return
+
+	var etat_str := get_comportement()
+
+	print ("Cellule " + str(number) + 
+		" | État: " + etat_str +
+		" | Énergie Chasse: " + str(energie_chasse) + "/" + str(energie_chasse_max) +
+		" | Énergie Fuite: " + str(energie_fuite) + "/" + str(energie_fuite_max) +
+		" | Position: " + str(ma_cellule.position)
+	)
+	
+
 # endregion Déboggage
 
 
@@ -95,13 +120,7 @@ func _process(delta: float) -> void:
 	
 	_draw()
 
-func _draw() -> void:
-	if not mode_deboggage:
-		return
-	
-	for shape in deboggage_formes:
-		shape.rotation = direction.angle()
-		pass
+
 
 func get_mouvement() -> Vector2:
 	return vecteur_deplacement
@@ -186,7 +205,7 @@ func etat_bouge(delta : float) -> void:
 		deplacement_premiere_fois = false
 		direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
 	
-	if deplacement_temps > 5.0:
+	if deplacement_temps > randf() * 3.0 + 2.0:
 		direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
 		deplacement_temps = 0.0
 	
@@ -226,11 +245,12 @@ func etat_bouge(delta : float) -> void:
 			broute_premiere_fois = true
 			deplacement_temps = 0.0
 			return
-	
+
 
 func etat_broute(delta : float) -> void:
 	mise_a_jour_energie(delta)
 	broute_temps += delta
+
 	if broute_premiere_fois:
 		broute_premiere_fois = false
 	
@@ -240,33 +260,30 @@ func etat_broute(delta : float) -> void:
 		var distance_to_threat = get_parent().position.distance_to(threat.position)
 		if distance_to_threat < fuite_distance:
 			objet_plus_proche = threat
+			bouffe_cible = null
 			etat_actuel = Etat.FUITE
 			broute_premiere_fois = true
 			broute_temps = 0.0
 			return
-	
-	# Cherche la bouffe la plus proche pour continuer à manger.
-	var food = trouve_bouffe_proche()
-	if food != null:
-		objet_plus_proche = food
-		var distance_to_food = get_parent().position.distance_to(food.position)
-		
-		# Si la nourriture est trop loin, on retourne errer.
-		if distance_to_food > chasse_distance * 1.5:
-			etat_actuel = Etat.BOUGE
-			broute_premiere_fois = true
-			broute_temps = 0.0
-			return
-		
-		# Avance doucement vers la nourriture.
-		direction = (food.position - get_parent().position).normalized()
-		vecteur_deplacement = direction * broute_vitesse * multiplicateur_energie * delta
-	else:
-		# Plus de nourriture, on retourne errer.
+
+	# Toujours cibler la bouffe la plus proche.
+	bouffe_cible = trouve_bouffe_proche()
+
+	if bouffe_cible == null or not is_instance_valid(bouffe_cible):
+		# Pas de bouffe trouvée ou elle a disparu, retour errer.
 		etat_actuel = Etat.BOUGE
 		broute_premiere_fois = true
 		broute_temps = 0.0
-	
+		vecteur_deplacement = Vector2.ZERO
+		return
+
+	var direction_vers_bouffe: Vector2 = bouffe_cible.global_position - ma_cellule.global_position
+	if direction_vers_bouffe.length() <= 0.001:
+		vecteur_deplacement = Vector2.ZERO
+		return
+
+	direction = direction_vers_bouffe.normalized()
+	vecteur_deplacement = direction * broute_vitesse * multiplicateur_energie * delta
 
 func etat_chasse(delta : float) -> void:
 	mise_a_jour_energie(delta)
@@ -397,15 +414,15 @@ func trouve_menace_proche() -> Node2D:
 		if obj is Cellule:
 			var autre_cellule = obj as Cellule
 			if autre_cellule.get_dimension() > ma_cellule.get_dimension() * 1.25:
-				var dist = ma_cellule.position.distance_to(obj.position)
+				var dist = ma_cellule.global_position.distance_to(obj.global_position)
 				if dist < distance_plus_proche:
 					distance_plus_proche = dist
 					menace_proche = obj
 	
 	return menace_proche
 
-func trouve_bouffe_proche() -> Node2D:
-	var bouffe_proche: Node2D = null
+func trouve_bouffe_proche() -> Bouffe:
+	var bouffe_proche: Bouffe = null
 	var distance_plus_proche: float = INF
 	
 	if ma_cellule == null:
@@ -417,7 +434,7 @@ func trouve_bouffe_proche() -> Node2D:
 		
 		# On ne garde que les objets de type Bouffe.
 		if obj is Bouffe:
-			var dist = ma_cellule.position.distance_to(obj.position)
+			var dist = ma_cellule.global_position.distance_to(obj.global_position)
 			if dist < distance_plus_proche:
 				distance_plus_proche = dist
 				bouffe_proche = obj
@@ -439,7 +456,7 @@ func trouve_proie_plus_petite() -> Node2D:
 		if obj is Cellule:
 			var autre_cellule = obj as Cellule
 			if autre_cellule.get_dimension() < ma_cellule.get_dimension():
-				var dist = ma_cellule.position.distance_to(obj.position)
+				var dist = ma_cellule.global_position.distance_to(obj.global_position)
 				if dist < distance_plus_proche:
 					distance_plus_proche = dist
 					cellule_plus_proche = obj

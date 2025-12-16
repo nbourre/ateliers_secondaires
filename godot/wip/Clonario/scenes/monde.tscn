@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bivxu61xgkfgb"]
+[gd_scene load_steps=7 format=3 uid="uid://bxkpgnbglaqef"]
 
 [ext_resource type="Script" uid="uid://cgt46ir838stx" path="res://scripts/Monde.gd" id="1_5o5ke"]
 [ext_resource type="Texture2D" uid="uid://dphamfya8f6om" path="res://assets/grid.png" id="2_pguex"]
 [ext_resource type="PackedScene" uid="uid://c66t164fxigbs" path="res://scenes/cellule.tscn" id="3_xy4bk"]
 [ext_resource type="Script" uid="uid://db0n1ismamwn" path="res://scripts/controleurs/controleur_joueur.gd" id="4_s13o8"]
 [ext_resource type="PackedScene" uid="uid://dhex75jakjh2e" path="res://scenes/gen_cellule.tscn" id="5_pguex"]
+[ext_resource type="PackedScene" uid="uid://j07qfp2pghxd" path="res://scenes/gen_bouffe.tscn" id="6_xy4bk"]
 
 [node name="Monde" type="Node"]
 script = ExtResource("1_5o5ke")
@@ -30,3 +31,5 @@ metadata/_custom_type_script = "uid://db0n1ismamwn"
 
 [node name="GenerateurCellule" parent="." instance=ExtResource("5_pguex")]
 position = Vector2(-159, 89)
+
+[node name="GenerateurBouffe" parent="." instance=ExtResource("6_xy4bk")]
