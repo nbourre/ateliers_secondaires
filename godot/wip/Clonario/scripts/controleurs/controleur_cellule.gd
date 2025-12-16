@@ -2,6 +2,7 @@
 class_name ControleurCellule
 extends Controleur
 
+# region ETATS IA
 enum Etat {
 	INACTIF,
 	BOUGE,
@@ -11,6 +12,7 @@ enum Etat {
 }
 
 var etat_actuel: Etat = Etat.INACTIF
+# endregion ETATS IA
 
 var tous_objets_mangeables := []
 
@@ -52,22 +54,14 @@ var objet_plus_proche: Node2D = null
 @export var fuite_distance: float = 400.0
 @export var mode_deboggage: bool = false
 
+var ma_cellule : Cellule
+
+# region Déboggage
 var deboggage_formes : Array[DebugShape] = []
 
 # Couleurs de déboggage
 var couleur_chasse := Color(0, 1, 0, 0.2)  # Vert
 var couleur_fuite := Color(1, 0, 0, 0.3)   # Rouge
-
-var ma_cellule : Cellule
-
-# Point d’entrée : on prépare l’état et on récupère la cellule parente.
-func _ready() -> void:
-	etat_actuel = Etat.INACTIF
-	set_process(true)
-	ma_cellule = get_parent() as Cellule
-
-	if mode_deboggage:
-		ajout_formes_deboggage()
 
 func ajout_formes_deboggage() -> void:
 	var fleche_direction := DebugShape.new()
@@ -78,6 +72,22 @@ func ajout_formes_deboggage() -> void:
 
 	deboggage_formes.append(fleche_direction)
 
+func set_debug_mode(enabled : bool) -> void:
+	mode_deboggage = enabled
+	if not mode_deboggage:
+		ma_cellule.update()  # Efface les anciens dessins de déboggage
+
+# endregion Déboggage
+
+
+# Point d’entrée : on prépare l’état et on récupère la cellule parente.
+func _ready() -> void:
+	etat_actuel = Etat.INACTIF
+	set_process(true)
+	ma_cellule = get_parent() as Cellule
+
+	if mode_deboggage:
+		ajout_formes_deboggage()
 
 # Boucle principale : met à jour l’IA chaque frame.
 func _process(delta: float) -> void:
@@ -157,6 +167,8 @@ func gestion_intelligence(delta : float) -> void:
 	if mode_deboggage:
 		ma_cellule.queue_redraw()
 
+# region États IA
+
 func etat_inactif(delta : float) -> void:
 	mise_a_jour_energie(delta)
 	vecteur_deplacement = Vector2.ZERO
@@ -166,10 +178,6 @@ func etat_inactif(delta : float) -> void:
 		etat_actuel = Etat.BOUGE
 		temps_inactif = 0.0
 
-func set_debug_mode(enabled : bool) -> void:
-	mode_deboggage = enabled
-	if not mode_deboggage:
-		ma_cellule.update()  # Efface les anciens dessins de déboggage
 
 func etat_bouge(delta : float) -> void:
 	mise_a_jour_energie(delta)
@@ -262,7 +270,9 @@ func etat_broute(delta : float) -> void:
 
 func etat_chasse(delta : float) -> void:
 	mise_a_jour_energie(delta)
+
 	chasse_temps += delta
+
 	if chasse_premiere_fois:
 		chasse_premiere_fois = false
 		var msg := ma_cellule.name + " commence à chasser " + str(objet_plus_proche.name)
@@ -270,11 +280,11 @@ func etat_chasse(delta : float) -> void:
 		change_state.emit(msg)
 	
 	# Même en chasse, on surveille les gros dangers.
-	var threat = trouve_menace_proche()
-	if threat != null:
-		var distance_menace = get_parent().position.distance_to(threat.position)
+	var menace = trouve_menace_proche()
+	if menace != null:
+		var distance_menace = get_parent().position.distance_to(menace.position)
 		if distance_menace < fuite_distance:
-			objet_plus_proche = threat
+			objet_plus_proche = menace
 			etat_actuel = Etat.FUITE
 			chasse_premiere_fois = true
 			chasse_temps = 0.0
@@ -325,6 +335,10 @@ func etat_fuite(delta : float) -> void:
 	else:
 		# Plus de menace, on retourne errer.
 		etat_actuel = Etat.BOUGE
+
+# endregion États IA
+
+# region Fonctions de recherche d’objets
 
 func trouve_bouffe_plus_proche() -> Node2D:
 	var distance_plus_proche: float = INF
@@ -431,6 +445,8 @@ func trouve_proie_plus_petite() -> Node2D:
 					cellule_plus_proche = obj
 	
 	return cellule_plus_proche
+
+# endregion Fonctions de recherche d’objets
 
 func get_energie_chasse() -> float:
 	return energie_chasse

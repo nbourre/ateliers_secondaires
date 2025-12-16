@@ -9,7 +9,6 @@ func _ready():
 	randomize()
 	$Sprite2D.modulate = Color8(randi_range(0, 255), randi_range(0, 255), randi_range(0, 255), 255)
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Cellule:
 		var cell : Cellule = area.get_parent() as Cellule

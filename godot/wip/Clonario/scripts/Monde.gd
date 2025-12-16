@@ -29,6 +29,8 @@ func _ready() -> void:
 	else:
 		push_warning("Aucun generateur_cellule dans la scène.")
 	
+
+	
 	# Construire les zones interdites à partir du joueur et des cellules générées.
 	var zones_sans_apparition : Array[Dictionary] = []
 	if player != null:
@@ -52,6 +54,10 @@ func _ready() -> void:
 	else:
 		push_warning("Aucun generateur_bouffe dans la scène.")
 
+	# Les objets mangeables sans générateur.
+	foods += trouver_bouffe_sans_generateur()
+	cells += trouver_cellule_sans_generateur()
+
 	objets_fusionnes = cells + foods
 	if player != null:
 		objets_fusionnes.append(player)
@@ -65,3 +71,29 @@ func _input(event: InputEvent) -> void:
 		var key_event := event as InputEventKey
 		if key_event.is_action_pressed("ui_cancel"):
 			get_tree().quit()
+
+func trouver_bouffe_sans_generateur() -> Array:
+	var bouffes_sans_generateur : Array = []
+
+	# Trouver les noeuds de type Bouffe dans le monde.
+	for enfant in get_children():
+		if enfant is Bouffe:
+			enfant.connect("eaten", Callable(self, "bouffe_mangee_sans_generateur"))
+			bouffes_sans_generateur.append(enfant)
+	return bouffes_sans_generateur
+
+func bouffe_mangee_sans_generateur(bouffe: Bouffe) -> void:
+	# Réapparaitre la bouffe à une position aléatoire.
+	bouffe.queue_free()
+
+func trouver_cellule_sans_generateur() -> Array:
+	var cellules_sans_generateur : Array = []
+
+	# Trouver les noeuds de type Cellule dans le monde.
+	for enfant in get_children():
+		if enfant is Cellule:
+
+			if enfant.name != "Joueur":
+				print("Cellule sans générateur trouvée : " + enfant.name)
+				cellules_sans_generateur.append(enfant)
+	return cellules_sans_generateur

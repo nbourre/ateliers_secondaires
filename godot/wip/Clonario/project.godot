@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Clonario - Quasiment complet"
-run/main_scene="res://scenes/world.tscn"
+config/name="Clonario"
+run/main_scene="res://scenes/monde.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
