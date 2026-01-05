@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://beb5alw516ufg"]
+
+[ext_resource type="Script" uid="uid://bs2e85ru8usou" path="res://scripts/tuyau.gd" id="1_tg551"]
+[ext_resource type="Texture2D" uid="uid://c4yg7q0joq8qc" path="res://assets/pipe.png" id="2_b5426"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kur4"]
+size = Vector2(78, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v351"]
+size = Vector2(72, 524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utatd"]
+size = Vector2(78, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6ber"]
+size = Vector2(72, 524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tg551"]
+size = Vector2(11, 199)
+
+[node name="Tuyau" type="Area2D" groups=["tuyaux"]]
+script = ExtResource("1_tg551")
+
+[node name="Bas" type="Sprite2D" parent="."]
+texture = ExtResource("2_b5426")
+offset = Vector2(0, 380)
+
+[node name="BasOuverture" type="CollisionShape2D" parent="."]
+position = Vector2(0, 118.25)
+shape = SubResource("RectangleShape2D_2kur4")
+
+[node name="BasTige" type="CollisionShape2D" parent="."]
+position = Vector2(0, 398)
+shape = SubResource("RectangleShape2D_3v351")
+
+[node name="Haut" type="Sprite2D" parent="."]
+texture = ExtResource("2_b5426")
+offset = Vector2(0, -380)
+flip_v = true
+
+[node name="HautOuverture" type="CollisionShape2D" parent="."]
+position = Vector2(0, -118)
+shape = SubResource("RectangleShape2D_utatd")
+
+[node name="HautTige" type="CollisionShape2D" parent="."]
+position = Vector2(0, -398)
+shape = SubResource("RectangleShape2D_x6ber")
+
+[node name="ZonePoint" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonePoint"]
+position = Vector2(58.5, 1.5)
+shape = SubResource("RectangleShape2D_tg551")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ZonePoint" to="." method="_on_zone_point_body_entered"]
