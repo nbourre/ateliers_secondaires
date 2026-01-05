@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="flappy_thing"
+config/name="Flappy Thing - Complet"
 run/main_scene="uid://rnpqwmxl4xfg"
 config/features=PackedStringArray("4.5")
 config/icon="res://assets/icon.svg"
