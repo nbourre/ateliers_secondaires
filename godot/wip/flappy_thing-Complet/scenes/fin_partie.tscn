@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcj0bfo8ryd6g"]
+
+[ext_resource type="Script" uid="uid://dw2xbktull448" path="res://scripts/fin_partie.gd" id="1_u7pms"]
+[ext_resource type="Texture2D" uid="uid://bpi8k0fshpyb4" path="res://assets/restart.png" id="2_42ufn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4gtg"]
+texture = ExtResource("2_42ufn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3xs6"]
+texture = ExtResource("2_42ufn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0i3io"]
+texture = ExtResource("2_42ufn")
+
+[node name="FinPartie" type="CanvasLayer"]
+script = ExtResource("1_u7pms")
+
+[node name="RedemarrerBtn" type="Button" parent="."]
+offset_left = 342.0
+offset_top = 350.0
+offset_right = 502.0
+offset_bottom = 413.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_w4gtg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p3xs6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0i3io")
+
+[connection signal="pressed" from="RedemarrerBtn" to="." method="_on_redemarrer_btn_pressed"]
