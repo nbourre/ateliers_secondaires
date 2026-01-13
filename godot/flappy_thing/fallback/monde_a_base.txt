@@ -1,0 +1,54 @@
+extends Node2D
+
+# Source : https://www.youtube.com/watch?v=9f9t9eiCDAA
+
+@export var scene_tuyau : PackedScene
+
+const VIT_DEFILEMENT : int = 4	# Vitesse de défilement du sol
+const DECALAGE_TUYAU : int = 100	# Décalage initial des tuyaux
+const PLAGE_TUYAU : int = 200		# Plage de variation verticale des tuyaux
+
+var en_execution : bool	# Indique si la partie est en cours
+var fin_partie : bool	# Indique si la partie est terminée
+var defilement : float	# Position de défilement du sol
+var score : int			# Score du joueur
+
+var dimension_monde : Vector2i  # Dimensions de la fenêtre de jeu
+var hauteur_sol : int			# Hauteur du sol
+
+var tuyaux : Array					# Liste des tuyaux à l'écran
+
+func _ready() -> void:
+	nouvelle_partie()
+
+func nouvelle_partie() -> void:
+	en_execution = false
+	fin_partie = false
+	defilement = 0.0
+	score = 0
+	$Joueur.reset()
+
+# Fonction intégrée pour gérer les entrées utilisateur
+# Les entrées peuvent être des clics de souris, des touches du clavier, etc.
+func _input(event: InputEvent) -> void:
+	# On veut que lorsque l'on clic sur la souris
+	# le jeu démarre ou que l'oiseau pousse
+
+	if fin_partie == false:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				if en_execution == false:
+					demarrer_partie()
+				else:
+					if $Joueur.en_vol:
+						$Joueur.pousser()
+	
+	if event is InputEventKey:
+		# On quitte le jeu si on appuie sur Échap
+		if event.keycode == KEY_ESCAPE and event.pressed:
+			get_tree().quit()
+
+func demarrer_partie() -> void:
+	en_execution = true
+	$Joueur.en_vol = true
+	$Joueur.pousser()

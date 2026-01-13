@@ -2,12 +2,12 @@ class_name Joueur
 extends CharacterBody2D
 
 const GRAVITE : int = 1000
-const VIT_MAX : int = 600
-const VIT_POUSSEE : int = -500
-const POS_DEPART := Vector2(100, 400)
+const VIT_MAX : int = 600  # Vitesse maximale
+const VIT_POUSSEE : int = -500 # Vitesse de la poussée
+const POS_DEPART := Vector2(100, 400) # Position de départ
 
-var en_vol : bool = false
-var en_chute : bool = false
+var en_vol : bool = false # Indique si en vol
+var en_chute : bool = false # Indique si en chute (mort)
 
 func _ready() -> void:
 	reset()

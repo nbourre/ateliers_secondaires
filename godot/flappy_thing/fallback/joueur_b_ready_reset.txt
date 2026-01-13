@@ -1,0 +1,11 @@
+# Code à coller #2
+
+func _ready() -> void:
+	reset()
+
+# Permet de remettre à zéro le joueur
+func reset() -> void:
+	en_vol = false # Il ne vole pas
+	en_chute = false # Il ne tombe pas
+	position = POS_DEPART # On met remet sa position de départ
+	set_rotation(0) # S'il a pivoté, on remet son angle de rotation à 0

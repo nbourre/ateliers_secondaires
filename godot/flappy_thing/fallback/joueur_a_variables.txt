@@ -1,0 +1,12 @@
+# Code à coller #1
+
+class_name Joueur
+extends CharacterBody2D
+
+const GRAVITE : int = 1000
+const VIT_MAX : int = 600  # Vitesse maximale
+const VIT_POUSSEE : int = -500 # Vitesse de la poussée
+const POS_DEPART := Vector2(100, 400) # Position de départ
+
+var en_vol : bool = false # Sera vrai lorsque le joueur volera
+var en_chute : bool = false # Indique si l'oiseau a touché au sol, plafond ou tuyau (mort)

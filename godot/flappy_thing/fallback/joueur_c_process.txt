@@ -1,0 +1,38 @@
+# Code à coller #3
+
+func _physics_process(delta: float) -> void:
+	if en_vol or en_chute:
+		# Applique la gravité à la vitesse
+		velocity.y += GRAVITE * delta
+
+		# Si la vitesse Y est plus grand que la vitesse max
+		if velocity.y > VIT_MAX:
+			# On limite à la vitesse maximale
+			velocity.y = VIT_MAX
+		
+		
+		if en_vol:
+			# Applique un angle à l'oiseau selon
+			# sa vitesse en Y
+			set_rotation(deg_to_rad(velocity.y * 0.05))
+			
+			# Fait jouer l'animation
+			$AnimatedSprite2D.play()
+		elif en_chute:
+			# elif <-- Sinon si
+			# L'oiseau tombe, met pivote l'oiseau à 90°
+			set_rotation(deg_to_rad(90))
+			
+			# Arrête l'animation
+			$AnimatedSprite2D.stop()
+		
+		# Applique les calculs
+		move_and_collide(velocity * delta)
+	else:
+		# Pas en vol ou chute, alors pause?
+		# Arrête l'animation
+		$AnimatedSprite2D.stop()
+
+# Fonction pour appliquer une poussée
+func pousser() -> void:
+	velocity.y = VIT_POUSSEE
