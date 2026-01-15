@@ -100,9 +100,8 @@ script = ExtResource("1_mc3kx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4gral")
-animation = &"zubat"
-autoplay = "zubat"
-frame_progress = 0.48485997
+animation = &"vol"
+autoplay = "vol"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5707964

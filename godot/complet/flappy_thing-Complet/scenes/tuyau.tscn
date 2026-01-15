@@ -17,7 +17,6 @@ size = Vector2(11, 199)
 script = ExtResource("1_tg551")
 
 [node name="Bas" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_b5426")
 offset = Vector2(0, 380)
 
@@ -26,7 +25,6 @@ position = Vector2(0, 387)
 shape = SubResource("RectangleShape2D_3v351")
 
 [node name="Haut" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_b5426")
 offset = Vector2(0, -380)
 flip_v = true
@@ -42,11 +40,13 @@ position = Vector2(58.5, 1.5)
 shape = SubResource("RectangleShape2D_tg551")
 
 [node name="103ExeggutorAlolanAnime" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(18, 367)
 scale = Vector2(1.35, 1.35)
 texture = ExtResource("3_b5426")
 
 [node name="103ExeggutorAlolanAnime2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(18, -367)
 rotation = 3.1415927
 scale = Vector2(1.35, 1.35)
