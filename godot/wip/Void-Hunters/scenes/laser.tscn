@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyos6g8srbckd"]
+[gd_scene format=3 uid="uid://dyos6g8srbckd"]
 
 [ext_resource type="Script" uid="uid://cp10ij302hht7" path="res://scripts/laser.gd" id="1_a7dhc"]
 [ext_resource type="Texture2D" uid="uid://c6g1w574i315m" path="res://assets/sprites/laserBlue03.png" id="1_xmihv"]
@@ -8,13 +8,13 @@
 radius = 4.0
 height = 36.0
 
-[node name="Laser" type="Node2D"]
+[node name="Laser" type="RigidBody2D" unique_id=1564604132]
 script = ExtResource("1_a7dhc")
 
-[node name="Image" type="Sprite2D" parent="."]
+[node name="Image" type="Sprite2D" parent="." unique_id=1993072263]
 texture = ExtResource("1_xmihv")
 
-[node name="Killzone" parent="." instance=ExtResource("3_jjj73")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1989901950]
 shape = SubResource("CapsuleShape2D_412cd")
+
+[node name="Killzone" parent="." unique_id=1226407960 instance=ExtResource("3_jjj73")]

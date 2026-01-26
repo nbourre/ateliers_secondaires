@@ -1,5 +1,5 @@
 class_name Laser
-extends Node2D
+extends RigidBody2D
 
 var vitesse: float = 2000.0
 
@@ -18,3 +18,10 @@ func _process(delta: float) -> void:
 	life_timer += delta
 	if life_timer >= time_to_live:
 		queue_free()
+
+
+func _on_killzone_body_entered(body: Node2D) -> void:
+	print("Zone de destruction touchée par: %s" % body.name)
+
+func set_vitesse(new_speed: float) -> void:
+	apply_impulse(Vector2(new_speed, 0).rotated(rotation))

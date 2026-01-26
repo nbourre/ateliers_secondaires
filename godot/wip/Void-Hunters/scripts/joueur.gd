@@ -51,7 +51,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func tirer_projectile() -> void:
-	var projectile_instance: Node2D = laser_scene.instantiate()
+	var projectile_instance:= laser_scene.instantiate() as Laser
 	projectile_instance.position = marker_2d.global_position
 	projectile_instance.rotation = global_rotation + PI / 2
+	projectile_instance.set_vitesse(1000)
+	projectile_instance.name += "_laser"
 	get_parent().add_child(projectile_instance)
