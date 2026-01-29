@@ -54,6 +54,6 @@ func tirer_projectile() -> void:
 	var projectile_instance:= laser_scene.instantiate() as Laser
 	projectile_instance.position = marker_2d.global_position
 	projectile_instance.rotation = global_rotation + PI / 2
-	projectile_instance.set_vitesse(1000)
+	#projectile_instance.velocity = Vector2.UP.rotated(projectile_instance.rotation) * projectile_instance.vitesse
 	projectile_instance.name += "_laser"
 	get_parent().add_child(projectile_instance)

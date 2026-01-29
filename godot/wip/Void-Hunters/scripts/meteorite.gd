@@ -1,6 +1,5 @@
-extends Node2D
-
-signal body_entered(body: Node2D)
+class_name Meteorite
+extends RigidBody2D
 
 var sprite_names: Array = []
 @onready var sprite := $Sprite2D
@@ -29,7 +28,17 @@ func set_random_sprite() -> void:
 	var texture := load(sprite_names[random_index]) as Texture2D
 	sprite.texture = texture
 
-# Lorsqu'un corps entre dans la zone de collision
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	emit_signal("body_entered", body)
-	print("Météorite touchée par: %s" % body.name)
+func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
+	# Logique pour appliquer des dommages à la météorite
+	if impulsion != Vector2.ZERO:
+		# Appliquer une impulsion à la météorite avec
+		#un biais aleatoire dans la direction de l'impulsion
+		var random_biais := impulsion.rotated(randf_range(-PI/4, PI/4))
+		impulsion += random_biais
+		apply_impulse(impulsion)
+
+	print("Météorite a subi %d points de dommage" % dommage)
+
+
+	
+		
