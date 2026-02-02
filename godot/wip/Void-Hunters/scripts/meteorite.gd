@@ -4,6 +4,8 @@ extends RigidBody2D
 var sprite_names: Array = []
 @onready var sprite := $Sprite2D
 
+var health: int = 100
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_sprite_names()
@@ -37,8 +39,9 @@ func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 		impulsion += random_biais
 		apply_impulse(impulsion)
 
+	health -= dommage
 	print("Météorite a subi %d points de dommage" % dommage)
 
-
-	
-		
+	if health <= 0:
+		# Logique pour détruire la météorite
+		queue_free()
