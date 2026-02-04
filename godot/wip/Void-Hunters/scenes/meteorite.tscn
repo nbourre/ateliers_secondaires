@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://xd2lk4xfampb"]
+[gd_scene load_steps=3 format=3 uid="uid://xd2lk4xfampb"]
 
 [ext_resource type="Script" uid="uid://dtdifo5yuqbl6" path="res://scripts/meteorite.gd" id="1_dd20e"]
 [ext_resource type="Texture2D" uid="uid://djpcgtnqad81t" path="res://assets/sprites/meteors/meteorBrown_big2.png" id="2_ghl35"]
 
-[node name="Meteorite" type="RigidBody2D" unique_id=1049851212]
+[node name="Meteorite" type="RigidBody2D"]
 mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_dd20e")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1727193657]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=767251011]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-30, -46, 26, -46, 61, -30, 60, 18, 22, 49, -28, 51, -58, 23, -59, -13)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1793891264]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ghl35")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1407786374]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-30, -46, 26, -46, 61, -30, 60, 18, 22, 49, -28, 51, -58, 23, -59, -13)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
