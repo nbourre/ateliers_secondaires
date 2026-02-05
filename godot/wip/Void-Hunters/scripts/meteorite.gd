@@ -4,7 +4,10 @@ extends RigidBody2D
 var sprite_names: Array = []
 @onready var sprite := $Sprite2D
 
-var health: int = 100
+# Load explosion scene
+@onready var explosion_scene: PackedScene = preload("res://scenes/explosion.tscn")
+
+var health: int = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,4 +47,12 @@ func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 
 	if health <= 0:
 		# Logique pour détruire la météorite
+		make_explosion()
 		queue_free()
+		
+
+
+func make_explosion() -> void:
+	var explosion_instance := explosion_scene.instantiate() as GPUParticles2D
+	explosion_instance.position = position
+	get_parent().add_child(explosion_instance)

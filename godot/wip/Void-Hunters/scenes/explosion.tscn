@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://7m5lmwpi4wf"]
+[gd_scene load_steps=10 format=3 uid="uid://7m5lmwpi4wf"]
 
 [ext_resource type="Texture2D" uid="uid://b2hvdlk6cb5op" path="res://assets/sprites/smoke_particle.png" id="1_17npe"]
+[ext_resource type="Script" uid="uid://cp41t3fflnv2f" path="res://scenes/explosion.gd" id="2_nfeox"]
 
 [sub_resource type="Gradient" id="Gradient_17npe"]
 offsets = PackedFloat32Array(0, 0.23770492, 0.40163934, 0.4918033, 0.9918033)
@@ -33,17 +34,11 @@ radial_accel_curve = SubResource("CurveTexture_nfeox")
 scale_curve = SubResource("CurveTexture_3el85")
 color_ramp = SubResource("GradientTexture1D_nfeox")
 
-[node name="Explosion" type="GPUParticles2D" unique_id=2023160677]
+[node name="Explosion" type="GPUParticles2D"]
 amount = 16
 texture = ExtResource("1_17npe")
 lifetime = 2.0
 preprocess = 2.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hbmxj")
-
-[node name="Label" type="Label" parent="." unique_id=1353664514]
-offset_left = -92.0
-offset_top = -112.0
-offset_right = 91.0
-offset_bottom = -89.0
-text = "Check 2D particle demo"
+script = ExtResource("2_nfeox")

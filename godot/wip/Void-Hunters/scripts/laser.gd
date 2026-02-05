@@ -21,3 +21,5 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Meteorite):
 		body.appliquer_dommage(10, Vector2.UP.rotated(rotation) * vitesse / 10)
+	
+		queue_free()
