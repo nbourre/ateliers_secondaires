@@ -9,9 +9,10 @@ gravity_scale = 0.0
 script = ExtResource("1_dd20e")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-30, -46, 26, -46, 61, -30, 60, 18, 22, 49, -28, 51, -58, 23, -59, -13)
+polygon = PackedVector2Array(-31, -50, 29, -50, 65, -32, 65, 20, 21, 54, -31, 53, -63, 24, -64, -15)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ghl35")

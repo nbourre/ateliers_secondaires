@@ -12,7 +12,7 @@ var health: int = 20
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_sprite_names()
-	set_random_sprite()
+	reset()
 
 func load_sprite_names():
 	var folder := "res://assets/sprites/meteors/"
@@ -27,6 +27,9 @@ func load_sprite_names():
 					sprite_names.append(filename)
 			file_name = dir.get_next()
 		dir.list_dir_end()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body.name)
 
 func set_random_sprite() -> void:
 	var random_index := randi() % sprite_names.size()
@@ -56,3 +59,7 @@ func make_explosion() -> void:
 	var explosion_instance := explosion_scene.instantiate() as GPUParticles2D
 	explosion_instance.position = position
 	get_parent().add_child(explosion_instance)
+
+func reset() -> void:
+	health = 20
+	set_random_sprite()

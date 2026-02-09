@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c7raqlvuelhf5"]
+[gd_scene load_steps=7 format=3 uid="uid://c7raqlvuelhf5"]
 
 [ext_resource type="Script" uid="uid://3rrowp0w5tpp" path="res://scripts/joueur.gd" id="1_uj1k6"]
 [ext_resource type="Texture2D" uid="uid://dg6pky0vc7gcn" path="res://assets/sprites/fire00.png" id="2_2y66e"]
@@ -12,41 +12,42 @@ height = 72.0
 radius = 11.0
 height = 92.0
 
-[node name="Joueur" type="CharacterBody2D" unique_id=1330203651]
+[node name="Joueur" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_uj1k6")
 
-[node name="Propulseur" type="Sprite2D" parent="." unique_id=1557074794]
+[node name="Propulseur" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-56, 0)
 rotation = -1.5707964
 texture = ExtResource("2_2y66e")
 
-[node name="Freins" type="Node2D" parent="." unique_id=1239545625]
+[node name="Freins" type="Node2D" parent="."]
 visible = false
 
-[node name="Gauche" type="Sprite2D" parent="Freins" unique_id=1912676946]
+[node name="Gauche" type="Sprite2D" parent="Freins"]
 position = Vector2(21, -21)
 rotation = -1.5707964
 texture = ExtResource("3_ivebw")
 
-[node name="Droite" type="Sprite2D" parent="Freins" unique_id=1377221557]
+[node name="Droite" type="Sprite2D" parent="Freins"]
 position = Vector2(21, 21)
 rotation = -1.5707964
 texture = ExtResource("3_ivebw")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1211848416]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
 texture = ExtResource("2_uj1k6")
 
-[node name="CollisionTube" type="CollisionShape2D" parent="." unique_id=400963001]
+[node name="CollisionTube" type="CollisionShape2D" parent="."]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ivebw")
 
-[node name="CollisionAiles" type="CollisionShape2D" parent="." unique_id=205133705]
+[node name="CollisionAiles" type="CollisionShape2D" parent="."]
 position = Vector2(-12, 0)
 shape = SubResource("CapsuleShape2D_dga13")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1823492541]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=206393434]
+[node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(58, 0)

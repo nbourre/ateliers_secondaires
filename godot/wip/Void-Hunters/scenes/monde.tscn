@@ -1,28 +1,28 @@
-[gd_scene format=3 uid="uid://vx4ce1isbov7"]
+[gd_scene load_steps=6 format=3 uid="uid://vx4ce1isbov7"]
 
 [ext_resource type="Script" uid="uid://bxg7a2jk0d8nw" path="res://scripts/monde.gd" id="1_5o5ke"]
 [ext_resource type="Texture2D" uid="uid://bb84wx834h83d" path="res://assets/background/darkPurple.png" id="1_13bj3"]
-[ext_resource type="Texture2D" uid="uid://bymjnbxr005mv" path="res://assets/icon.svg" id="1_u5tfm"]
 [ext_resource type="PackedScene" uid="uid://c7raqlvuelhf5" path="res://scenes/joueur.tscn" id="2_13bj3"]
 [ext_resource type="PackedScene" uid="uid://xd2lk4xfampb" path="res://scenes/meteorite.tscn" id="5_pguex"]
+[ext_resource type="PackedScene" uid="uid://cw3krqfst4n87" path="res://scenes/spawner.tscn" id="5_xy4bk"]
 
-[node name="Monde" type="Node2D" unique_id=299964318]
+[node name="Monde" type="Node2D"]
 script = ExtResource("1_5o5ke")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=714124426]
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(373, 160)
 repeat_size = Vector2(256, 256)
 repeat_times = 9
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1057309150]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 texture = ExtResource("1_13bj3")
 centered = false
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=2080062295]
-position = Vector2(447, 291)
-texture = ExtResource("1_u5tfm")
-
-[node name="Joueur" parent="." unique_id=1908484511 instance=ExtResource("2_13bj3")]
+[node name="Joueur" parent="." instance=ExtResource("2_13bj3")]
 position = Vector2(348, 141)
 
-[node name="Meteorite" parent="." unique_id=354765923 instance=ExtResource("5_pguex")]
+[node name="Meteorite" parent="." instance=ExtResource("5_pguex")]
 position = Vector2(822, 221)
+
+[node name="Spawner" parent="." instance=ExtResource("5_xy4bk")]
+position = Vector2(345, 137)
