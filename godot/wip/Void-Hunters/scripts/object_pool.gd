@@ -12,25 +12,32 @@ var _in_use : Array[Node] = []
 func _ready() -> void:
 	if prewarm:
 		_prewarm()
-	
+
+# Préchauffage du pool : crée et désactive les instances au démarrage
 func _prewarm() -> void:
 	for i in range(pool_size):
 		var instance = scene_to_instance.instantiate()
+		#add_child(instance)
 		_deactivate(instance)
 		_available.append(instance)
-		
-# Default activation behavior (override if you want)
+
+# Active un objet : rend visible, active les processus
 func _activate(obj : Node) -> void:
 	if obj is CanvasItem:
 		(obj as CanvasItem).visible = true
 	obj.set_process(true)
 	obj.set_physics_process(true)
+	if obj.get_parent() != self:
+		add_child(obj)
 
+# Désactive un objet : cache, désactive les processus
 func _deactivate(obj : Node) -> void:
 	if obj is CanvasItem:
 		(obj as CanvasItem).visible = false
 	obj.set_process(false)
 	obj.set_physics_process(false)
+	if obj.get_parent() == self:
+		remove_child(obj)
 
 
 @abstract func get_instance() -> Node

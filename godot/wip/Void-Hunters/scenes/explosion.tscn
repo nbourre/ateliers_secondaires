@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://7m5lmwpi4wf"]
+[gd_scene format=3 uid="uid://7m5lmwpi4wf"]
 
 [ext_resource type="Texture2D" uid="uid://b2hvdlk6cb5op" path="res://assets/sprites/smoke_particle.png" id="1_17npe"]
-[ext_resource type="Script" uid="uid://cp41t3fflnv2f" path="res://scenes/explosion.gd" id="2_nfeox"]
+[ext_resource type="Script" uid="uid://cp41t3fflnv2f" path="res://scripts/explosion.gd" id="2_nfeox"]
 
 [sub_resource type="Gradient" id="Gradient_17npe"]
 offsets = PackedFloat32Array(0, 0.23770492, 0.40163934, 0.4918033, 0.9918033)

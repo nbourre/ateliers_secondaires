@@ -7,6 +7,8 @@ var sprite_names: Array = []
 # Load explosion scene
 @onready var explosion_scene: PackedScene = preload("res://scenes/explosion.tscn")
 
+var pool : ObjectPool = null
+
 var health: int = 20
 
 # Called when the node enters the scene tree for the first time.
@@ -36,6 +38,9 @@ func set_random_sprite() -> void:
 	var texture := load(sprite_names[random_index]) as Texture2D
 	sprite.texture = texture
 
+func is_brown() -> bool:
+	return sprite.texture.get_path().find("brown") != -1
+
 func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 	# Logique pour appliquer des dommages à la météorite
 	if impulsion != Vector2.ZERO:
@@ -51,9 +56,11 @@ func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 	if health <= 0:
 		# Logique pour détruire la météorite
 		make_explosion()
-		queue_free()
+		if pool != null:
+			pool.release_instance(self)
+		else:
+			queue_free()
 		
-
 
 func make_explosion() -> void:
 	var explosion_instance := explosion_scene.instantiate() as GPUParticles2D

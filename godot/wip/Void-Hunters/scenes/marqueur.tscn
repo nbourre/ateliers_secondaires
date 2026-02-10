@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://br0rhbvgdxn7u"]
+
+[ext_resource type="Script" uid="uid://dgqxpa0nxkmc6" path="res://scripts/marqueur.gd" id="1_86nkw"]
+[ext_resource type="Texture2D" uid="uid://cn67qnlclrrka" path="res://assets/sprites/meteors/meteorBrown_tiny1.png" id="1_760h3"]
+
+[node name="Marqueur" type="CanvasLayer" unique_id=1154696741]
+script = ExtResource("1_86nkw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1041122659]
+texture = ExtResource("1_760h3")

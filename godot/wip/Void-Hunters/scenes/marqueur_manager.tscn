@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qumpg1m0i4q3"]
+
+[ext_resource type="Script" uid="uid://yfbpt6x8abo" path="res://scripts/marqueur_manager.gd" id="1_t52gc"]
+
+[node name="MarqueurManager" type="Node" unique_id=48325678]
+script = ExtResource("1_t52gc")
