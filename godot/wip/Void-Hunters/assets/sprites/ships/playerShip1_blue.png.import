@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn67qnlclrrka"
-path="res://.godot/imported/meteorBrown_tiny1.png-7a3cd5d182eff72baa051791d7fe6dc2.ctex"
+uid="uid://bebwypncnb8kr"
+path="res://.godot/imported/playerShip1_blue.png-1a4267beca8f08552e72a6d717463d0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/meteors/meteorBrown_tiny1.png"
-dest_files=["res://.godot/imported/meteorBrown_tiny1.png-7a3cd5d182eff72baa051791d7fe6dc2.ctex"]
+source_file="res://assets/sprites/ships/playerShip1_blue.png"
+dest_files=["res://.godot/imported/playerShip1_blue.png-1a4267beca8f08552e72a6d717463d0d.ctex"]
 
 [params]
 

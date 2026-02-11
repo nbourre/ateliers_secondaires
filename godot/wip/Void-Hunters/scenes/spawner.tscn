@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw3krqfst4n87"]
+[gd_scene format=3 uid="uid://cw3krqfst4n87"]
 
 [ext_resource type="Script" uid="uid://dkg1cu5uas213" path="res://scripts/spawner.gd" id="1_2vbf6"]
 
@@ -8,10 +8,11 @@ _data = {
 }
 point_count = 8
 
-[node name="Spawner" type="Path2D"]
+[node name="Spawner" type="Path2D" unique_id=1945488478]
 curve = SubResource("Curve2D_8xlu4")
 script = ExtResource("1_2vbf6")
+spawn_delay = 3.0
 
-[node name="SpawnLocation" type="PathFollow2D" parent="."]
+[node name="SpawnLocation" type="PathFollow2D" parent="." unique_id=1602773601]
 position = Vector2(-247, -519)
 rotation = -0.031368736

@@ -6,6 +6,7 @@ extends CharacterBody2D
 # Il tourne en regardant la souris
 # Il peut également tirer des projectiles avec la touche "tir"
 
+var sante : float = 100.0
 
 var vitesse: float = 1500.0
 var acceleration: float = 200.0
@@ -57,3 +58,7 @@ func tirer_projectile() -> void:
 	#projectile_instance.velocity = Vector2.UP.rotated(projectile_instance.rotation) * projectile_instance.vitesse
 	projectile_instance.name += "_laser"
 	get_parent().add_child(projectile_instance)
+
+func appliquer_dommage(dommage: float) -> void:
+	sante -= dommage
+	print("Santé joueur : %f" % sante)

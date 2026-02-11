@@ -1,6 +1,8 @@
 class_name MeteoritePool
 extends ObjectPool
 
+@export var player : Joueur = null
+
 func _ready() -> void:
     scene_to_instance = preload("res://scenes/Meteorite.tscn")
     super._ready()
@@ -8,12 +10,12 @@ func _ready() -> void:
 # Obtient une instance du pool (réutilise ou crée)
 func get_instance() -> Node:
     if (_available.size() > 0):
-        var obj = _available.pop_front() as Meteorite
-        _in_use.append(obj)
-        _activate(obj)
-        obj.pool = self
-        reset(obj)
-        return obj
+        var meteor = _available.pop_front() as Meteorite
+        _in_use.append(meteor)
+        _activate(meteor)
+        goto_player(meteor)
+        meteor.pool = self
+        return meteor
     else:
         # No more object available
         # return null
@@ -29,3 +31,13 @@ func release_instance(instance : Node) -> void:
 # Réinitialise l'état d'une météorite
 func reset(m : Meteorite) -> void:
     m.reset()
+
+func goto_player(m: Meteorite) -> void:
+    if player == null:
+        return
+    
+    print("Player position: ", player.position, "\tMeteorite position: ", m.position)
+
+    var direction = (player.global_position - m.global_position).normalized()
+    m.donner_impulsion(direction * 100)  # Adjust the impulse strength as needed
+

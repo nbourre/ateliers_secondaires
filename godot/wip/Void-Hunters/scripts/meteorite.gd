@@ -1,7 +1,11 @@
 class_name Meteorite
 extends RigidBody2D
 
+signal touche(Meteorite, Node2D)
+
 var sprite_names: Array = []
+var texture_name : String = ""
+
 @onready var sprite := $Sprite2D
 
 # Load explosion scene
@@ -15,6 +19,9 @@ var health: int = 20
 func _ready() -> void:
 	load_sprite_names()
 	reset()
+
+func _physics_process(delta: float) -> void:
+	$Label.text = str(position)
 
 func load_sprite_names():
 	var folder := "res://assets/sprites/meteors/"
@@ -31,16 +38,19 @@ func load_sprite_names():
 		dir.list_dir_end()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body.name)
+	emit_signal("touche", self, body)
+	print(body.name + " a touché " + name)
+
 
 func set_random_sprite() -> void:
 	var random_index := randi() % sprite_names.size()
 	var texture := load(sprite_names[random_index]) as Texture2D
+	texture_name = sprite_names[random_index]
 	sprite.texture = texture
 
 func is_brown() -> bool:
-	return sprite.texture.get_path().find("brown") != -1
-
+	return texture_name.findn("brown") != -1
+	
 func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 	# Logique pour appliquer des dommages à la météorite
 	if impulsion != Vector2.ZERO:
@@ -68,5 +78,10 @@ func make_explosion() -> void:
 	get_parent().add_child(explosion_instance)
 
 func reset() -> void:
+	set_linear_velocity(Vector2.ZERO)
 	health = 20
 	set_random_sprite()
+	
+
+func donner_impulsion(impulse: Vector2) -> void:
+	apply_impulse(impulse)

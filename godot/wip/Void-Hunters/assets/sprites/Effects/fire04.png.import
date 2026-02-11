@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg6pky0vc7gcn"
-path="res://.godot/imported/fire00.png-14286031cd38d6899bf7f794edc43fbb.ctex"
+uid="uid://dthdk70cyv2f"
+path="res://.godot/imported/fire04.png-6728e0773d020c68abd0ca048fe8f025.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fire00.png"
-dest_files=["res://.godot/imported/fire00.png-14286031cd38d6899bf7f794edc43fbb.ctex"]
+source_file="res://assets/sprites/Effects/fire04.png"
+dest_files=["res://.godot/imported/fire04.png-6728e0773d020c68abd0ca048fe8f025.ctex"]
 
 [params]
 

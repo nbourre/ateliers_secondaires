@@ -35,17 +35,19 @@ func add_meteorite(meteorite: Meteorite) -> void:
 
 func remove_meteorite(meteorite: Meteorite) -> void:
 	meteorites.erase(meteorite)
-	_remove_marker(meteorite)
+	_remove_marker(meteorite)	
 
 func _create_marker(meteorite: Meteorite) -> void:
 	var marker = marqueur_scene.instantiate() as Marqueur
 	add_child(marker)
-	# if (meteorite.is_brown()):
-	# 	print("Brown meteorite detected")
+	if (meteorite.is_brown()):
+		marker.set_color("brown")
+	else:
+		marker.set_color("grey")
 	marker.set_target(meteorite, player)
 	marqueurs[meteorite] = marker
 
 func _remove_marker(meteorite: Meteorite) -> void:
 	if marqueurs.has(meteorite):
-		marqueurs[meteorite].queue_free()
+		marqueurs[meteorite].delete()
 		marqueurs.erase(meteorite)

@@ -34,11 +34,11 @@ radial_accel_curve = SubResource("CurveTexture_nfeox")
 scale_curve = SubResource("CurveTexture_3el85")
 color_ramp = SubResource("GradientTexture1D_nfeox")
 
-[node name="Explosion" type="GPUParticles2D"]
+[node name="Explosion" type="GPUParticles2D" unique_id=1238307906]
 amount = 16
 texture = ExtResource("1_17npe")
 lifetime = 2.0
-preprocess = 2.0
+preprocess = 0.1
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hbmxj")
 script = ExtResource("2_nfeox")

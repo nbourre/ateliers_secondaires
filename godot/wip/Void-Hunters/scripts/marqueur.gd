@@ -9,8 +9,8 @@ var player: Node2D = null
 var viewport_size: Vector2
 
 var sprite_dict : Dictionary = {
-    "brown": "res://assets/sprites/meteorBrown_tiny1.png",
-    "grey": "res://assets/sprites/meteorGrey_tiny1.png"
+    "brown": "res://assets/sprites/markers/meteorBrown_tiny1.png",
+    "grey": "res://assets/sprites/markers/meteorGrey_tiny1.png"
 }
 
 func _ready() -> void:
@@ -64,3 +64,6 @@ func _get_edge_position(direction: Vector2, viewport_center: Vector2) -> Vector2
 
 func is_target_visible(camera_rect: Rect2) -> bool:
     return camera_rect.has_point(target.global_position)
+
+func delete() -> void:
+    queue_free()
