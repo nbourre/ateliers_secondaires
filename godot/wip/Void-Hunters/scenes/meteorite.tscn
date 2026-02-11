@@ -20,7 +20,7 @@ texture = ExtResource("2_ghl35")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=478762317]
 polygon = PackedVector2Array(-30, -46, 26, -46, 61, -30, 60, 18, 22, 49, -28, 51, -58, 23, -59, -13)
 
-[node name="Label" type="Label" parent="." unique_id=2075230282]
+[node name="Debug" type="Label" parent="." unique_id=999613406]
 offset_right = 40.0
 offset_bottom = 23.0
 

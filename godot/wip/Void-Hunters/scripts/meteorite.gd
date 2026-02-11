@@ -6,6 +6,7 @@ signal touche(Meteorite, Node2D)
 var sprite_names: Array = []
 var texture_name : String = ""
 
+@export var debugging := false
 @onready var sprite := $Sprite2D
 
 # Load explosion scene
@@ -21,7 +22,7 @@ func _ready() -> void:
 	reset()
 
 func _physics_process(delta: float) -> void:
-	$Label.text = str(position)
+	debug()
 
 func load_sprite_names():
 	var folder := "res://assets/sprites/meteors/"
@@ -82,6 +83,13 @@ func reset() -> void:
 	health = 20
 	set_random_sprite()
 	
-
 func donner_impulsion(impulse: Vector2) -> void:
 	apply_impulse(impulse)
+
+func debug() -> void:
+	if not debugging:
+		return
+		
+	if (get_node_or_null("Debug") != null):
+		$Debug.text = str(position)
+		$Debug.text += "\n" + str(linear_velocity)

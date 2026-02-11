@@ -13,7 +13,6 @@ func get_instance() -> Node:
         var meteor = _available.pop_front() as Meteorite
         _in_use.append(meteor)
         _activate(meteor)
-        goto_player(meteor)
         meteor.pool = self
         return meteor
     else:
@@ -32,12 +31,5 @@ func release_instance(instance : Node) -> void:
 func reset(m : Meteorite) -> void:
     m.reset()
 
-func goto_player(m: Meteorite) -> void:
-    if player == null:
-        return
-    
-    print("Player position: ", player.position, "\tMeteorite position: ", m.position)
 
-    var direction = (player.global_position - m.global_position).normalized()
-    m.donner_impulsion(direction * 100)  # Adjust the impulse strength as needed
 

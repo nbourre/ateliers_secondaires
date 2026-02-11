@@ -17,30 +17,37 @@ func _ready() -> void:
 	spawner.connect("new_spawn_ready", Callable(self, "_on_new_spawn_ready"))
 	spawner.autospawn = true
 
-
+	$Enemy.set_target(joueur)
 
 func _on_new_spawn_ready(position: Vector2) -> void:
 	spawn_meteorite(position)
-
 
 func spawn_meteorite(position: Vector2) -> void:
 	var meteorite = meteorite_pool.get_instance()
 	if meteorite != null:
 		print("New spawn at: ", position)
 		meteorite.position = position
+		goto_player(meteorite)
 
 		if not meteorite.touche.is_connected(Callable(self, "_on_meteorite_touche")):
 			meteorite.connect("touche", Callable(self, "_on_meteorite_touche"))
 
-
-
 		marqueur_manager.add_meteorite(meteorite)
 
 func _process(delta: float) -> void:
-	spawner.spawn_offset = joueur.position
+	spawner.position = joueur.position
 
 func _on_meteorite_touche(meteorite: Meteorite, other: Node2D) -> void:
 	if (other == joueur):
 		joueur.appliquer_dommage(10)
 
 		print("Meteorite visible : " + meteorite.texture_name)
+
+func goto_player(m: Meteorite) -> void:
+	if joueur == null:
+		return
+	
+	print("Player position: ", joueur.position, "\tMeteorite position: ", m.position)
+
+	var direction = (joueur.global_position - m.global_position).normalized()
+	m.donner_impulsion(direction * 100)  # Adjust the impulse strength as needed
