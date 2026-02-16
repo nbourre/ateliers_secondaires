@@ -14,6 +14,7 @@ height = 92.0
 
 [node name="Joueur" type="CharacterBody2D" unique_id=180957613]
 collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_uj1k6")
 
 [node name="Propulseur" type="Sprite2D" parent="." unique_id=1401600401]

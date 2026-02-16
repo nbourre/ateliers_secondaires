@@ -11,6 +11,7 @@ size = Vector2(88, 84)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=876858674]
 rotation = -0.0022549778
+motion_mode = 1
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1627749012]
