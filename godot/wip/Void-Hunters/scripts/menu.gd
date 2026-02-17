@@ -9,7 +9,7 @@ func afficher_msg(msg: String) -> void:
 	$MessageTimer.start()
 
 func afficher_fin_partie() -> void:
-	afficher_msg("Game Over! Appuyez sur 'R' pour recommencer.")
+	afficher_msg("Game Over!")
 	await $MessageTimer.timeout
 
 	$Message.text = "Les chasseurs du vide!"
