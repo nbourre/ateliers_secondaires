@@ -8,4 +8,3 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Dommageable:
 		body.appliquer_dommage(dommage)
 	emit_signal("touched", body)
-	print("Zone de destruction touchée par: %s" % body.name)

@@ -2,6 +2,7 @@ class_name Meteorite
 extends RigidBody2D
 
 signal touche(Meteorite, Node2D)
+signal detruite(Meteorite)
 
 var sprite_names: Array = []
 var texture_name : String = ""
@@ -19,6 +20,8 @@ var texture_name : String = ""
 var pool : ObjectPool = null
 
 var health: int = 20
+
+var is_respawned := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,15 +69,18 @@ func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 		apply_impulse(impulsion)
 
 	health -= dommage
-	print("Météorite a subi %d points de dommage" % dommage)
 
 	if health <= 0:
 		# Logique pour détruire la météorite
 		make_explosion()
 		if pool != null:
+			sleeping = true
+			is_respawned = true
 			pool.release_instance(self)
 		else:
 			queue_free()
+
+		detruite.emit(self)
 		
 
 func make_explosion() -> void:
@@ -83,7 +89,8 @@ func make_explosion() -> void:
 	get_parent().add_child(explosion_instance)
 
 func reset() -> void:
-	set_linear_velocity(Vector2.ZERO)
+	sleeping = false
+	
 	health = 20
 	set_random_sprite()
 	
@@ -94,7 +101,8 @@ func reset() -> void:
 	scale = Vector2(scale_factor, scale_factor)
 	
 func donner_impulsion(impulse: Vector2) -> void:
-	apply_impulse(impulse)
+	if not sleeping:
+		apply_impulse(impulse)
 
 func debug() -> void:
 	if not debugging:

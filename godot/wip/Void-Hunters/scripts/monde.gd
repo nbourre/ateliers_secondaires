@@ -3,10 +3,13 @@ extends Node2D
 var meteorite_pool : MeteoritePool = MeteoritePool.new()
 var marqueur_manager := MarqueurManager.new()
 
+var score := 0
+
 @onready var spawner := $Spawner
 @onready var joueur := $Joueur
 
-@onready var barre_vie := $CanvasLayer/HBoxContainer/Sante
+@onready var barre_vie := $CanvasLayer/Sante/Sante
+@onready var score_label := $CanvasLayer/Pointage/Score
 
 @onready var meteorite_impulsion_force_min := 50.0
 @onready var meteorite_impulsion_force_max := 200.0
@@ -27,7 +30,17 @@ func _ready() -> void:
 	joueur.est_mort.connect(Callable(self, "_on_joueur_est_mort"))
 	barre_vie.update_value(joueur.sante, joueur.max_sante)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+
+	if Input.is_action_just_pressed("ui_accept"):
+		meteorite_pool.toggle_sleeping()
+
+	spawner.position = joueur.position
 	
+
+		
 
 func _on_new_spawn_ready(position: Vector2) -> void:
 	spawn_meteorite(position)
@@ -35,24 +48,22 @@ func _on_new_spawn_ready(position: Vector2) -> void:
 func spawn_meteorite(position: Vector2) -> void:
 	var meteorite = meteorite_pool.get_instance()
 	if meteorite != null:
-		#print("New spawn at: ", position)
 		meteorite.position = position
-		goto_player(meteorite)
 
 		if not meteorite.touche.is_connected(Callable(self, "_on_meteorite_touche")):
 			meteorite.connect("touche", Callable(self, "_on_meteorite_touche"))
 
+		if not meteorite.detruite.is_connected(Callable(self, "_on_meteorite_detruite")):
+			meteorite.connect("detruite", Callable(self, "_on_meteorite_detruite"))
+
+		goto_player(meteorite)
 		marqueur_manager.add_meteorite(meteorite)
 
-func _process(_delta: float) -> void:
-	spawner.position = joueur.position
 
 
 func _on_meteorite_touche(meteorite: Meteorite, other: Node2D) -> void:
 	if (other == joueur):
 		joueur.appliquer_dommage(10)
-
-		print("Meteorite visible : " + meteorite.texture_name)
 
 func goto_player(m: Meteorite) -> void:
 	if joueur == null:
@@ -60,6 +71,10 @@ func goto_player(m: Meteorite) -> void:
 	
 	var direction = (joueur.global_position - m.global_position).normalized()
 	var random_impulsion := randf_range(meteorite_impulsion_force_min, meteorite_impulsion_force_max)
+
+	if m.is_respawned:
+		random_impulsion *= 10.0  # Patch : Give a stronger impulse for newly spawned meteorites
+
 	m.donner_impulsion(direction * random_impulsion)  # Adjust the impulse strength as needed
 
 func _on_joueur_sante_changee() -> void:
@@ -68,3 +83,7 @@ func _on_joueur_sante_changee() -> void:
 func _on_joueur_est_mort() -> void:
 	spawner.autospawn = false
 	pass
+
+func _on_meteorite_detruite(meteorite: Meteorite) -> void:
+	score += 10
+	score_label.text = str(score)

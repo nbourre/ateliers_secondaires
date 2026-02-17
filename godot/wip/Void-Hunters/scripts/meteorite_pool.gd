@@ -3,6 +3,8 @@ extends ObjectPool
 
 @export var player : Joueur = null
 
+var sleeping := false
+
 func _ready() -> void:
 	scene_to_instance = preload("res://scenes/Meteorite.tscn")
 	super._ready()
@@ -17,7 +19,6 @@ func get_instance() -> Node:
 		return meteor
 	else:
 		# No more object available
-		# return null
 		return null
 
 # Libère une instance et la retourne au pool
@@ -30,3 +31,11 @@ func release_instance(instance : Node) -> void:
 # Réinitialise l'état d'une météorite
 func reset(m : Meteorite) -> void:
 	m.reset()
+
+func toggle_sleeping() -> void:
+	sleeping = not sleeping
+	
+	for meteor in _in_use:
+		meteor.sleeping = sleeping
+
+	
