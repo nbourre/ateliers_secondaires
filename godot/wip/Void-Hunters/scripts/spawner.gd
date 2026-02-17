@@ -1,10 +1,14 @@
 class_name Spawner
 extends Path2D
 
+enum SpawnType {PATH, RANDOM, CENTER}
+
+
 @export var spawn_offset := Vector2.ZERO
 @export var autospawn : bool = false
 @export var spawn_delay : float = 2.0
 
+@export var spawn_type : SpawnType = SpawnType.PATH
 
 var delay_accumulator : float = 0.0
 
@@ -33,8 +37,26 @@ func _process(delta: float) -> void:
 
 
 func get_new_spawn_location(offset : Vector2) -> Vector2:
-	spawn_location.progress_ratio = randf()
-	latest_position = spawn_location.position + offset
+	# get a new spawn location depending on the type
+
+	match spawn_type:
+		SpawnType.PATH:
+			spawn_location.progress_ratio = randf()
+			latest_position = position + spawn_location.position + offset
+		SpawnType.RANDOM:
+			# Random position limited in a rectangle
+			var random_x := randf_range(-1000.0, 1000.0)
+			var random_y := randf_range(-1000.0, 1000.0)
+			latest_position = position + Vector2(random_x, random_y) + offset
+		SpawnType.CENTER:
+			var pos_around_center := randf() * 2 * PI
+			var radius := 750.0
+
+			latest_position = position + Vector2(
+				cos(pos_around_center) * radius,
+				sin(pos_around_center) * radius
+			)
+	
 
 	new_spawn_ready.emit(latest_position)
 	return latest_position

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7raqlvuelhf5" path="res://scenes/joueur.tscn" id="2_13bj3"]
 [ext_resource type="PackedScene" uid="uid://xd2lk4xfampb" path="res://scenes/meteorite.tscn" id="5_pguex"]
 [ext_resource type="PackedScene" uid="uid://cw3krqfst4n87" path="res://scenes/spawner.tscn" id="5_xy4bk"]
-[ext_resource type="PackedScene" uid="uid://djoubthd1jo75" path="res://scenes/enemy.tscn" id="6_xy4bk"]
+[ext_resource type="PackedScene" uid="uid://cy43pn6rlo3t4" path="res://scenes/ui/bar_progression.tscn" id="7_s13o8"]
 
 [node name="Monde" type="Node2D" unique_id=273730042]
 script = ExtResource("1_5o5ke")
@@ -27,6 +27,21 @@ position = Vector2(822, 221)
 
 [node name="Spawner" parent="." unique_id=1515256892 instance=ExtResource("5_xy4bk")]
 position = Vector2(345, 137)
+spawn_delay = 1.0
+spawn_type = 2
 
-[node name="Enemy" parent="." unique_id=876858674 instance=ExtResource("6_xy4bk")]
-position = Vector2(796, 395)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2068820954]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=364198824]
+offset_right = 150.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=427034434]
+layout_mode = 2
+text = "HP :"
+
+[node name="Sante" parent="CanvasLayer/HBoxContainer" unique_id=816145767 instance=ExtResource("7_s13o8")]
+layout_mode = 2
+size_flags_horizontal = 3
+tint_progress = Color(0.88235295, 0.05490196, 0.78431374, 1)
+couleur_progres = Color(0.88235295, 0.05490196, 0.78431374, 1)

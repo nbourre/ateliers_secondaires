@@ -6,7 +6,11 @@ extends CharacterBody2D
 # Il tourne en regardant la souris
 # Il peut également tirer des projectiles avec la touche "tir"
 
-var sante : float = 100.0
+signal sante_changee
+signal est_mort
+
+@export var max_sante := 100.0
+@export var sante : float = 100.0
 
 var vitesse: float = 1500.0
 var acceleration: float = 200.0
@@ -17,9 +21,10 @@ var acceleration: float = 200.0
 @onready var laser_scene: PackedScene = preload("res://scenes/laser.tscn")
 @onready var marker_2d := $Marker2D
 
+@onready var explosion_scene: PackedScene = preload("res://scenes/explosion_vaisseau.tscn")
+
 func _ready() -> void:
 	pass
-
 
 func _physics_process(delta: float) -> void:
 	var direction: Vector2 = Vector2.ZERO
@@ -48,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("tir"):
 		tirer_projectile()
 
-
 	move_and_slide()
 	
 func tirer_projectile() -> void:
@@ -61,4 +65,14 @@ func tirer_projectile() -> void:
 
 func appliquer_dommage(dommage: float) -> void:
 	sante -= dommage
-	print("Santé joueur : %f" % sante)
+	sante_changee.emit()
+	exploser()
+	
+	if sante <= 0:
+		est_mort.emit()
+		
+func exploser() -> void:
+	var explosion := explosion_scene.instantiate() as ExplosionVaisseau
+	explosion.position = position
+	get_parent().add_child(explosion)
+	explosion.activer()

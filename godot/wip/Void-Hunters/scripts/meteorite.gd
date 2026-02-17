@@ -7,7 +7,11 @@ var sprite_names: Array = []
 var texture_name : String = ""
 
 @export var debugging := false
+
 @onready var sprite := $Sprite2D
+
+@export var mass_min := 1.0
+@export var mass_max := 30.0
 
 # Load explosion scene
 @onready var explosion_scene: PackedScene = preload("res://scenes/explosion.tscn")
@@ -82,6 +86,12 @@ func reset() -> void:
 	set_linear_velocity(Vector2.ZERO)
 	health = 20
 	set_random_sprite()
+	
+	set_mass(randf_range(mass_min, mass_max))
+	
+	# Map scale from mass. Mass 10 = scale 1.0
+	var scale_factor := mass_min / 10.0
+	scale = Vector2(scale_factor, scale_factor)
 	
 func donner_impulsion(impulse: Vector2) -> void:
 	apply_impulse(impulse)

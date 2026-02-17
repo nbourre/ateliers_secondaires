@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 			var forward := Vector2.RIGHT.rotated(rotation)
 			velocity = forward * SPEED
 		else:
-			velocity = velocity.lerp(Vector2.ZERO, 0.1) # Slow down when close to target
+			velocity = velocity.lerp(Vector2.ZERO, 0.01) # Slow down when close to target
 			shoot()
 
 		move_and_slide()
@@ -40,11 +40,11 @@ func _physics_process(delta: float) -> void:
 func set_target(new_target: Node2D) -> void:
 	target = new_target
 
-func steer_at (position : Vector2, delta : float) -> void:
-	if position == global_position:
+func steer_at (pos : Vector2, delta : float) -> void:
+	if pos == global_position:
 		return
 
-	var desired_angle := (position - global_position).angle()
+	var desired_angle := (pos - global_position).angle()
 	var max_step := deg_to_rad(MAX_STEER_SPEED) * delta
 	rotation = rotate_toward(rotation, desired_angle, max_step)
 
