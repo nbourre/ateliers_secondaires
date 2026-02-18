@@ -37,7 +37,7 @@ func _deactivate(obj : Node) -> void:
 	obj.set_process(false)
 	obj.set_physics_process(false)
 	if obj.get_parent() == self:
-		remove_child(obj)
+		call_deferred("remove_child", obj)
 
 
 @abstract func get_instance() -> Node

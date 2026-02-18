@@ -79,17 +79,19 @@ func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 	health -= dommage
 
 	if health <= 0:
-		# Logique pour détruire la météorite
-		make_explosion()
-		if pool != null:
-			sleeping = true
-			is_respawned = true
-			pool.release_instance(self)
-		else:
-			queue_free()
+		kill()
 
-		detruite.emit(self)
-		
+func kill() -> void:
+	# Logique pour détruire la météorite
+	make_explosion()
+	if pool != null:
+		sleeping = true
+		is_respawned = true
+		pool.release_instance(self)
+	else:
+		queue_free()
+
+	detruite.emit(self)
 
 func make_explosion() -> void:
 	var explosion_instance := explosion_scene.instantiate() as GPUParticles2D

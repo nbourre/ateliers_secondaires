@@ -22,6 +22,9 @@ var acceleration: float = 200.0
 @onready var marker_2d := $Marker2D
 
 @onready var collision_scene: PackedScene = preload("res://scenes/collision_vaisseau.tscn")
+@onready var explosion_scene: PackedScene = preload("res://scenes/explosion_vaisseau.tscn")
+
+
 
 var tir_active := false
 
@@ -68,13 +71,36 @@ func tirer_projectile() -> void:
 func appliquer_dommage(dommage: float) -> void:
 	sante -= dommage
 	sante_changee.emit()
-	exploser()
+	accrochage()
 	
 	if sante <= 0:
 		est_mort.emit()
+		explosion()
+		hide()
 		
-func exploser() -> void:
-	var explosion := collision_scene.instantiate() as ExplosionVaisseau
+		
+func accrochage() -> void:
+	var collision := collision_scene.instantiate() as ExplosionVaisseau
+	collision.position = position
+	get_parent().add_child(collision)
+	collision.activer()
+
+func explosion() -> void:
+	var explosion := explosion_scene.instantiate() as ExplosionVaisseau
 	explosion.position = position
 	get_parent().add_child(explosion)
 	explosion.activer()
+
+func reset() -> void:
+	sante = max_sante
+	visible = true
+	tir_active = true
+	activer()
+
+func deactiver() -> void:
+	$CollisionTube.set_deferred("disabled", true)
+	$CollisionAiles.set_deferred("disabled", true)
+
+func activer() -> void:
+	$CollisionTube.set_deferred("disabled", false)
+	$CollisionAiles.set_deferred("disabled", false)

@@ -2,22 +2,29 @@
 
 [ext_resource type="Script" uid="uid://dtxmst1dc3g0q" path="res://scripts/explosion_vaisseau.gd" id="1_ebshu"]
 
-[sub_resource type="Gradient" id="Gradient_5mrdn"]
+[sub_resource type="Gradient" id="Gradient_qrp5m"]
 offsets = PackedFloat32Array(0, 0.52459013, 1)
 colors = PackedColorArray(0.98039216, 0.7529412, 0, 1, 0.9882353, 0.39215687, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ka0xm"]
-gradient = SubResource("Gradient_5mrdn")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qwuby"]
+gradient = SubResource("Gradient_qrp5m")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dbgob"]
+[sub_resource type="Curve" id="Curve_5mrdn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ka0xm"]
+curve = SubResource("Curve_5mrdn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_11qpm"]
 lifetime_randomness = 0.5
 particle_flag_disable_z = true
-angle_min = -360.0
-angle_max = 360.00003
 spread = 180.0
 initial_velocity_max = 500.0
 gravity = Vector3(0, 0, 0)
-color_initial_ramp = SubResource("GradientTexture1D_ka0xm")
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_ka0xm")
+color_initial_ramp = SubResource("GradientTexture1D_qwuby")
 
 [node name="ExplosionVaisseau" type="Node2D" unique_id=1950534474]
 script = ExtResource("1_ebshu")
@@ -27,4 +34,4 @@ emitting = false
 amount = 60
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_dbgob")
+process_material = SubResource("ParticleProcessMaterial_11qpm")

@@ -7,9 +7,11 @@ var score := 0
 
 @onready var spawner := $Spawner
 @onready var joueur := $Joueur
+@onready var chrono_jeu := $ChronoJeu
 
 @onready var barre_vie := $CanvasLayer/Sante/Sante
 @onready var score_label := $CanvasLayer/Pointage/Score
+@onready var temps_label := $CanvasLayer/Temps/Temps
 
 @onready var menu := $CanvasLayer/Menu
 
@@ -43,20 +45,30 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		meteorite_pool.toggle_sleeping()
 
-	spawner.position = joueur.position
+	if joueur != null :
+		spawner.position = joueur.position
+	
+	temps_label.text = str(int(chrono_jeu.time_left))
 	
 func nouvelle_partie():
 	score = 0
 	score_label.text = str(score)
 	menu.afficher_msg("Prépare-toi!")
-	joueur.visible = true
+	
+	
 	spawner.autospawn = true
-	joueur.tir_active = true
+	joueur.reset()
+	chrono_jeu.start()
+	
 
 func fin_partie():
 	spawner.autospawn = false
+	chrono_jeu.stop()
 	joueur.tir_active = false
+	joueur.deactiver()
+	
 	menu.afficher_fin_partie()
+	meteorite_pool.reset()
 
 func _on_new_spawn_ready(pos: Vector2) -> void:
 	spawn_meteorite(pos)
@@ -74,8 +86,6 @@ func spawn_meteorite(pos: Vector2) -> void:
 
 		goto_player(meteorite)
 		marqueur_manager.add_meteorite(meteorite)
-
-
 
 func _on_meteorite_touche(_meteorite: Meteorite, other: Node2D) -> void:
 	if (other == joueur):
@@ -103,3 +113,6 @@ func _on_joueur_est_mort() -> void:
 func _on_meteorite_detruite(_meteorite: Meteorite) -> void:
 	score += 10
 	score_label.text = str(score)
+
+func _on_chrono_jeu_timeout() -> void:
+	fin_partie()

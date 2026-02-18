@@ -23,19 +23,28 @@ func get_instance() -> Node:
 
 # Libère une instance et la retourne au pool
 func release_instance(instance : Node) -> void:
-	reset(instance as Meteorite)
+	(instance as Meteorite).reset()
 	_deactivate(instance)
 	_available.append(instance as Meteorite)
 	_in_use.erase(instance as Meteorite)
 
-# Réinitialise l'état d'une météorite
-func reset(m : Meteorite) -> void:
-	m.reset()
-
 func toggle_sleeping() -> void:
 	sleeping = not sleeping
-	
-	for meteor in _in_use:
-		meteor.sleeping = sleeping
+	set_sleeping(sleeping)
 
+func sleep() -> void:
+	sleeping = true
 	
+
+func awake() -> void:
+	sleeping = false
+	set_sleeping(sleeping)
+
+func set_sleeping(sleeping_value: bool) -> void:
+	for meteor in _in_use:
+		meteor.sleeping = sleeping_value
+
+# Retire tous les météorites en action
+func reset() -> void:
+	for meteor in _in_use:
+		meteor.kill()
