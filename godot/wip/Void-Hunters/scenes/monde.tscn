@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bxg7a2jk0d8nw" path="res://scripts/monde.gd" id="1_5o5ke"]
 [ext_resource type="Texture2D" uid="uid://bb84wx834h83d" path="res://assets/background/darkPurple.png" id="1_13bj3"]
 [ext_resource type="PackedScene" uid="uid://c7raqlvuelhf5" path="res://scenes/joueur.tscn" id="2_13bj3"]
-[ext_resource type="PackedScene" uid="uid://xd2lk4xfampb" path="res://scenes/meteorite.tscn" id="5_pguex"]
 [ext_resource type="PackedScene" uid="uid://cw3krqfst4n87" path="res://scenes/spawner.tscn" id="5_xy4bk"]
 [ext_resource type="Script" uid="uid://bah05bb6le3q1" path="res://scripts/menu.gd" id="7_edr6m"]
 [ext_resource type="PackedScene" uid="uid://cy43pn6rlo3t4" path="res://scenes/ui/bar_progression.tscn" id="7_s13o8"]
@@ -22,9 +21,6 @@ centered = false
 
 [node name="Joueur" parent="." unique_id=1616694756 instance=ExtResource("2_13bj3")]
 position = Vector2(348, 141)
-
-[node name="Meteorite" parent="." unique_id=1887698040 instance=ExtResource("5_pguex")]
-position = Vector2(822, 221)
 
 [node name="Spawner" parent="." unique_id=1515256892 instance=ExtResource("5_xy4bk")]
 position = Vector2(345, 137)
@@ -86,12 +82,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100.0
-offset_top = -75.0
+offset_top = -103.0
 offset_right = 100.0
+offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Les 
-Chasseurs du vide!"
+text = "Les Chasseurs du vide!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -99,3 +95,6 @@ autowrap_mode = 2
 [node name="MessageTimer" type="Timer" parent="CanvasLayer/Menu" unique_id=2146083091]
 wait_time = 2.0
 one_shot = true
+
+[connection signal="pressed" from="CanvasLayer/Menu/BoutonDemarrer" to="CanvasLayer/Menu" method="_on_btn_demarrer_appuye"]
+[connection signal="timeout" from="CanvasLayer/Menu/MessageTimer" to="CanvasLayer/Menu" method="_on_chrono_message_fin"]

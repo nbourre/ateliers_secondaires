@@ -21,7 +21,9 @@ var acceleration: float = 200.0
 @onready var laser_scene: PackedScene = preload("res://scenes/laser.tscn")
 @onready var marker_2d := $Marker2D
 
-@onready var explosion_scene: PackedScene = preload("res://scenes/explosion_vaisseau.tscn")
+@onready var collision_scene: PackedScene = preload("res://scenes/collision_vaisseau.tscn")
+
+var tir_active := false
 
 func _ready() -> void:
 	pass
@@ -50,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	look_at(souris_position)
 
 	# Tir de projectiles
-	if Input.is_action_just_pressed("tir"):
+	if Input.is_action_just_pressed("tir") and tir_active:
 		tirer_projectile()
 
 	move_and_slide()
@@ -72,7 +74,7 @@ func appliquer_dommage(dommage: float) -> void:
 		est_mort.emit()
 		
 func exploser() -> void:
-	var explosion := explosion_scene.instantiate() as ExplosionVaisseau
+	var explosion := collision_scene.instantiate() as ExplosionVaisseau
 	explosion.position = position
 	get_parent().add_child(explosion)
 	explosion.activer()

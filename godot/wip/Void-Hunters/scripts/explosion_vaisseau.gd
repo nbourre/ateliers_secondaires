@@ -9,6 +9,5 @@ var activation := false
 func _ready() -> void:
 	pass
 
-
 func activer() -> void:
 	particles.emitting = true

@@ -22,13 +22,21 @@ var pool : ObjectPool = null
 var health: int = 20
 
 var is_respawned := false
+var start_position := Vector2.ZERO
+var max_travel_distance := 5000.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_sprite_names()
 	reset()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	if is_respawned:
+		if position.distance_to(start_position) > max_travel_distance:
+			if pool != null:
+				pool.release_instance(self)
+			else:
+				queue_free()
 	debug()
 
 func load_sprite_names():
@@ -94,9 +102,8 @@ func reset() -> void:
 	health = 20
 	set_random_sprite()
 	
-	set_mass(randf_range(mass_min, mass_max))
-	
 	# Map scale from mass. Mass 10 = scale 1.0
+	set_mass(randf_range(mass_min, mass_max))
 	var scale_factor := mass_min / 10.0
 	scale = Vector2(scale_factor, scale_factor)
 	
