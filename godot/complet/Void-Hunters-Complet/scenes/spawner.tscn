@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cw3krqfst4n87"]
+
+[ext_resource type="Script" uid="uid://dkg1cu5uas213" path="res://scripts/spawner.gd" id="1_2vbf6"]
+
+[sub_resource type="Curve2D" id="Curve2D_8xlu4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -247, -519, 0, 0, 0, 0, 817, -481, 0, 0, 0, 0, 924, 286, 0, 0, 0, 0, 711, 533, 0, 0, 0, 0, -300, 579, 0, 0, 0, 0, -856, 290, 0, 0, 0, 0, -906, -240, 0, 0, 0, 0, -370, -519)
+}
+point_count = 8
+
+[node name="Spawner" type="Path2D" unique_id=1945488478]
+curve = SubResource("Curve2D_8xlu4")
+script = ExtResource("1_2vbf6")
+spawn_delay = 3.0
+
+[node name="SpawnLocation" type="PathFollow2D" parent="." unique_id=1602773601]
+position = Vector2(-247, -519)
+rotation = 0.03569911

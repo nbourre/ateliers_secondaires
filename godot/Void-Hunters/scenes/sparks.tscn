@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cccb3m55lqkhp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b7w7n"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hgm5m"]
+resource_local_to_scene = true
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+damping_max = 100.00001
+scale_min = 0.5
+
+[node name="Sparks" type="Node2D" unique_id=1612669483]
+
+[node name="GPUParticles2DSubParticles" type="GPUParticles2D" parent="." unique_id=1419912100]
+material = SubResource("CanvasItemMaterial_b7w7n")
+emitting = false
+amount = 500
+lifetime = 0.5
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_hgm5m")

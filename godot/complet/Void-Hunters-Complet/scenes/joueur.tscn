@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c7raqlvuelhf5"]
+
+[ext_resource type="Script" uid="uid://3rrowp0w5tpp" path="res://scripts/joueur.gd" id="1_uj1k6"]
+[ext_resource type="Texture2D" uid="uid://dg6pky0vc7gcn" path="res://assets/sprites/Effects/fire00.png" id="2_2y66e"]
+[ext_resource type="Texture2D" uid="uid://bebwypncnb8kr" path="res://assets/sprites/ships/playerShip1_blue.png" id="2_uj1k6"]
+[ext_resource type="Texture2D" uid="uid://d3o2m2l7i4t8a" path="res://assets/sprites/fire03.png" id="3_ivebw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivebw"]
+height = 72.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dga13"]
+radius = 11.0
+height = 92.0
+
+[node name="Joueur" type="CharacterBody2D" unique_id=180957613]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_uj1k6")
+
+[node name="Propulseur" type="Sprite2D" parent="." unique_id=1401600401]
+visible = false
+position = Vector2(-56, 0)
+rotation = -1.5707964
+texture = ExtResource("2_2y66e")
+
+[node name="Freins" type="Node2D" parent="." unique_id=622684336]
+visible = false
+
+[node name="Gauche" type="Sprite2D" parent="Freins" unique_id=1550322446]
+position = Vector2(21, -21)
+rotation = -1.5707964
+texture = ExtResource("3_ivebw")
+
+[node name="Droite" type="Sprite2D" parent="Freins" unique_id=997909395]
+position = Vector2(21, 21)
+rotation = -1.5707964
+texture = ExtResource("3_ivebw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=715479012]
+rotation = 1.5707964
+texture = ExtResource("2_uj1k6")
+
+[node name="CollisionTube" type="CollisionShape2D" parent="." unique_id=1981133766]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ivebw")
+
+[node name="CollisionAiles" type="CollisionShape2D" parent="." unique_id=838631504]
+position = Vector2(-12, 0)
+shape = SubResource("CapsuleShape2D_dga13")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=351216649]
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1734437634]
+position = Vector2(58, 0)

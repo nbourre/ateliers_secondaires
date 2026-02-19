@@ -51,4 +51,86 @@ godot/*/data_*/
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/godot,visualstudiocode
-// ...existing code...
+
+# Python
+# Node.js / npm
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+*.cover
+
+# MkDocs
+site/
+.mkdocs/
+
+# IDE / Editor
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# Build & Dist
+build/
+dist/
+*.egg-info/
+.gradle/
+target/
+out/
+bin/
+obj/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+desktop.ini
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+.nyc_output/
+
+# Logs
+*.log
+logs/

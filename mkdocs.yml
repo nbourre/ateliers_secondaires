@@ -1,0 +1,83 @@
+site_name: Personalized Courses - Lesson Management System
+site_description: Browse, create, and manage personalized learning lessons organized by subject with LLM template support
+site_author: Course Contributors
+site_url: https://nbourre.github.io/ateliers_secondaires
+
+theme:
+  name: material
+  language: en
+  logo: https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/docs/assets/images/favicon.png
+  favicon: https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/docs/assets/images/favicon.png
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: light-blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: light-blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+repo_name: ateliers_secondaires
+repo_url: https://github.com/nbourre/ateliers_secondaires
+edit_uri: edit/main/docs
+
+copyright: Copyright &copy; 2026 Course Contributors. All lessons are open source.
+
+extra:
+  alternate:
+    - name: English
+      link: .
+      lang: en
+    - name: Français  
+      link: fr/
+      lang: fr
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nbourre/ateliers_secondaires
+      name: GitHub Repository
+  generator: false
+
+
+nav:
+  - Home: index.md
+  - Godot:
+      "Atelier #5 Les chasseurs du vide": chasseurs_du_vide/index.md

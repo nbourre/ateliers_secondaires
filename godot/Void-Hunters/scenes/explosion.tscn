@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://7m5lmwpi4wf"]
+
+[ext_resource type="Texture2D" uid="uid://b2hvdlk6cb5op" path="res://assets/sprites/smoke_particle.png" id="1_17npe"]
+[ext_resource type="Script" uid="uid://cp41t3fflnv2f" path="res://scripts/explosion.gd" id="2_nfeox"]
+
+[sub_resource type="Gradient" id="Gradient_17npe"]
+offsets = PackedFloat32Array(0, 0.23770492, 0.40163934, 0.4918033, 0.9918033)
+colors = PackedColorArray(1, 0.63529414, 0.28235295, 1, 1, 0.4, 0, 1, 0.6784314, 0.2784314, 0.16862746, 0.23137255, 0.5137255, 0.36078432, 0.2, 0.078431375, 1, 1, 1, 0.08235294)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nfeox"]
+gradient = SubResource("Gradient_17npe")
+
+[sub_resource type="Curve" id="Curve_17npe"]
+_limits = [-1.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 0.71910095), 0.0, 0.0, 0, 0, Vector2(0.054054067, 43.123596), 0.0, 0.0, 0, 0, Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nfeox"]
+curve = SubResource("Curve_17npe")
+
+[sub_resource type="Curve" id="Curve_aw4cw"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.29054055, 1.7303371), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3el85"]
+curve = SubResource("Curve_aw4cw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hbmxj"]
+emission_shape = 2
+emission_sphere_radius = 60.0
+inherit_velocity_ratio = 50.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+radial_accel_curve = SubResource("CurveTexture_nfeox")
+scale_curve = SubResource("CurveTexture_3el85")
+color_ramp = SubResource("GradientTexture1D_nfeox")
+
+[node name="Explosion" type="GPUParticles2D" unique_id=1238307906]
+emitting = false
+amount = 16
+texture = ExtResource("1_17npe")
+lifetime = 2.0
+one_shot = true
+preprocess = 0.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hbmxj")
+script = ExtResource("2_nfeox")
