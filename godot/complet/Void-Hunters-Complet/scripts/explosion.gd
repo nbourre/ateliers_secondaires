@@ -1,9 +1,12 @@
-extends GPUParticles2D
+extends Node2D
 
 func _ready() -> void:
-	one_shot = true
-	connect("finished", Callable(self, "_on_finished"))
-	restart()
+
+	var particles := $CPUParticles2D
+
+	particles.one_shot = true
+	particles.finished.connect(_on_finished)
+	particles.restart()
 
 func _on_finished() -> void:
 	queue_free()

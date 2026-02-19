@@ -94,7 +94,7 @@ func kill() -> void:
 	detruite.emit(self)
 
 func make_explosion() -> void:
-	var explosion_instance := explosion_scene.instantiate() as GPUParticles2D
+	var explosion_instance := explosion_scene.instantiate() as Node2D
 	explosion_instance.position = position
 	get_parent().add_child(explosion_instance)
 

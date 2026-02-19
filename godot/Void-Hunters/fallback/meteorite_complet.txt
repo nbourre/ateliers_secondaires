@@ -1,0 +1,124 @@
+class_name Meteorite
+extends RigidBody2D
+
+signal touche(Meteorite, Node2D)
+signal detruite(Meteorite)
+
+var sprite_names: Array = []
+var texture_name : String = ""
+
+@export var debugging := false
+
+@onready var sprite := $Sprite2D
+
+@export var mass_min := 1.0
+@export var mass_max := 30.0
+
+# Load explosion scene
+@onready var explosion_scene: PackedScene = preload("res://scenes/explosion.tscn")
+
+var pool : ObjectPool = null
+
+var health: int = 20
+
+var is_respawned := false
+var start_position := Vector2.ZERO
+var max_travel_distance := 5000.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	load_sprite_names()
+	reset()
+
+func _physics_process(_delta: float) -> void:
+	if is_respawned:
+		if position.distance_to(start_position) > max_travel_distance:
+			if pool != null:
+				pool.release_instance(self)
+			else:
+				queue_free()
+	debug()
+
+func load_sprite_names():
+	var folder := "res://assets/sprites/meteors/"
+	var dir := DirAccess.open(folder)
+	if dir:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir():
+				if file_name.ends_with(".png"):
+					var filename := folder + file_name
+					sprite_names.append(filename)
+			file_name = dir.get_next()
+		dir.list_dir_end()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	emit_signal("touche", self, body)
+	print(body.name + " a touché " + name)
+
+
+func set_random_sprite() -> void:
+	var random_index := randi() % sprite_names.size()
+	var texture := load(sprite_names[random_index]) as Texture2D
+	texture_name = sprite_names[random_index]
+	sprite.texture = texture
+
+func is_brown() -> bool:
+	return texture_name.findn("brown") != -1
+	
+func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
+	# Logique pour appliquer des dommages à la météorite
+	if impulsion != Vector2.ZERO:
+		# Appliquer une impulsion à la météorite avec
+		#un biais aleatoire dans la direction de l'impulsion
+		var random_biais := impulsion.rotated(randf_range(-PI/4, PI/4))
+		impulsion += random_biais
+		apply_impulse(impulsion)
+
+	health -= dommage
+
+	if health <= 0:
+		detruire()
+
+func detruire() -> void:
+	# Logique pour détruire la météorite
+	faire_exploser()
+	
+	if pool != null:
+		sleeping = true
+		is_respawned = true
+		pool.release_instance(self)
+	else:
+		queue_free()
+
+	detruite.emit(self)
+
+func faire_exploser() -> void:
+	var explosion_instance := explosion_scene.instantiate() as Node2D
+	explosion_instance.position = position
+	get_parent().add_child(explosion_instance)
+
+
+func reset() -> void:
+	sleeping = false
+	
+	health = 20
+	set_random_sprite()
+	
+	# Map scale from mass. Mass 10 = scale 1.0
+	set_mass(randf_range(mass_min, mass_max))
+	var scale_factor := mass_min / 10.0
+	scale = Vector2(scale_factor, scale_factor)
+	
+func donner_impulsion(impulse: Vector2) -> void:
+	if not sleeping:
+		apply_impulse(impulse)
+
+func debug() -> void:
+	if not debugging:
+		return
+		
+	if (get_node_or_null("Debug") != null):
+		$Debug.text = str(position)
+		$Debug.text += "\n" + str(linear_velocity)

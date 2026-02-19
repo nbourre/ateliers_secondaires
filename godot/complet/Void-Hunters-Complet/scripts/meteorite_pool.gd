@@ -6,7 +6,7 @@ extends ObjectPool
 var sleeping := false
 
 func _ready() -> void:
-	scene_to_instance = preload("res://scenes/Meteorite.tscn")
+	scene_to_instance = preload("res://scenes/meteorite.tscn")
 	super._ready()
 
 # Obtient une instance du pool (réutilise ou crée)

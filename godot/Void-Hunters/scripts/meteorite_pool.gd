@@ -47,4 +47,4 @@ func set_sleeping(sleeping_value: bool) -> void:
 # Retire tous les météorites en action
 func reset() -> void:
 	for meteor in _in_use:
-		meteor.kill()
+		meteor.detruire()

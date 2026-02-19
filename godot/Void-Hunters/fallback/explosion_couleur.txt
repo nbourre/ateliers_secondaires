@@ -1,0 +1,28 @@
+CPUParticles2D
+
+
+Amount <-- 16
+Texture
+Lifetime <- 2.0
+
+Explosiveness = 1
+Randomness = 0.5
+Lifetime Randomness = 0.5
+
+Emission Shape = Sphere surface
+Radius = 60
+
+Direction = (0, 0)
+Spread = 180
+Gravity = 0,0
+Initial Vel = 0, 180
+
+Linear accel Max = 200
+
+Scal Amount Min, Max = 0.8, 1.5
+Curb 0.6 1.0 0.0
+
+Color OrangeJaune (ffa248) @0% -> Orange (ff6600)@20% -> Transparent (ad472b3b)@35% -> 835c3314@40% -> ffffff15 @ 100%
+
+One shot
+Emitting Off
