@@ -82,9 +82,8 @@ func appliquer_dommage(dommage: int, impulsion: Vector2) -> void:
 		detruire()
 
 func detruire() -> void:
-	# Logique pour détruire la météorite
-	faire_exploser()
-	
+	# Logique pour détruire la météorite ici
+		
 	if pool != null:
 		sleeping = true
 		is_respawned = true
@@ -93,12 +92,6 @@ func detruire() -> void:
 		queue_free()
 
 	detruite.emit(self)
-
-func faire_exploser() -> void:
-	var explosion_instance := explosion_scene.instantiate() as Node2D
-	explosion_instance.position = position
-	get_parent().add_child(explosion_instance)
-
 
 func reset() -> void:
 	sleeping = false
