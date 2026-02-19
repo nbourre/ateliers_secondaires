@@ -40,6 +40,8 @@ Dans cet atelier, nous allons démarrer avec le projet nommé "Void Hunters". Il
 ## Étape 2 : Comprendre le projet
 Le projet est déjà fonctionnel, tu peux cliquer sur "Play" pour le tester. Tu devrais voir une scène avec un vaisseau spatial au centre de l'écran et des astéroïdes qui s'avancent vers toi. Ton objectif est de détruire les astéroïdes en tirant dessus avec ton vaisseau.
 
+![alt text](assets/20_no_explosion.gif)
+
 Sauf que tu remarques qu'il manque un petit quelque chose. Le jeu est un peu fade, il n'y a pas d'effets spéciaux lorsque tu détruis les astéroïdes. C'est ce que nous allons ajouter dans cet atelier.
 
 
