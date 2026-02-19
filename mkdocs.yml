@@ -1,6 +1,6 @@
-site_name: Personalized Courses - Lesson Management System
-site_description: Browse, create, and manage personalized learning lessons organized by subject with LLM template support
-site_author: Course Contributors
+site_name: Ateliers de développement - Écoles secondaires
+site_description: Instructions pour les ateliers de développement que je fais dans les écoles secondaires
+site_author: Nicolas Bourré
 site_url: https://nbourre.github.io/ateliers_secondaires
 
 theme:
@@ -60,16 +60,9 @@ repo_name: ateliers_secondaires
 repo_url: https://github.com/nbourre/ateliers_secondaires
 edit_uri: edit/main/docs
 
-copyright: Copyright &copy; 2026 Course Contributors. All lessons are open source.
+copyright: Copyright &copy; 2026 Nicolas Bourré. All lessons are open source.
 
 extra:
-  alternate:
-    - name: English
-      link: .
-      lang: en
-    - name: Français  
-      link: fr/
-      lang: fr
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/nbourre/ateliers_secondaires

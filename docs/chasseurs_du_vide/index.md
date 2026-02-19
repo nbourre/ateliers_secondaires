@@ -13,7 +13,7 @@ Ajouter des effets spéciaux sur un jeu déjà existant.
 
 !!! note "Dépannage"
     
-    Si ton Godot Web ne semble plus fonctionner ou est instable, va voir la [page de dépannage](../depannage/index.md) pour voir les étapes à suivre pour régler le problème.
+    Si ton Godot Web ne semble plus fonctionner ou est instable, va voir la [page de dépannage](../depannage/index.md){target=_blank} pour voir les étapes à suivre pour régler le problème.
 
 ---
 
@@ -29,9 +29,9 @@ Dans cet atelier, nous allons démarrer avec le projet nommé "Void Hunters". Il
 
 ## Étape 1 : Importer et installer le projet
 
-1. Dans ton navigateur, va à l'adresse suivante : [https://tinyurl.com/ateliers-jeux](https://tinyurl.com/ateliers-jeux) et télécharge le fichier `void-hunters.zip`.
+1. Dans ton navigateur, va à l'adresse suivante : [https://tinyurl.com/ateliers-jeux](https://tinyurl.com/ateliers-jeux){target=_blank} et télécharge le fichier `void-hunters.zip`.
 2. Démarre l'environnement de développement Godot.
-    - Si tu es sur un ChromeBook, tu peux utiliser la version en ligne de Godot : [https://editor.godotengine.org/](https://editor.godotengine.org/).
+    - Si tu es sur un ChromeBook, tu peux utiliser la version en ligne de Godot : [https://editor.godotengine.org/](https://editor.godotengine.org/){target=_blank}.
 3. Importe le fichier `void-hunters.zip` dans l'environnement Godot
 
     ![alt text](assets/00_importation.png)
