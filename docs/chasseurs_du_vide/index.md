@@ -30,9 +30,11 @@ Dans cet atelier, nous allons démarrer avec le projet nommé "Void Hunters". Il
 3. Importe le fichier `void-hunters.zip` dans l'environnement Godot
 
     ![alt text](assets/00_importation.png)
+
 4. Donne au projet le nom que tu désires. Par exemple dans mon cas, j'ai écrit "Chasseurs du vide".
 
     ![alt text](assets/10_installation.png)
+
 6. Clique sur "Installer"
 
 ---
@@ -44,6 +46,9 @@ Le projet est déjà fonctionnel, tu peux cliquer sur "Play" pour le tester. Tu 
 
 Sauf que tu remarques qu'il manque un petit quelque chose. Le jeu est un peu fade, il n'y a pas d'effets spéciaux lorsque tu détruis les astéroïdes. C'est ce que nous allons ajouter dans cet atelier.
 
-
+### Les fichiers d'intérêt
+- `monde.tscn` : C'est la scène principale du jeu, c'est là que tout se passe.
+- `meteorite.tscn` : C'est la scène qui représente les astéroïdes
+- `explosion.tscn` : C'est la scène qui représente l'explosion que nous allons ajouter.
 
 
