@@ -65,10 +65,11 @@ copyright: Copyright &copy; 2026 Nicolas Bourré. All lessons are open source.
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/nbourre/ateliers_secondaires
+      link: https://github.com/nbourre
       name: GitHub Repository
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@NicolasBourre
   generator: false
-
 
 nav:
   - Home: index.md

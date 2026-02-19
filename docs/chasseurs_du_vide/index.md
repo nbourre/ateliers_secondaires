@@ -196,7 +196,11 @@ func faire_exploser() -> void:
     faire_exploser()
 ```
 
-Si tout est en ordre, tu ne devrais pas avoir d'erreur de compilation. 
+Si tout est en ordre, tu ne devrais pas avoir d'erreur de compilation.
+
+Teste ton jeu en cliquant sur "Play". Lorsque tu détruis une météorite, tu devrais voir une explosion avec des particules de fumée!
+
+![alt text](assets/100_complet.gif)
 
 > **En cas d'erreur :**
 > 
