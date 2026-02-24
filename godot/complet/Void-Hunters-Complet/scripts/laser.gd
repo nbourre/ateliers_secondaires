@@ -6,9 +6,12 @@ var vitesse: float = 2000.0
 var time_to_live: float = 2.0
 var life_timer: float = 0.0
 
+@onready var son := $SonLaser
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	son.finished.connect(son_termine)
+	son.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,4 +25,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if (body is Meteorite):
 		body.appliquer_dommage(10, Vector2.UP.rotated(rotation) * vitesse / 10)
 	
-		queue_free()
+		#queue_free() est appelé dans son_termine() après que le son soit terminé
+		visible = false
+
+func son_termine() -> void:
+	# Le son dure assez longtemps pour que le laser sorte de l'écran
+	# on peut donc se permettre de supprimer le laser après que le son soit terminé
+	queue_free()

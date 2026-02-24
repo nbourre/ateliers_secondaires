@@ -74,5 +74,6 @@ extra:
 nav:
   - Home: index.md
   - Godot:
-      "Atelier #5 Les chasseurs du vide": chasseurs_du_vide/index.md
+      "Atelier #5a - Les chasseurs du vide": chasseurs_du_vide/index.md
+      "Atelier #5b - Ajouter du son": ajouter_effets_sonores/index.md
       "Dépannage": depannage/index.md

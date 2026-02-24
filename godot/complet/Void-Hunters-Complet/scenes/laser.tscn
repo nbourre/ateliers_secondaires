@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyos6g8srbckd"]
+[gd_scene format=3 uid="uid://dyos6g8srbckd"]
 
 [ext_resource type="Script" uid="uid://cp10ij302hht7" path="res://scripts/laser.gd" id="1_a7dhc"]
 [ext_resource type="Texture2D" uid="uid://c6g1w574i315m" path="res://assets/sprites/laserBlue03.png" id="1_xmihv"]
+[ext_resource type="AudioStream" uid="uid://d0rxnh4sy2ktr" path="res://assets/audio/pew.wav" id="3_jjj73"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_412cd"]
 radius = 4.0
 height = 36.0
 
-[node name="Laser" type="Area2D"]
+[node name="Laser" type="Area2D" unique_id=983260522]
 script = ExtResource("1_a7dhc")
 
-[node name="Image" type="Sprite2D" parent="."]
+[node name="Image" type="Sprite2D" parent="." unique_id=896975551]
 texture = ExtResource("1_xmihv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1029953193]
 shape = SubResource("CapsuleShape2D_412cd")
+
+[node name="SonLaser" type="AudioStreamPlayer2D" parent="." unique_id=1733023308]
+stream = ExtResource("3_jjj73")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
