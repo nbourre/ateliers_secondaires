@@ -72,7 +72,7 @@ extra:
   generator: false
 
 nav:
-  - Home: index.md
+  - Accueil : index.md
   - Godot:
       "Atelier #5a - Les chasseurs du vide": chasseurs_du_vide/index.md
       "Atelier #5b - Ajouter du son": ajouter_effets_sonores/index.md
