@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr0yvphaldqgd"]
+
+[ext_resource type="Texture2D" uid="uid://bf37ory33odcr" path="res://assets/logo_cegep.png" id="1_1l6vu"]
+[ext_resource type="Script" path="res://World.gd" id="1_gr0kn"]
+[ext_resource type="PackedScene" uid="uid://bwp3iiyjtyehu" path="res://enemy.tscn" id="3_bk63v"]
+
+[node name="world" type="Node2D" groups=["game_manager"]]
+script = ExtResource("1_gr0kn")
+mob_scene = ExtResource("3_bk63v")
+
+[node name="LogoCegep" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(596, 180)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1l6vu")
+offset = Vector2(-53.4366, 236.075)
