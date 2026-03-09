@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="top_down_polygon_shooter"
+config/name="top_down_polygon_shooter - Complet"
 run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://assets/icon.svg"
