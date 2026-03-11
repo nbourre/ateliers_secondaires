@@ -40,7 +40,7 @@ Dans cet atelier, nous allons démarrer avec le projet nommé "Void Hunters". Il
 
     ![alt text](assets/10_installation.png)
 
-6. Clique sur "Installer"
+5. Clique sur "Installer"
 
 ---
 

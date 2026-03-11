@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddo8uq13umdmp"
+path="res://.godot/imported/Stereo Madness.mp3-3ac496822a5698e8d356bf99baf4a649.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Stereo Madness.mp3"
+dest_files=["res://.godot/imported/Stereo Madness.mp3-3ac496822a5698e8d356bf99baf4a649.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
