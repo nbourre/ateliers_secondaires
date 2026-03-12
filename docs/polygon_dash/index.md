@@ -54,6 +54,28 @@ Nous allons travailler avec principalement 3 éléments dans ce projet :
 - `joueur.tscn` : la scène du personnage principal, qui contient les éléments graphiques et le script de contrôle du personnage.
 - `level.tscn` : la scène qui contient les éléments graphiques du niveau, comme les obstacles et les plateformes.
 
+---
+
+## Étape 3 : Ajouter le joueur
+
+---
+
+## Étape 4 : Ajouter le level
+
+---
+
+## Étape 5 : Ajouter le code du joueur
+
+---
+
+## Étape 6 : Ajouter les obstacles
+
+---
+
+## Finaliser le projet
+
+
+
 TODO : Liste des étapes à rédiger
 - Level
   - Retirer le contenu de TileMapLayer
