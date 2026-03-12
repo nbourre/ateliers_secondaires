@@ -42,7 +42,17 @@ Je vais fournir une base de projet avec les éléments graphiques et les sons n�
 4. Donne au projet le nom que tu désires. 
 5. Clique sur "Installer"
 
+---
 
+## Étape 2 : Comprendre la structure du projet
+La scène principale du projet est `monde.tscn`. C'est à partir de cette scène que le jeu est lancé.
+
+![alt text](assets/20_base_setup.png)
+
+Nous allons travailler avec principalement 3 éléments dans ce projet :
+- `monde.tscn` : la scène principale du jeu, qui contient les éléments de base du niveau.
+- `joueur.tscn` : la scène du personnage principal, qui contient les éléments graphiques et le script de contrôle du personnage.
+- `level.tscn` : la scène qui contient les éléments graphiques du niveau, comme les obstacles et les plateformes.
 
 TODO : Liste des étapes à rédiger
 - Level
