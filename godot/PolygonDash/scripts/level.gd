@@ -9,8 +9,8 @@ var music : AudioStreamPlayer = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	floor_body = $FloorBody
-	# music = $Music
-	# music.playing = true
+	music = $Music
+	music.playing = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -17,9 +17,6 @@ var etat_sol_avant := false
 
 @onready var detect_sol := $DetecteurSol
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func mort():
 	position.x = POS_DEPART.x
 	position.y = POS_DEPART.y
@@ -52,3 +49,37 @@ func sol_mortel() -> bool:
 			return true
 
 	return false
+
+func _physics_process(delta: float) -> void:
+	detect_sol.rotation = -rotation
+	var au_sol : bool = detect_sol.is_colliding() or is_on_floor()
+	
+	if au_sol:
+		if sol_mortel():
+			mort()
+			
+		velocity.y += gravite * delta
+		if Input.is_action_just_pressed("jump"):
+			velocity.y += saut_force
+
+		# Snap rotation to the nearest 90 degrees when on the floor
+		rotation = round(rotation / HALF_PI) * HALF_PI
+
+		#modulate = Color(1, 1, 1) # Normal color when on the ground
+	else:
+		velocity.y += gravite * delta
+	
+		# Spin while in the air
+		rotation -= rotation_vitesse * rotation_mult
+
+		#modulate = Color(1, 0.5, 0.5) # Change color when in the air
+
+	if rotation >= 2 * PI or rotation <= -2 * PI:
+		rotation = 0.0
+
+	velocity.x = vitesse
+
+	if is_on_wall():
+		mort()
+
+	move_and_slide()

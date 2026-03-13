@@ -176,24 +176,40 @@ Maintenant que la mécanique de base est en place, on peut commencer à ajouter 
 
 ---
 
+## Étape 7 : Ajouter les obstacles
 
-## Étape 6 : Ajouter les obstacles
+- Ouvre la scène `level.tscn`
+- Dans le volet scène, repère et sélectionne le noeud `TileMapLayer`
+- Tu devrais voir une grille apparaître dans la scène
+- Dans le volet inférieur `TileMap`, tu devrais voir des tuiles disponibles pour construire le niveau
+  ![alt text](assets/50_TileMap.png)
+
+- Sélectionne le pic, c'est la 6e tuile dans la 2e ligne.
+- Dans le jeu officiel, le premier obstacle est un pic à la position (18, -1)
+  ![alt text](assets/60_first_spike.png)
+
+Teste le jeu après avoir ajouté le pic pour t'assurer que la collision fonctionne correctement. Le joueur devrait mourir s'il touche le pic.
+La touche "R" permet de recommencer.
+
+Voici la position des premières tuiles du niveau "Stereo Madness" dans le jeu officiel :
+- Pic : (18, -1), (34, -1), (49, -1), (50, -1)
+- Bloc : (51, -1), (55, -2), (59, -3)
+- Lit de pic : (52, -1), (53, -1), (54, -1), (56, -1), (57, -1), (58, -1)
+- Petit pic : (33, -1)
 
 ---
 
-## Finaliser le projet
+## Finaliser le projet : Ajouter la musique
+- Ouvre le scripts `level.gd`
+- Repère les lignes `#music = $Music` et `#music.playing = true`
+- Retire le caractère commentaire de ces lignes pour activer la musique dans le niveau.
 
+**Teste le jeu.**
+- La musique devrait maintenant jouer dans le niveau.
 
+---
 
-TODO : Liste des étapes à rédiger
-- Level
-  - Retirer le contenu de TileMapLayer
-  - Retirer le code pour sol_mortel
-  - Retirer le script de la musique
-- Joueur
-  - Laisser les noeuds
-  - Retirer le script
-- Extra
-  - Indiquer que pour ceux que ça intéresse, les positions des tuiles du niveau "Stereo Madness" sont disponibles dans le fichier `assets/map_sm.gd`
+## Extra
+Si vous désirez aller plus loin, les positions des tuiles du niveau "Stereo Madness" sont disponibles dans le fichier `assets/map_sm.gd`. Vous pouvez utiliser ces positions pour recréer le niveau complet dans votre projet.
 
 ---
