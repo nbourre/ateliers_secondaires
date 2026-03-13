@@ -50,23 +50,132 @@ La scène principale du projet est `monde.tscn`. C'est à partir de cette scène
 ![alt text](assets/20_base_setup.png)
 
 Nous allons travailler avec principalement 3 éléments dans ce projet :
+
 - `monde.tscn` : la scène principale du jeu, qui contient les éléments de base du niveau.
 - `joueur.tscn` : la scène du personnage principal, qui contient les éléments graphiques et le script de contrôle du personnage.
 - `level.tscn` : la scène qui contient les éléments graphiques du niveau, comme les obstacles et les plateformes.
 
 ---
 
-## Étape 3 : Ajouter le joueur
+## Étape 3 : Ajouter les éléments de base du projet
+Dans cette étape, nous allons ajouter les éléments de base du projet, comme le personnage principal et le niveau.
+
+- Ouvre la scène `monde.tscn` 
+- Ajoute la scène `level.tscn` à la scène `monde.tscn`
+   - Place le level pour que le haut du level soit à égalité avec l'axe horizontal du monde.
+   - Dans mon cas, j'ai placé le level à la position (440, 510)
+- Ajoute la scène `joueur.tscn` à la scène `monde.tscn`
+   - Place le joueur pour qu'il soit au-dessus du sol. Il y a une démarcation pour le sol dans le level.
+
+Voilà à quoi devrait ressembler la scène `monde.tscn` après avoir ajouté les éléments de base :
+![alt text](assets/30_placement.png)
 
 ---
 
-## Étape 4 : Ajouter le level
+## Étape 4 : Ajouter le code du joueur
+Dans cette étape, nous allons ajouter le code de contrôle du personnage principal. Il y a déjà un script attaché au personnage, mais il manque le code pour déplacer le personnage et pour gérer les sauts. Nous allons ajouter ce code dans le script `joueur.gd`.
+
+- Ouvre le script `joueur.gd`
+- Repère la fonction `_physics_process(delta : float) -> void`
+   - Elle devrait se situer à la fin du script. <!-- TODO : Modifier la branche Main pour refléter ceci -->
+
+!!! note "Explication de la fonction `_physics_process`"
+    La fonction `_physics_process` est appelée à chaque frame du jeu. On se rappelle que les jeux vidéo fonctionnent comme les anciennes animations : ils affichent une série d'images à une vitesse suffisamment rapide pour que notre cerveau les perçoive comme un mouvement fluide. Cette fonction est appelée 60 fois par seconde, ce qui correspond à une vitesse de 60 images par seconde (60 FPS).
+
+- Supprime la fonction `_physics_process`.
+    - Nous allons la remplacer par une nouvelle version qui contient le code de contrôle du personnage. 
+- Ouvre le fichier `fallback/joueur_phys_proc.txt`
+- Copie le contenu du fichier `joueur_phys_proc.txt`
+    - Tu te rappelles? Pour sélectionner tout le contenu d'un fichier, tu peux cliquer n'importe où dans le fichier et faire `Ctrl + A` pour sélectionner tout le contenu, puis `Ctrl + C` pour copier le contenu sélectionné.
+- Colle le contenu dans le script `joueur.gd` à la place de la fonction `_physics_process` que tu viens de supprimer.
+    - Pour coller le contenu, tu peux faire `Ctrl + V` pour coller le contenu que tu as copié.
+
+Voici le contenu de la fonction `_physics_process` que tu devrais avoir après avoir collé le code :
+
+```gdscript
+func _physics_process(delta: float) -> void:
+	detect_sol.rotation = -rotation
+	var au_sol : bool = detect_sol.is_colliding() or is_on_floor()
+	
+	if au_sol:
+		if sol_mortel():
+			mort()
+			
+		velocity.y += gravite * delta
+		if Input.is_action_just_pressed("jump"):
+			velocity.y += saut_force
+
+		# Snap rotation to the nearest 90 degrees when on the floor
+		rotation = round(rotation / HALF_PI) * HALF_PI
+
+		#modulate = Color(1, 1, 1) # Normal color when on the ground
+	else:
+		velocity.y += gravite * delta
+	
+		# Spin while in the air
+		rotation -= rotation_vitesse * rotation_mult
+
+		#modulate = Color(1, 0.5, 0.5) # Change color when in the air
+
+	etat_sol_avant = au_sol #TODO : Retirer cette variable
+
+	if rotation >= 2 * PI or rotation <= -2 * PI:
+		rotation = 0.0
+
+	velocity.x = vitesse
+
+	if is_on_wall():
+		mort()
+
+	move_and_slide()
+```
+
+- **Test le jeu.** On veut s'assurer que le joueur se déplace vers la droite et qu'il peut sauter.
 
 ---
 
-## Étape 5 : Ajouter le code du joueur
+## Étape 5 : Configurer la caméra
+Dans cette étape, nous allons configurer la caméra pour qu'elle suive le personnage principal. Il y a déjà une caméra dans la scène `monde.tscn`, mais elle n'est pas configurée pour suivre le joueur.
+
+- Ouvre la scène `monde.tscn`
+- Ouvre le script `monde.gd`
+- Repère la ligne `#joueur = $Joueur` et retire le caractère commentaire
+    - Il s'agit du caractère `#` au début de la ligne. En retirant ce caractère, on active la ligne de code qui permet de référencer le joueur dans le script.
+- Repère la ligne `#cam = $Camera2D` et retire le caractère commentaire
+
+!!! note "Explication de notre action"
+    En retirant le caractère commentaire, on active les lignes de code qui permet d'avoir une référence à la caméra et au joueur dans le script. Ces références seront nécessaires plus loin dans le script.
+
+- Dans la fonction `_process(delta: float) -> void`, repère la ligne `#cam.global_position.x = joueur.global_position.x`
+- Retire le caractère commentaire de cette ligne pour activer le code qui permet à la caméra de suivre le joueur.
+  
+- **Test le jeu.** 
+- La caméra devrait suivre le joueur lorsqu'il se déplace vers la droite.
+
+Que se passe-t-il après un certain temps? (1)
+{ .annotate }
+
+1.  Le joueur tombe. Pourquoi? Parce que le plancher du niveau est limité à une certaine largeur, et que le joueur continue de se déplacer vers la droite, il finit par dépasser la limite du plancher et tombe dans le vide. Nous allons corrigé cette situation. <video controls src="assets/35_falling.mp4" title="Title"></video>
 
 ---
+
+## Étape 6 : Ajuster le plancher
+
+- Dans le script `monde.gd`, repère les lignes `#level = $Level` et `#level.set_joueur(joueur)`
+- Retire le caractère commentaire de ces lignes
+
+> Note : Dans la classe `Level`, j'ai fait du code qui permet au plancher de se déplacer avec le joueur.
+
+- **Test le jeu.**
+- Le plancher devrait maintenant suivre le joueur, ce qui permet de continuer à jouer sans tomber.
+
+<video controls src="assets/40_demo_jump.mp4" title="Title"></video>
+
+
+Maintenant que la mécanique de base est en place, on peut commencer à ajouter les obstacles et les éléments graphiques du niveau pour rendre le jeu plus intéressant.
+
+---
+
 
 ## Étape 6 : Ajouter les obstacles
 

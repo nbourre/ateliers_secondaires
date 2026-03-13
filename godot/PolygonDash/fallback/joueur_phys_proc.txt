@@ -22,8 +22,6 @@ func _physics_process(delta: float) -> void:
 
 		#modulate = Color(1, 0.5, 0.5) # Change color when in the air
 
-	etat_sol_avant = au_sol
-
 	if rotation >= 2 * PI or rotation <= -2 * PI:
 		rotation = 0.0
 
