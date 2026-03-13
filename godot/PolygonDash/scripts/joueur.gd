@@ -17,9 +17,6 @@ var etat_sol_avant := false
 
 @onready var detect_sol := $DetecteurSol
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func mort():
 	position.x = POS_DEPART.x
 	position.y = POS_DEPART.y
@@ -52,3 +49,6 @@ func sol_mortel() -> bool:
 			return true
 
 	return false
+
+func _physics_process(delta: float) -> void:
+	pass

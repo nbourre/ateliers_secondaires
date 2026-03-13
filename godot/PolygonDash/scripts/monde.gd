@@ -9,7 +9,6 @@ func _ready() -> void:
 	#joueur = $Joueur
 	#cam = $Camera2D
 	#level = $Level
-	#level.set_camera(cam)
 	#level.set_joueur(joueur)
 	pass
 
