@@ -30,6 +30,8 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+  icon:
+    annotation: material/arrow-right-circle
 
 markdown_extensions:
   - admonition
@@ -76,4 +78,5 @@ nav:
   - Godot:
       "Atelier #5a - Les chasseurs du vide": chasseurs_du_vide/index.md
       "Atelier #5b - Ajouter du son": ajouter_effets_sonores/index.md
+      "Atelier #6 - Geometry Dash clone": polygon_dash/index.md
       "Dépannage": depannage/index.md
