@@ -12,7 +12,7 @@ var vitesse: float = 350 * facteur_ajustement
 var gravite: float = 2700 * facteur_ajustement
 var saut_force: float = -690 * facteur_ajustement
 var rotation_mult := -1.0
-var rotation_vitesse := 0.1
+var rotation_vitesse := 6
 var etat_sol_avant := false
 
 @onready var detect_sol := $DetecteurSol
@@ -20,7 +20,7 @@ var etat_sol_avant := false
 func mort():
 	position.x = POS_DEPART.x
 	position.y = POS_DEPART.y
-	rotation = 0.0
+	rotation_degrees = 0.0
 
 # Regarde si le joueur est sur un tile mortel
 func sol_mortel() -> bool:
