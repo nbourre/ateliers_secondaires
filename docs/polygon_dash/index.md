@@ -253,7 +253,8 @@ Maintenant que la mécanique de base est en place, on peut commencer à ajouter 
 
 Teste le jeu après avoir ajouté le pic pour t'assurer que la collision fonctionne correctement. Le joueur devrait mourir s'il touche le pic.
 
-Voici la position des premières tuiles du niveau "Stereo Madness" dans le jeu officiel :
+Voici la position des premières tuiles du niveau "Stereo Madness" dans selon le jeu officiel :
+
 - Pic : (18, -1), (34, -1), (49, -1), (50, -1)
 - Bloc : (51, -1), (55, -2), (59, -3)
 - Lit de pic : (52, -1), (53, -1), (54, -1), (56, -1), (57, -1), (58, -1)

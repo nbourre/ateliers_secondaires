@@ -12,12 +12,13 @@ var vitesse: float = 350 * facteur_ajustement
 var gravite: float = 2700 * facteur_ajustement
 var saut_force: float = -690 * facteur_ajustement
 var rotation_mult := -1.0
-var rotation_vitesse := 6
+var rotation_vitesse := 6.0
 var etat_sol_avant := false
 
 @onready var detect_sol := $DetecteurSol
 
 func mort():
+	# Réinitialiser la position et la rotation du joueur
 	position.x = POS_DEPART.x
 	position.y = POS_DEPART.y
 	rotation_degrees = 0.0
