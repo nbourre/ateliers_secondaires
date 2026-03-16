@@ -22,7 +22,7 @@ L'objectif de cet atelier est de créer un clone du célèbre jeu "Geometry Dash
 
 ## Introduction
 
-Suite la proposition d'un élève, j'ai décidé de faire un atelier sur la création d'un clone de "Geometry Dash". Je crois que la majorité des élèves connaissent ce jeu, et il est assez simple à comprendre, il ne suffit que de sauter pour éviter les obstacles.
+Suite à la proposition d'un élève, j'ai décidé de faire un atelier sur la création d'un clone de "Geometry Dash". Je crois que la majorité des élèves connaissent ce jeu, et il est assez simple à comprendre, il ne suffit que de sauter pour éviter les obstacles.
 
 <video controls src="assets/10_demo.mp4" title="Title" autoplay loop></video>
 

@@ -8,10 +8,10 @@ description: Apprenez à ajouter un effet sonore à votre projet pour améliorer
 ## Introduction
 Dans ce tutoriel, nous allons apprendre à ajouter un effet sonore à notre projet. Les effets sonores peuvent améliorer l'expérience utilisateur en ajoutant une dimension auditive à votre application ou jeu.
 
-Nous allons partir du projet [`Chasseurs du vide`](../chasseurs_du_vide/) et ajouter un effet sonore lorsque que le vaisseau tire. Par la suite, tu seras en mesure d'ajouter d'autres effets sonores à différents événements de ton projet.
+Nous allons partir du projet [`Chasseurs du vide`](../chasseurs_du_vide/index.md) et ajouter un effet sonore lorsque que le vaisseau tire. Par la suite, tu seras en mesure d'ajouter d'autres effets sonores à différents événements de ton projet.
 
 !!! note "Prérequis"
-    Assures-toi d'avoir suivi les étapes du projet [`Chasseurs du vide`](../chasseurs_du_vide/) avant de commencer ce tutoriel. Ou du moins, être à l'aise avec les concepts de Godot.
+    Assures-toi d'avoir suivi les étapes du projet [`Chasseurs du vide`](../chasseurs_du_vide/index.md) avant de commencer ce tutoriel. Ou du moins, être à l'aise avec les concepts de Godot.
 
 
 ---
@@ -19,7 +19,7 @@ Nous allons partir du projet [`Chasseurs du vide`](../chasseurs_du_vide/) et ajo
 ## Étape 1 : Récupérer un effet sonore
 
 !!! note "Si tu pars de rien"
-    Cette étape est optionnelle si tu démarres avec le projet [`Chasseurs du vide`](../chasseurs_du_vide/) car tu as déjà un effet sonore de tir de vaisseau spatial dans le dossier `assets/sounds`. Cependant, si tu souhaites utiliser un autre effet sonore ou si tu démarres un projet différent, cette étape est pour toi.
+    Cette étape est optionnelle si tu démarres avec le projet [`Chasseurs du vide`](../chasseurs_du_vide/index.md) car tu as déjà un effet sonore de tir de vaisseau spatial dans le dossier `assets/sounds`. Cependant, si tu souhaites utiliser un autre effet sonore ou si tu démarres un projet différent, cette étape est pour toi.
 
 Tout d'abord, nous allons récupérer un effet sonore pour notre vaisseau. Tu peux trouver des effets sonores gratuits sur des sites comme [101Soundboards.com](https://www.101soundboards.com/search/laser). Recherches un effet sonore de tir de vaisseau spatial ou quelque chose de similaire.
 
