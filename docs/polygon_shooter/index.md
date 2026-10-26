@@ -1,5 +1,5 @@
 ---
-title: Atelier orientant : jeux vidéo
+title: "Atelier orientant : jeux vidéo"
 llm_instructions: |
   Réponds en français.
   Adapte tes explications à des élèves du secondaire qui débutent en programmation et qui ne sont pas nécessairement familiers avec Windows ou Godot.
