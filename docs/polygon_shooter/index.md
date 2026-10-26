@@ -125,6 +125,7 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
     <video controls src="assets/reset_joueur.mp4" title="Title" autoplay></video>
 
 ### Étape 8 - Placer le joueur dans le monde
+
 1. Tu peux fermer l'onglet `Player` en cliquant sur la croix à côté de son nom.
     - Si tu as fait des modifications dans la scène `Player`, Godot te demandera si tu veux les enregistrer. Clique sur `Ne pas enregistrer` pour ne pas enregistrer les modifications.
 2. Sélectionne la scène `World`.
@@ -156,7 +157,7 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
 #### Remplacer le code de base
 
 1. Efface tout le code de base généré par Godot. Clique n'importe où dans le code, sélectionne tout (`Ctrl + A`) et appuie sur la touche `Suppr`.
-2. Dans les fichiers, tu devrais retrouver `codeA.txt`.
+2. Dans le système de fichiers (volet en bas à gauche), tu devrais retrouver `codeA.txt`.
 3. Double-clique dessus pour l'ouvrir.
 4. Sélectionne tout le code dans `codeA.txt` (`Ctrl + A`) et copie-le (`Ctrl + C`).
 5. Dans l'éditeur de code, tu devrais voir le fichier `Player.gd` dans les fichiers ouverts. Sélectionne-le.
