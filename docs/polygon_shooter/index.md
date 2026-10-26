@@ -1,5 +1,15 @@
+---
+title: Atelier orientant : jeux vidéo
+llm_instructions: |
+  Réponds en français.
+  Adapte tes explications à des élèves du secondaire qui débutent en programmation et qui ne sont pas nécessairement familiers avec Windows ou Godot.
+---
+
 # Atelier Orientant : Jeux Vidéo
 *Atelier sur la programmation d'un jeu vidéo — Cégep de Shawinigan*
+
+!!! note "Système d'exploitation"
+    Cet atelier est présenté sous Windows. Sur macOS et Linux, les étapes sont semblables, mais certains noms de boutons et raccourcis peuvent différer. L'application sur le Chromebook est possible, mais certains éléments du début dont la gestion des fichiers et l'installation de Godot sont différents. Au lieu d'utiliser une version installable, il est possible d'utiliser la version web de Godot (https://editor.godotengine.org/releases/latest/) pour éviter l'installation. Cependant, certaines fonctionnalités peuvent différer.
 
 ---
 
@@ -23,9 +33,11 @@ Nous allons utiliser le moteur **Godot Engine**, car il est gratuit, open-source
 1. Télécharge Godot Engine à partir de son site officiel : https://godotengine.org/download
 2. Clique sur le bouton inscrit "Godot Engine" pour télécharger la version stable la plus récente.
     ![alt text](assets/godot_download.png)
-3. Une fois le téléchargement terminé, sélectionne le fichier téléchargé qui devrait être nommé quelque chose comme `Godot_vX.X.X-stable_win64.exe.zip`.
-4. Tu devrais voir un bouton "Extraire tout" dans l'explorateur de fichiers. Clique dessus et suis les instructions pour extraire le contenu.
-5. Après l'extraction, tu devrais trouver un fichier exécutable nommé `Godot_vX.X.X-stable_win64.exe`. Double-clique dessus pour lancer Godot.
+3. Une fois le téléchargement terminé, ouvre l'Explorateur de fichiers en appuyant sur `Windows + E`.
+4. Dans le volet de gauche, clique sur **Téléchargements**.
+5. Repère le fichier téléchargé, qui devrait s'appeler quelque chose comme `Godot_vX.X.X-stable_win64.exe.zip`.
+6. Sélectionne le fichier, clique sur **Extraire tout**, puis suis les instructions pour extraire son contenu.
+7. Ouvre le dossier extrait et double-clique sur le fichier `Godot_vX.X.X-stable_win64.exe` pour lancer Godot.
 
 ### Étape 2 - Télécharger les ressources
 
@@ -36,7 +48,13 @@ Nous allons utiliser le moteur **Godot Engine**, car il est gratuit, open-source
 
 3. Un fichier nommé `top_down_polygon_shooter.zip` sera téléchargé dans ton dossier *Téléchargements*.
 
-### Étape 3 - Ouvrir Godot
+### Étape 3 - Repérer les ressources téléchargées
+
+1. Répète les deux premières actions de l'étape 1 : ouvre l'Explorateur de fichiers avec `Windows + E`, puis clique sur **Téléchargements**.
+2. **Sans cliquer**, repère le fichier `top_down_polygon_shooter.zip` que tu viens de télécharger.
+
+
+### Étape 4 - Ouvrir Godot
 
 1. Si tu as bien suivi l'étape d'exécution de Godot, tu devrais voir une fenêtre d'accueil avec plusieurs options.
 2. Glisse et dépose le fichier `top_down_polygon_shooter.zip` que tu as téléchargé dans la fenêtre de Godot.
@@ -47,7 +65,7 @@ Nous allons utiliser le moteur **Godot Engine**, car il est gratuit, open-source
 
 ![alt text](assets/projet_depart.png)
 
-### Étape 4 - Découverte de l'environnement
+### Étape 5 - Découverte de l'environnement
 L'environnement de travail des développeurs varie selon leur emploi (éditeur de texte simple, gestionnaires de réseaux complexes, outils spécialisés). Godot est un environnement propre au développement de jeux.
 
 ![alt text](assets/environnement_travail.png)
@@ -61,12 +79,12 @@ Dans la capture d'écran ci-dessus, on peut voir :
     - Ce que l'on utilisera principalement est le bouton **Play** (triangle) pour tester le jeu.
 
 #### La zone de travail
-- Étant donné que l’on part avec un projet déjà débuté, la première chose qu’il faut c’est de regarder c’est quoi les ressources que l’on a.
+- Étant donné que l’on part avec un projet déjà débuté, la première chose à faire est d’examiner les ressources déjà présentes dans le projet.
 - **Les ressources** peuvent être des images, des sons ou des éléments du jeu comme un personnage
 - On remarque que la zone de travail a un onglet nommé `World`
 - Il s’agit de la scène **World**
 
-### Étape 5 - Exploration du projet
+### Étape 6 - Exploration du projet
 * **Le volet Scène (à gauche) :** Affiche la scène active.
   * Une scène est comme une pièce de théâtre (assemblage du personnage, décor, ennemis, PNJ, etc.).
 * **Les ressources :** Images, sons ou éléments de jeu (comme un personnage).
@@ -80,11 +98,11 @@ Dans la capture d'écran ci-dessus, on peut voir :
 * Pour l'instant il n'y a pas grand-chose dans la scène `World`, mais on va le remplir au fur et à mesure.
 * Recherche le fichier `Player.tscn` dans le système de fichiers et double-clique dessus pour ouvrir la scène du joueur dans un nouvel onglet.
 * Maintenant tu devrais voir la scène du joueur dans la zone de travail, avec les différentes ressources qui la composent (polygone, collision, caméra, etc.).
-* Tu remarque aussi que l'onglet `World` est toujours ouvert, tu peux basculer entre les deux scènes en cliquant sur les onglets correspondants. 
+* Tu remarques aussi que l'onglet `World` est toujours ouvert. Tu peux basculer entre les deux scènes en cliquant sur les onglets correspondants.
 
 <video controls src="assets/onglet_player_world.mp4" title="Title" autoplay></video>
 
-### Étape 6 - Configuration du Joueur (Player)
+### Étape 7 - Configuration du Joueur (Player)
 
 ![alt text](assets/scene_player.png)
 
@@ -97,7 +115,7 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
 * **Camera2D :** La caméra qui suit le personnage (rectangle rose).
 * **PointLight2D :** Effet lumineux qui suit le personnage.
 
-*Note de navigation : Utilisez la molette de la souris (ou deux doigts sur trackpad) pour zoomer et vous déplacer dans la zone de travail.*
+*Note de navigation : Utilise la molette de la souris (ou deux doigts sur le trackpad) pour zoomer et te déplacer dans la zone de travail.*
 
 !!! Warning "J'ai déplacé le personnage !"
     Si tu as accidentellement déplacé le personnage dans la scène `Player`, tu peux réinitialiser sa position en sélectionnant le nœud `Player` et en appuyant sur la combinaison de touches `Ctrl + z` pour annuler le déplacement.
@@ -106,7 +124,7 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
 
     <video controls src="assets/reset_joueur.mp4" title="Title" autoplay></video>
 
-### Étape 7 - Placer le joueur dans le monde
+### Étape 8 - Placer le joueur dans le monde
 1. Tu peux fermer l'onglet `Player` en cliquant sur la croix à côté de son nom.
     - Si tu as fait des modifications dans la scène `Player`, Godot te demandera si tu veux les enregistrer. Clique sur `Ne pas enregistrer` pour ne pas enregistrer les modifications.
 2. Sélectionne la scène `World`.
@@ -119,12 +137,12 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
     ![alt text](assets/player_play.png)
 6. Appuie sur le `X` pour fermer la fenêtre de test du jeu.
 
-### Étape 8 - Programmation du Joueur
+### Étape 9 - Programmation du Joueur
 
 1. Ouvre l'onglet `Player`
 2. Sélectionne le nœud `Player` dans le volet scène (Rappel : utilise le volet Scène pour naviguer entre les nœuds).
 3. Clique-droit sur le nœud `Player` -> Sélectionne **Attacher un script...**.
-4. Dans la fenêtre, cliquez sur **Créer**.
+4. Dans la fenêtre, clique sur **Créer**.
 
 <video controls src="assets/player_attach_script.mp4" title="Title" autoplay></video>
 
@@ -137,13 +155,13 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
 
 #### Remplacer le code de base
 
-1. Efface tout le code de base généré par Godot. Clique n'importe où dans le code, sélectionne tout (`Ctrl + A`) et supprime (Touche `Suppr`).
+1. Efface tout le code de base généré par Godot. Clique n'importe où dans le code, sélectionne tout (`Ctrl + A`) et appuie sur la touche `Suppr`.
 2. Dans les fichiers, tu devrais retrouver `codeA.txt`.
 3. Double-clique dessus pour l'ouvrir.
 4. Sélectionne tout le code dans `codeA.txt` (`Ctrl + A`) et copie-le (`Ctrl + C`).
 5. Dans l'éditeur de code, tu devrais voir le fichier `Player.gd` dans les fichiers ouverts. Sélectionne-le.
 6. Ensuite, colle le contenu copié (`Ctrl + V`).
-7.  Testez le jeu : vous pouvez maintenant déplacer le personnage avec les touches **WASD**.
+7. Teste le jeu : tu peux maintenant déplacer le personnage avec les touches **WASD**.
 
 <video controls src="assets/player_codeA_test.mp4" title="Test du codeA" autoplay></video>
 
@@ -181,21 +199,21 @@ Retire le `#` au début de la ligne pour décommenter le code, puis teste le jeu
     - Clique sur le bouton "2D" au centre de la fenêtre de Godot pour basculer en mode d'édition 2D.
 9. Ferme l'onglet `Player` pour revenir à la scène `World`. 
 
-### Étape 9 - Ajout des Murs (Décors)
+### Étape 10 - Ajout des Murs (Décors)
 
 1. Glisse et dépose le fichier `Level.tscn` dans la zone de travail en prenant soin de faire en sorte que le joueur ne soit pas sur un mur.
 2. Teste le jeu.
 
 <video controls src="assets/level_test.mp4" title="Title" autoplay loop></video>
 
-### Étape 10 - Ajout des Ennemis
+### Étape 11 - Ajout des Ennemis
 
 1. Reviens à la scène `World`.
 2. Recherche le fichier `Enemy.tscn` dans le système de fichiers.
 3. Glisse le fichier `Enemy.tscn` dans la zone de travail pour l'ajouter à la scène `World`.
-4. Testez le projet pour voir l'ennemi apparaître.
+4. Teste le projet pour voir l'ennemi apparaître.
 
-### Étape 11 - Dupliquer les Ennemis
+### Étape 12 - Dupliquer les Ennemis
 
 1. Ajoute plusieurs ennemis dans le jeu
 2. Tu peux dupliquer un ennemi déjà placé en le sélectionnant dans la scène `World`, puis en appuyant sur `Ctrl + D` pour créer une copie de cet ennemi. Positionne les ennemis dupliqués à différents endroits de la scène.
@@ -215,11 +233,11 @@ Retire le `#` au début de la ligne pour décommenter le code, puis teste le jeu
 
 ### Génération automatique (Spawning)
 
-1. Dans le volet Scène, sélectionnez le noeud `world`.
+1. Dans le volet Scène, sélectionne le nœud `world`.
 2. Dans la scène `World`, fais un clic-droit sur le nœud `world`.
 3. Clique sur **Ajouter un nœud enfant…**
 4. Recherche et sélectionne **Timer**.
-5. Renommerce nœud exactement : `MobTimer` (attention aux majuscules!).
+5. Renomme le nœud exactement `MobTimer` (attention aux majuscules!).
 6. Teste la génération automatique des ennemis.
 
 <video controls src="assets/MobTimer.mp4" title="Title"></video>
@@ -229,7 +247,7 @@ Retire le `#` au début de la ligne pour décommenter le code, puis teste le jeu
 * **Éditer la carte :**
     * Double-clique sur `Level.tscn`.
     * Sélectionne le nœud `Tilemap`.
-    * Dans le panneau du bas, sélectionnez l'icône de crayon
+    * Dans le panneau du bas, sélectionne l'icône du crayon.
     * Clique sur le carré jaune pour dessiner des murs (clic gauche pour ajouter, clic droit pour retirer).
 * **Ajuster les variables :**
     * Double-clic sur le fichier `Player.gd` pour ouvrir le code du joueur.
