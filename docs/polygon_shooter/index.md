@@ -28,10 +28,16 @@ Nous allons utiliser le moteur **Godot Engine**, car il est gratuit, open-source
 5. Après l'extraction, tu devrais trouver un fichier exécutable nommé `Godot_vX.X.X-stable_win64.exe`. Double-clique dessus pour lancer Godot.
 
 ### Étape 2 - Télécharger les ressources
-1. Va à l'adresse suivante pour télécharger le projet de départ : `https://tinyurl.com/g4jeutds`
-2. Un fichier nommé `top_down_polygon_shooter.zip` sera téléchargé dans ton dossier *Téléchargements*.
+
+1. Va à l'adresse suivante pour télécharger le projet de départ : `http://tinyurl.com/ateliers-jeux`
+2. Dans la page qui s'ouvre, trouve le lien `top_down_polygon_shooter.zip` et clique dessus pour télécharger le fichier.
+
+![alt text](assets/page_téléchargement_fichiers.png)
+
+3. Un fichier nommé `top_down_polygon_shooter.zip` sera téléchargé dans ton dossier *Téléchargements*.
 
 ### Étape 3 - Ouvrir Godot
+
 1. Si tu as bien suivi l'étape d'exécution de Godot, tu devrais voir une fenêtre d'accueil avec plusieurs options.
 2. Glisse et dépose le fichier `top_down_polygon_shooter.zip` que tu as téléchargé dans la fenêtre de Godot.
 3. Clique sur "Installer" pour charger le projet.

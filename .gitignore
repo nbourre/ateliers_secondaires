@@ -84,6 +84,7 @@ wheels/
 *.egg
 MANIFEST
 .venv/
+.venv_linux/
 venv/
 ENV/
 env/
