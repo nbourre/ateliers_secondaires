@@ -63,6 +63,10 @@ repo_name: ateliers_secondaires
 repo_url: https://github.com/nbourre/ateliers_secondaires
 edit_uri: edit/main/docs
 
+# Notes internes pour l'enseignant, non publiées
+exclude_docs: |
+  pour_prof.md
+
 copyright: Copyright &copy; 2026 Nicolas Bourré. All lessons are open source.
 
 extra:
