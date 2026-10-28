@@ -78,6 +78,9 @@ nav:
   - Accueil : index.md
   - Godot:
       "Atelier #1 - Premiers pas avec Godot": polygon_shooter/index.md
+      "Atelier #2 - Jeu de plateforme": jeu_plateforme/index.md
+      "Atelier #3 - Clonario (clone d'Agar.io)": clonario/index.md
+      "Atelier #4 - Clone de Flappy Bird": flappy_bird/index.md
       "Atelier #5a - Les chasseurs du vide": chasseurs_du_vide/index.md
       "Atelier #5b - Ajouter du son": ajouter_effets_sonores/index.md
       "Atelier #6 - Geometry Dash clone": polygon_dash/index.md

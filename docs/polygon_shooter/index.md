@@ -60,7 +60,7 @@ Nous allons utiliser le moteur **Godot Engine**, car il est gratuit, open-source
 2. Glisse et dépose le fichier `top_down_polygon_shooter.zip` que tu as téléchargé dans la fenêtre de Godot.
 3. Clique sur "Installer" pour charger le projet.
 4. Il se peut que tu aies une fenêtre d'avertissement de conversion du projet. Appuie sur "Ok" pour continuer.
-    <video controls src="assets/install_project.mp4" title="Installer le projet" autoplay></video>
+    <video controls src="assets/install_project.mp4" title="Installer le projet" autoplay muted></video>
 5. La fenêtre de Godot devrait maintenant afficher le projet `top_down_polygon_shooter`.
 
 ![alt text](assets/projet_depart.png)
@@ -132,7 +132,7 @@ La scène du joueur est composée de **Nœuds** (éléments de base dans Godot) 
 3. Glisse et dépose le fichier `Player.tscn` sur le logo dans la zone de travail de la scène `World` (ou sur le nœud `world` dans le volet Scène).
 4. Repositionne le personnage pour qu'il soit bien placé afin de voir le logo.
     - Le logo nous sert de point de repère pour savoir où se trouve le personnage dans la scène.
-    <video controls src="assets/add_player.mp4" title="Ajout du joueur" autoplay></video>
+    <video controls src="assets/add_player.mp4" title="Ajout du joueur" autoplay muted></video>
 5. Clique sur le bouton **Play** (en haut à droite) pour tester.
 
     ![alt text](assets/player_play.png)
