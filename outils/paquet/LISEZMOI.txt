@@ -1,0 +1,18 @@
+ATELIER GODOT : COMMENT DÉMARRER
+================================
+
+1. Extrais le zip
+   Clic droit sur le fichier .zip > « Extraire tout... » > « Extraire ».
+   Ne travaille PAS directement dans le zip, sinon ton travail ne sera pas sauvegardé.
+
+2. Double-clique sur LANCER.bat
+   Si Windows affiche « Windows a protégé votre ordinateur » :
+   clique sur « Informations complémentaires », puis « Exécuter quand même ».
+
+3. C'est tout!
+   Godot s'ouvre directement dans le projet de l'atelier.
+   (S'il y a plusieurs ateliers dans le dossier, un menu te demande lequel ouvrir.)
+
+Tu veux continuer plus tard?
+Ton travail est sauvegardé dans le dossier « projets ».
+Garde le dossier au complet (sur une clé USB, par exemple) et relance LANCER.bat.
