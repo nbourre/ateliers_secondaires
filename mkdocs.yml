@@ -5,7 +5,7 @@ site_url: https://nbourre.github.io/ateliers_secondaires
 
 theme:
   name: material
-  language: en
+  language: fr
   logo: https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/docs/assets/images/favicon.png
   favicon: https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/docs/assets/images/favicon.png
   palette:
