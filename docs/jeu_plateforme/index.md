@@ -10,6 +10,9 @@ llm_instructions: |
 !!! danger "À réviser"
     Note pour l'enseignant : cette leçon doit être révisée avant d'être utilisée en classe.
 
+!!! tip "Repère 🎯"
+    Le symbole 🎯 indique un endroit où **tu dois faire une action** (cliquer, glisser, taper, tester, etc.). Si tu vois 🎯, c'est à ton tour d'agir!
+
 <video controls src="assets/001_demo.mp4" title="Démonstration du jeu de plateforme" autoplay muted loop></video>
 
 ## Objectifs
@@ -57,64 +60,74 @@ Godot est principalement en anglais. En passant, être capable de lire l'anglais
 
 ## Étape 1 : Télécharger les ressources
 
-1. Dans ton navigateur, va à l'adresse suivante : [https://tinyurl.com/ateliers-jeux](https://tinyurl.com/ateliers-jeux){target=_blank}
-2. Dans la page, il y a un petit tableau. Clique sur le lien `Jeu-Plateforme.zip`.
+1. Dans ton navigateur, va à l'adresse suivante : [https://tinyurl.com/ateliers-jeux](https://tinyurl.com/ateliers-jeux){target=_blank} 🎯
+2. Dans la page, il y a un petit tableau. Clique sur le lien `Jeu-Plateforme.zip`. 🎯
 
     ![Page de téléchargement](assets/010_page_telechargement.png)
 
 3. Le fichier sera téléchargé et se retrouvera dans ton dossier **Téléchargements**.
-    - **Ne l'ouvre pas!** On va le donner directement à Godot.
+    - 🛑 **Ne l'ouvre pas!** On va le donner directement à Godot.
 
 ---
 
-## Étape 2 : Ouvrir Godot sur le Web
+## Étape 2 : Ouvrir Godot
+
+### Version Godot sur le Web
 
 !!! tip "Godot installé sur l'ordinateur"
-    Si Godot est déjà installé sur ton ordinateur, tu peux l'utiliser à la place de la version web. Il suffit de glisser et déposer le fichier `Jeu-Plateforme.zip` dans la fenêtre des projets.
+    Va directement à la [version Godot sur l'ordinateur](#version-godot-sur-lordinateur) si tu as déjà installé Godot sur ton ordinateur.
 
-1. Ouvre le navigateur **Edge** ou **Chrome**.
-2. Va à la page suivante : [https://tinyurl.com/gd4web](https://tinyurl.com/gd4web){target=_blank}
-3. Si une fenêtre surgit avec un texte, clique sur le bouton **Ok, don't show again**.
+1. Ouvre le navigateur **Edge** ou **Chrome**. 🎯
+2. Va à la page suivante : [https://tinyurl.com/gd4web](https://tinyurl.com/gd4web){target=_blank} 🎯
+3. Si une fenêtre surgit avec un texte, clique sur le bouton **Ok, don't show again**. 🎯
 
 <video controls src="assets/020_godot_web.mp4" title="Ouvrir Godot Web" autoplay muted loop></video>
 
+### Version Godot sur l'ordinateur
+
+1. Regarde sur le bureau si tu n'y verrais pas l'icône de Godot. Si c'est le cas, double-clique dessus pour l'ouvrir. 🎯
+2. Sinon, clique sur le bouton **Démarrer** 🎯 (l'icône de Windows en bas à gauche de l'écran)
+3. Ensuite, tape `Godot` dans la barre de recherche. 🎯
+4. Clique sur l'icône de Godot pour l'ouvrir. 🎯
+
 ---
 
-## Étape 3 : Ouvrir le projet sur la version **Ordinateur**
+## Étape 3 : Ouvrir le projet
 
 !!! info "Godot Web ou Ordinateur?"
-    Fais seulement l'étape 3 qui correspond à ta version de Godot. Si tu utilises Godot Web, passe directement à la [version Web](#etape-3-ouvrir-le-projet-via-godot-web).
+    Fais seulement l'étape 3 qui correspond à ta version de Godot. Si tu utilises Godot Web, passe directement à la section **Godot Web**. Si tu utilises Godot sur l'ordinateur, passe à la section **Godot sur l'Ordinateur**.
 
-1. Lance **Godot** sur ton ordinateur.
-    - La fenêtre du **gestionnaire de projets** s'ouvre.
-2. Ouvre l'**explorateur de fichiers** avec le raccourci `Windows + E`.
-    - La touche `Windows` est celle avec le logo de Windows, en bas à gauche du clavier.
-3. Dans le volet de gauche de l'explorateur, clique sur **Téléchargements**.
-4. Trouve le fichier `Jeu-Plateforme.zip`.
-    - **Ne double-clique pas dessus!** On ne veut pas l'ouvrir ni l'extraire.
-5. Place les deux fenêtres côte à côte, puis glisse et dépose le fichier `Jeu-Plateforme.zip` dans la fenêtre du gestionnaire de projets de Godot.
-6. Dans la fenêtre qui apparaît, donne un nom au projet comme « Jeu de plateforme ».
-7. Clique sur **Importer** (ou **Importer et éditer**, selon ta version).
-    - Le projet s'ouvre dans l'éditeur après quelques instants.
+### **Godot Web**
+
+1. Clique sur le bouton **Sélection fichier**. 🎯
+2. Sélectionne le fichier que tu as téléchargé précédemment. 🎯
+    - Il y a de bonnes chances qu'il soit dans ton dossier **Téléchargements**.
+    - Il devrait se nommer `Jeu-Plateforme.zip`.
+3. Clique sur **Ouvrir**. 🎯
+4. Clique sur **Start Godot Editor**. 🎯
+    - Cela peut prendre quelques minutes avant d'avoir quelque chose à l'écran.
+5. Dans la fenêtre qui apparaît, donne un nom au projet comme « Jeu de plateforme ». 🎯
+6. Clique sur **Installer**. 🎯 Ça va prendre quelques instants.
+
+!!! warning "Rien ne s'affiche?"
+    S'il n'y a rien qui se passe, glisse et dépose le fichier `Jeu-Plateforme.zip` sur la page des projets locaux. 🎯
+
 
 ---
 
-## Étape 3 : Ouvrir le projet via **Godot Web**
+### **Godot sur l'Ordinateur**
 
-1. Clique sur le bouton **Sélection fichier**.
-2. Sélectionne le fichier que tu as téléchargé précédemment.
-    - Il y a de bonnes chances qu'il soit dans ton dossier **Téléchargements**.
-    - Il devrait se nommer `Jeu-Plateforme.zip`.
-3. Clique sur **Ouvrir**.
-4. Clique sur **Start Godot Editor**.
-    - Cela peut prendre quelques minutes avant d'avoir quelque chose à l'écran.
-5. Dans la fenêtre qui apparaît, donne un nom au projet comme « Jeu de plateforme ».
-6. Clique sur **Installer**. Ça va prendre quelques instants.
-
-!!! warning "Rien ne s'affiche?"
-    S'il n'y a rien qui se passe, glisse et dépose le fichier `Jeu-Plateforme.zip` sur la page des projets locaux.
-
-
+1. Lance **Godot** sur ton ordinateur. 🎯
+    - La fenêtre du **gestionnaire de projets** s'ouvre.
+2. Ouvre l'**explorateur de fichiers** avec le raccourci `Windows + E`. 🎯
+    - La touche `Windows` est celle avec le logo de Windows, en bas à gauche du clavier.
+3. Dans le volet de gauche de l'explorateur, clique sur **Téléchargements**. 🎯
+4. Trouve le fichier `Jeu-Plateforme.zip`. 🎯
+    - **Ne double-clique pas dessus!** On ne veut pas l'ouvrir ni l'extraire.
+5. Place les deux fenêtres côte à côte, puis glisse et dépose le fichier `Jeu-Plateforme.zip` dans la fenêtre du gestionnaire de projets de Godot. 🎯
+6. Dans la fenêtre qui apparaît, donne un nom au projet comme « Jeu de plateforme ». 🎯
+7. Clique sur **Importer** (ou **Importer et éditer**, selon ta version). 🎯
+    - Le projet s'ouvre dans l'éditeur après quelques instants.
 
 ---
 
@@ -125,6 +138,9 @@ Godot est principalement en anglais. En passant, être capable de lire l'anglais
 Tu remarques que c'est probablement un environnement assez différent de ce à quoi tu es habitué. Les développeurs utilisent des logiciels très différents selon l'emploi qu'ils occupent. Ça peut aller du simple éditeur de texte à des environnements complexes de gestion de réseau, en passant par des logiciels spécialisés en programmation. Si tu fais des jeux vidéo plus tard, tu auras sûrement un logiciel semblable.
 
 Ne t'inquiète pas, comme on dit : *tu vas apprendre l'outil sur le tas!*
+
+
+![alt text](assets/035_environnement_annoté.png)
 
 L'environnement est divisé en plusieurs zones :
 
@@ -166,7 +182,7 @@ Les ressources se retrouvent dans le volet inférieur gauche sous l'onglet **Sys
 
 - Le fichier `monde.tscn` représente la scène **Monde** qui est ouverte dans la zone de travail.
     - Pour l'instant il n'y a pas grand-chose, mais on va la remplir plus tard.
-- Double-clique sur le fichier `joueur.tscn`. Ça ouvre la scène **Joueur**.
+- Double-clique sur le fichier `joueur.tscn`. 🎯 Ça ouvre la scène **Joueur**.
     - Remarque les onglets de la zone de travail : on devrait avoir `Monde` et `Joueur`.
 - Si tu cliques sur l'onglet `Monde`, le contenu du volet Scène revient à `Monde`.
 - Reviens à la scène `Joueur`.
@@ -189,12 +205,12 @@ Tu remarques que la scène du joueur a un contenu différent de la scène du mon
 ### Naviguer dans la zone de travail
 
 - Avec une souris :
-    - Fais rouler la molette dans la zone de travail pour agrandir ou réduire la vue.
-    - Appuie sur `F` pour centrer la scène.
-    - Clique sur la molette et déplace la souris pour déplacer la vue.
+    - Fais rouler la molette dans la zone de travail pour agrandir ou réduire la vue. 🎯
+    - Appuie sur `F` pour centrer la scène. 🎯
+    - Clique sur la molette et déplace la souris pour déplacer la vue. 🎯
 - Avec un trackpad :
-    - Fais glisser deux doigts sur le trackpad pour te déplacer et agrandir la vue.
-- Ajuste la vue pour que l'encadré rose/bleu prenne l'ensemble de la zone de travail.
+    - Fais glisser deux doigts sur le trackpad pour te déplacer et agrandir la vue. 🎯
+- Ajuste la vue pour que l'encadré rose/bleu prenne l'ensemble de la zone de travail. 🎯
 
 <video controls src="assets/051_zoom_souris.mp4" title="Zoom avec la souris" autoplay muted loop></video>
 
@@ -212,22 +228,25 @@ Dans le volet Scène, on retrouve les nœuds qui composent le personnage :
 !!! note "Les animations 2D"
     Les animations dans un jeu vidéo 2D sont réalisées comme dans l'ancien temps : on affiche une séquence d'images à grande vitesse pour avoir l'illusion d'un mouvement.
 
+    Voici un exemple d'animation de l'époque avec un flip book.
+    <video controls src="assets/Flip_Book_Movie_v2.mp4" title="Animations 2D" autoplay muted loop></video>
+
 ---
 
 ## Étape 7 : Mettre le joueur dans le monde
 
-1. Sélectionne l'onglet de la scène `Monde`.
-2. Glisse et dépose le fichier `joueur.tscn` sur le nœud `Monde` dans le volet Scène.
+1. Sélectionne l'onglet de la scène `Monde`. 🎯
+2. Glisse et dépose le fichier `joueur.tscn` sur le nœud `Monde` dans le volet Scène. 🎯
 3. Le joueur apparaît dans la scène `Monde` à la position (0, 0).
-    - Appuie sur `F` pour centrer la vue sur le joueur.
+    - Appuie sur `F` pour centrer la vue sur le joueur. 🎯
 
-    ![Ajouter le joueur](assets/060_ajout_joueur.gif)
+    <video controls src="assets/060_ajout_joueur.mp4" title="Ajouter le joueur" autoplay muted loop></video>
 
-4. Sélectionne le personnage et glisse-le près du logo du Cégep.
+4. Sélectionne le personnage et glisse-le près du logo du Cégep. 🎯
 
     ![Déplacer le joueur](assets/061_deplacer_joueur.gif)
 
-5. **Teste le jeu.** Dans le coin supérieur droit, clique sur le bouton **Play**.
+5. **Teste le jeu.** Dans le coin supérieur droit, clique sur le bouton **Play**. 🎯
 
     ![Premier test](assets/062_premier_test.gif)
 
@@ -237,9 +256,9 @@ Que se passe-t-il? (1)
 1.  Rien de bien excitant... Le personnage est là, mais il ne bouge pas. Félicitations quand même, c'est ton premier jeu!
 
 - Si tu es dans la version web de Godot :
-    - Dans la barre supérieure, clique sur le `X` à côté de **Game** pour revenir au développement.
+    - Dans la barre supérieure, clique sur le `X` à côté de **Game** pour revenir au développement. 🎯
 - Si tu es dans la version installée sur ton ordinateur :
-    - Tu peux fermer la fenêtre du jeu pour revenir au développement.
+    - Tu peux fermer la fenêtre du jeu pour revenir au développement. 🎯
 
 ---
 
@@ -247,21 +266,21 @@ Que se passe-t-il? (1)
 
 Il est maintenant temps de faire comme tout programmeur : programmer!
 
-1. Active la scène `Joueur`.
-2. Sélectionne le nœud `Joueur`.
-3. Pour ajouter du code, on doit **attacher un script** au nœud. Dans le coin supérieur droit du volet Scène, il y a une petite icône en forme de parchemin avec un petit plus vert. Clique dessus.
+1. Active la scène `Joueur`. 🎯
+2. Sélectionne le nœud `Joueur`. 🎯
+3. Pour ajouter du code, on doit **attacher un script** au nœud. Dans le coin supérieur droit du volet Scène, il y a une petite icône en forme de parchemin avec un petit plus vert. Clique dessus. 🎯
 
     ![Bouton pour ajouter un script](assets/071_bouton_ajout_script.png)
 
     <video controls src="assets/070_attacher_script.mp4" title="Attacher un script" autoplay muted loop></video>
 
-4. Une fenêtre va apparaître. Clique sur **Créer**.
+4. Une fenêtre va apparaître. Clique sur **Créer**. 🎯
 5. Une fenêtre avec du texte va s'afficher. Il s'agit du code de base que Godot propose pour programmer un `CharacterBody2D`.
 
     ![Code de base](assets/072_code_base.gif)
 
 !!! tip "Passer du code au design"
-    Dans la barre centrale supérieure, clique sur **2D** pour revenir en mode « design ». Clique sur **Script** pour revenir au code.
+    Dans la barre centrale supérieure, clique sur **2D** pour revenir en mode « design ». 🎯 Clique sur **Script** pour revenir au code. 🎯
 
 ---
 
@@ -269,28 +288,28 @@ Il est maintenant temps de faire comme tout programmeur : programmer!
 
 Godot donne du code de base, mais il manque des trucs. On va ajouter un plancher rapidement pour voir si ça fonctionne bien.
 
-1. Reviens à la scène `Monde`.
-2. Dans le volet Scène, repère le nœud `Map`.
-    - Tu en as peut-être 2, un en dessous de l'autre. Sélectionne celui qui est le plus bas.
+1. Reviens à la scène `Monde`. 🎯
+2. Dans le volet Scène, repère le nœud `Map`. 🎯
+    - Tu en as peut-être 2, un en dessous de l'autre. Sélectionne celui qui est le plus bas. 🎯
 
     ![Le nœud Map](assets/080_noeud_map.gif)
 
 3. Le volet inférieur change et affiche plein de petites images. Ce sont des **tuiles** qui vont nous permettre de dessiner le niveau.
-    - Tu peux agrandir l'affichage en faisant rouler la molette de la souris.
+    - Tu peux agrandir l'affichage en faisant rouler la molette de la souris. 🎯
 
     ![Les tuiles](assets/081_tuiles.gif)
 
 4. Vois-tu un carré jaune lorsque tu promènes la souris sur les tuiles? Ça va nous permettre de dessiner.
-5. Sélectionne la tuile avec du gazon.
+5. Sélectionne la tuile avec du gazon. 🎯
     - C'est comme un programme de dessin, mais avec des tuiles.
-6. Trace quelques tuiles en dessous du logo, sous le personnage.
-    - Tu peux effacer une ou plusieurs tuiles avec le **bouton droit** de la souris.
+6. Trace quelques tuiles en dessous du logo, sous le personnage. 🎯
+    - Tu peux effacer une ou plusieurs tuiles avec le **bouton droit** de la souris. 🎯
 
     ![Dessiner le plancher](assets/082_dessiner_plancher.gif)
 
-7. **Teste le jeu.**
-    - Tu peux déplacer le personnage avec les flèches du clavier.
-    - Pour sauter, appuie sur `Espace`.
+7. **Teste le jeu.** 🎯
+    - Tu peux déplacer le personnage avec les flèches du clavier. 🎯
+    - Pour sauter, appuie sur `Espace`. 🎯
 
     ![Test du plancher](assets/083_test_plancher.gif)
 
@@ -302,29 +321,29 @@ Parfait! On va revenir plus tard au niveau. Pour l'instant, on doit améliorer l
 
 As-tu remarqué que le personnage est très petit? C'est parce qu'on n'a pas mis de caméra.
 
-1. Dans la scène `Joueur`, sélectionne le nœud `Joueur`.
-2. Clique-droit dessus et sélectionne **Ajouter un nœud enfant...**
+1. Dans la scène `Joueur`, sélectionne le nœud `Joueur`. 🎯
+2. Clique-droit dessus et sélectionne **Ajouter un nœud enfant...** 🎯
 
     ![Ajouter un nœud enfant](assets/090_ajouter_noeud_enfant.png)
 
-3. Dans la fenêtre qui apparaît, recherche `Camera`.
-4. Sélectionne `Camera2D` et appuie sur **Créer**.
+3. Dans la fenêtre qui apparaît, recherche `Camera`. 🎯
+4. Sélectionne `Camera2D` et appuie sur **Créer**. 🎯
     - La caméra va suivre le joueur dans le jeu.
 
     ![Ajouter une Camera2D](assets/091_camera2d.gif)
 
-5. **Teste le jeu.**
+5. **Teste le jeu.** 🎯
 
 Ça fonctionne, mais c'est encore petit. Il faut ajuster le zoom.
 
-1. Dans le volet Scène, sélectionne le nœud `Camera2D`.
+1. Dans le volet Scène, sélectionne le nœud `Camera2D`. 🎯
 2. Complètement à droite de l'écran, dans l'**Inspecteur**, tu devrais voir plein de propriétés.
-3. Recherche `Zoom`.
-4. Mets `4.0` dans le `x`.
+3. Recherche `Zoom`. 🎯
+4. Mets `4.0` dans le `x`. 🎯
 
     ![Zoom de la caméra](assets/092_zoom_camera.gif)
 
-5. **Teste le jeu.** Et puis?
+5. **Teste le jeu.** 🎯 Et puis?
 
 ---
 
@@ -332,28 +351,28 @@ As-tu remarqué que le personnage est très petit? C'est parce qu'on n'a pas mis
 
 Si tu as remarqué, le personnage se promène toujours en regardant du même côté et n'a pas d'animation. On va améliorer son code.
 
-1. Va dans le code du joueur en cliquant sur le bouton **Script** au milieu, en haut de la fenêtre.
+1. Va dans le code du joueur en cliquant sur le bouton **Script** au milieu, en haut de la fenêtre. 🎯
 
     ![Bouton Script](assets/100_bouton_script.png)
 
-2. Assure-toi que `joueur.gd` est sélectionné dans le volet de gauche.
+2. Assure-toi que `joueur.gd` est sélectionné dans le volet de gauche. 🎯
     - La première ligne de code devrait débuter par `extends CharacterBody2D`.
 
     ![Script du joueur](assets/101_script_joueur.png)
 
-3. Sélectionne tout le code avec le raccourci `Ctrl + A`.
-4. **Supprime le code!** On va le remplacer.
+3. Sélectionne tout le code avec le raccourci `Ctrl + A`. 🎯
+4. **Supprime le code!** 🎯 On va le remplacer.
 
     ![Supprimer le code](assets/102_supprimer_code.gif)
 
-5. Dans le système de fichiers en bas à gauche, ouvre le dossier `fallback`.
-6. Double-clique sur le fichier `joueur.txt` pour l'ouvrir.
+5. Dans le système de fichiers en bas à gauche, ouvre le dossier `fallback`. 🎯
+6. Double-clique sur le fichier `joueur.txt` pour l'ouvrir. 🎯
     - Tu devrais maintenant voir `joueur.gd(*)` et `joueur.txt` dans le volet des fichiers ouverts.
 
     ![Le dossier fallback](assets/103_fallback.png)
 
-7. Dans `joueur.txt`, fais `Ctrl + A` pour tout sélectionner, puis `Ctrl + C` pour copier.
-8. Sélectionne le fichier `joueur.gd` et colle le contenu avec `Ctrl + V`.
+7. Dans `joueur.txt`, fais `Ctrl + A` pour tout sélectionner, puis `Ctrl + C` pour copier. 🎯
+8. Sélectionne le fichier `joueur.gd` et colle le contenu avec `Ctrl + V`. 🎯
     - Le code devrait maintenant être en couleur.
 
     ![Copier-coller le code](assets/104_copier_coller.gif)
@@ -409,7 +428,7 @@ func _physics_process(delta: float) -> void:
     - `flip_h` permet de retourner l'image du personnage horizontalement selon la direction dans laquelle il se déplace.
     - Selon qu'il est au sol ou en l'air, et qu'il bouge ou non, on joue l'animation `repos`, `courir` ou `sauter`.
 
-9. **Teste le jeu!**
+9. **Teste le jeu!** 🎯
 
 ![Résultat](assets/105_resultat.gif)
 
@@ -419,26 +438,26 @@ func _physics_process(delta: float) -> void:
 
 Si on tombe de la plateforme, que se passe-t-il? On aimerait que le jeu recommence lorsque le personnage tombe. J'ai fait une petite scène pour nous simplifier la vie.
 
-1. Retourne dans la scène `Monde` en mode 2D.
-    - Profites-en pour descendre ton personnage plus bas, près de la plateforme.
-2. Recherche le fichier `killzone.tscn` et glisse-le sur le nœud `Monde`.
+1. Retourne dans la scène `Monde` en mode 2D. 🎯
+    - Profites-en pour descendre ton personnage plus bas, près de la plateforme. 🎯
+2. Recherche le fichier `killzone.tscn` et glisse-le sur le nœud `Monde`. 🎯
 
     ![Ajouter la Killzone](assets/110_killzone.gif)
 
 3. Tu remarques un ⚠️ à côté de `Killzone`. C'est parce qu'on doit définir une zone pour la mort. Ce que l'on veut, c'est tout le plancher.
-4. Clique-droit sur le nœud `Killzone` et fais **Ajouter un nœud enfant...**
-5. Recherche et ajoute un `CollisionShape2D`.
+4. Clique-droit sur le nœud `Killzone` et fais **Ajouter un nœud enfant...** 🎯
+5. Recherche et ajoute un `CollisionShape2D`. 🎯
 
     ![Ajouter un CollisionShape2D](assets/111_collisionshape.gif)
 
 6. Maintenant, il y a un ⚠️ à côté de `CollisionShape2D`. C'est qu'on n'a pas donné de forme à la collision.
-7. À droite de l'écran, dans l'**Inspecteur**, recherche la propriété `Shape`.
-8. Clique sur le champ **vide** et sélectionne `WorldBoundaryShape2D` dans la liste.
+7. À droite de l'écran, dans l'**Inspecteur**, recherche la propriété `Shape`. 🎯
+8. Clique sur le champ **vide** et sélectionne `WorldBoundaryShape2D` dans la liste. 🎯
     - Ça indique que la forme est une limite du monde.
 
     ![WorldBoundaryShape2D](assets/112_worldboundary.gif)
 
-9. **Teste le jeu.**
+9. **Teste le jeu.** 🎯
 
 Qu'arrive-t-il? (1)
 { .annotate }
@@ -447,27 +466,27 @@ Qu'arrive-t-il? (1)
 
 On doit placer la limite du monde plus bas.
 
-1. Sélectionne le nœud `Killzone`.
-2. À droite du cadenas dans la barre d'outils au-dessus de la zone de travail, il y a une petite icône avec deux carrés. Clique dessus.
+1. Sélectionne le nœud `Killzone`. 🎯
+2. À droite du cadenas dans la barre d'outils au-dessus de la zone de travail, il y a une petite icône avec deux carrés. Clique dessus. 🎯
     - Ça permet de grouper les nœuds ensemble pour les déplacer d'un bloc.
 
     ![Grouper les nœuds](assets/113_grouper.gif)
 
-3. Va au point (0, 0) du jeu, là où les lignes verte et rouge se croisent. Tu devrais voir `Killzone`.
-4. Sélectionne-la et glisse-la vers le bas de l'écran, sous la plateforme.
+3. Va au point (0, 0) du jeu, là où les lignes verte et rouge se croisent. 🎯 Tu devrais voir `Killzone`.
+4. Sélectionne-la et glisse-la vers le bas de l'écran, sous la plateforme. 🎯
 
     ![Déplacer la Killzone](assets/114_deplacer_killzone.gif)
 
-5. **Teste le jeu** en tombant de la plateforme. Tu devrais pouvoir mourir et recommencer.
+5. **Teste le jeu** en tombant de la plateforme. 🎯 Tu devrais pouvoir mourir et recommencer.
 
 ---
 
 ## Étape 12 : Un autre palier
 
-1. Sélectionne le nœud `Map`.
-2. Dans le volet **TileMap**, sélectionne une tuile de gazon (ou une autre que tu aimes).
-3. Trace deux autres paliers.
-4. **Teste le jeu.**
+1. Sélectionne le nœud `Map`. 🎯
+2. Dans le volet **TileMap**, sélectionne une tuile de gazon (ou une autre que tu aimes). 🎯
+3. Trace deux autres paliers. 🎯
+4. **Teste le jeu.** 🎯
 
 ![Ajouter des paliers](assets/120_paliers.gif)
 
@@ -477,16 +496,16 @@ On doit placer la limite du monde plus bas.
 
 J'ai fait un ennemi pour que tu puisses l'ajouter rapidement dans le jeu.
 
-1. Recherche le fichier `slime.tscn`.
-2. Ajoute-le au milieu du 2e palier.
-3. **Teste le jeu.** Que se passe-t-il?
+1. Recherche le fichier `slime.tscn`. 🎯
+2. Ajoute-le au milieu du 2e palier. 🎯
+3. **Teste le jeu.** 🎯 Que se passe-t-il?
 
 ![Ajouter un slime](assets/130_slime.gif)
 
 L'ennemi ne peut voir que les murs devant lui pour se retourner. Il faut donc le bloquer.
 
-1. Ajoute un mur (des tuiles) à chaque extrémité du palier.
-2. **Teste le jeu.** Touche à l'ennemi pour voir ce qui arrive!
+1. Ajoute un mur (des tuiles) à chaque extrémité du palier. 🎯
+2. **Teste le jeu.** 🎯 Touche à l'ennemi pour voir ce qui arrive!
 
 ![Ajouter des murs](assets/131_murs.gif)
 
@@ -496,9 +515,9 @@ L'ennemi ne peut voir que les murs devant lui pour se retourner. Il faut donc le
 
 Ça serait le fun de pouvoir récolter des pièces de monnaie. J'ai aussi fait des pièces!
 
-1. Trouve le fichier `piece.tscn`.
-2. Glisses-en 3 ou 4 sur les paliers.
-3. **Teste le jeu.** Monte le son!
+1. Trouve le fichier `piece.tscn`. 🎯
+2. Glisses-en 3 ou 4 sur les paliers. 🎯
+3. **Teste le jeu.** 🎯 Monte le son!
 
 ![Ajouter des pièces](assets/140_pieces.gif)
 
@@ -508,16 +527,16 @@ L'ennemi ne peut voir que les murs devant lui pour se retourner. Il faut donc le
 
 Il y a aussi la possibilité de mettre de la musique.
 
-1. Double-clique sur le fichier `musique.tscn`.
-2. Sélectionne le nœud `Musique`.
-3. Dans l'**Inspecteur** à droite de l'écran, recherche `Autoplay`.
-4. Coche l'option **Activé**.
-5. **Teste le jeu.**
+1. Double-clique sur le fichier `musique.tscn`. 🎯
+2. Sélectionne le nœud `Musique`. 🎯
+3. Dans l'**Inspecteur** à droite de l'écran, recherche `Autoplay`. 🎯
+4. Coche l'option **Activé**. 🎯
+5. **Teste le jeu.** 🎯
 
 ![Activer la musique](assets/150_musique.gif)
 
 !!! warning "Le jeu ne veut plus se relancer sur le web?"
-    Si le jeu refuse de se réexécuter dans Godot Web, décoche l'option `Autoplay` de la musique. Ça semble causer le problème.
+    Si le jeu refuse de se réexécuter dans Godot Web, décoche l'option `Autoplay` de la musique. 🎯 Ça semble causer le problème.
 
 ---
 
@@ -525,21 +544,21 @@ Il y a aussi la possibilité de mettre de la musique.
 
 Ça serait le fun de voir le nombre de pièces récoltées.
 
-1. Dans le volet Scène de `Monde`, trouve le nœud `GestionnaireJeu`.
-2. Clique-droit dessus et fais **Ajouter un nœud enfant...**
-3. Recherche et ajoute un `Label`.
+1. Dans le volet Scène de `Monde`, trouve le nœud `GestionnaireJeu`. 🎯
+2. Clique-droit dessus et fais **Ajouter un nœud enfant...** 🎯
+3. Recherche et ajoute un `Label`. 🎯
 
     ![Ajouter un Label](assets/160_label.gif)
 
-4. Renomme le `Label` pour `Pointage`.
+4. Renomme le `Label` pour `Pointage`. 🎯
     - Avec un « P » majuscule et sans faute! Le code du gestionnaire de jeu cherche un nœud avec exactement ce nom.
 
     ![Renommer le Label](assets/161_renommer.gif)
 
-5. Dans l'**Inspecteur**, tu devrais voir une zone marquée `Text`. Écris « Bonjour » dedans.
+5. Dans l'**Inspecteur**, tu devrais voir une zone marquée `Text`. Écris « Bonjour » dedans. 🎯
 6. Trouve le point (0, 0). Tu devrais voir « Bonjour ».
-7. Déplace-le au-dessus du logo.
-8. **Teste le jeu.** Ramasse une pièce et regarde le texte changer.
+7. Déplace-le au-dessus du logo. 🎯
+8. **Teste le jeu.** Ramasse une pièce 🎯 et regarde le texte changer.
 
 ![Le pointage](assets/162_pointage.gif)
 
@@ -560,11 +579,11 @@ Il y a aussi la possibilité de mettre de la musique.
 
 Avec Godot Web, ton projet reste dans le navigateur. Si tu veux le garder :
 
-1. Va dans le menu **Projet**.
-2. Sélectionne **Outils**, puis **Download project source**.
+1. Va dans le menu **Projet**. 🎯
+2. Sélectionne **Outils**, puis **Download project source**. 🎯
 3. Le fichier sera sauvegardé dans ton dossier **Téléchargements**.
     - Tu pourras le mettre sur une clé USB.
-4. Pour rouvrir le projet, refais les étapes 2 et 3 du début avec ce fichier.
+4. Pour rouvrir le projet, refais les étapes 2 et 3 du début avec ce fichier. 🎯
 
 ![Sauvegarder le projet](assets/170_sauvegarder.png)
 
@@ -586,34 +605,34 @@ J'ai fait des plateformes qu'on peut déplacer. Il va falloir bien suivre, car c
 
 ### Ajouter la plateforme
 
-1. Sélectionne le nœud `Niveau`.
-2. Glisse le fichier `plateforme.tscn` sur `Niveau`.
+1. Sélectionne le nœud `Niveau`. 🎯
+2. Glisse le fichier `plateforme.tscn` sur `Niveau`. 🎯
     - La plateforme sera à (0, 0).
-3. Déplace la plateforme près du jeu.
+3. Déplace la plateforme près du jeu. 🎯
 
 ![Ajouter la plateforme](assets/200_plateforme.gif)
 
 ### Créer l'animation
 
-1. Clique-droit sur le nœud `Plateforme` et ajoute un enfant de type `AnimationPlayer`.
+1. Clique-droit sur le nœud `Plateforme` et ajoute un enfant de type `AnimationPlayer`. 🎯
     - Ce nœud permet d'animer des objets.
 2. Dans le volet inférieur, il y a une section **Animation**.
-3. Clique sur le bouton **Animation** et sélectionne **Nouveau**.
-4. Donne le nom `bouge`.
+3. Clique sur le bouton **Animation** et sélectionne **Nouveau**. 🎯
+4. Donne le nom `bouge`. 🎯
 
 ![Ajouter un AnimationPlayer](assets/201_animationplayer.gif)
 
 ### Le point de départ
 
-1. Sélectionne le nœud `Plateforme`.
-2. Dans l'**Inspecteur**, recherche et clique sur `Transform`.
+1. Sélectionne le nœud `Plateforme`. 🎯
+2. Dans l'**Inspecteur**, recherche et clique sur `Transform`. 🎯
 3. Tu devrais voir `Position` avec `x` et `y`.
-4. Positionne la plateforme à son point de départ.
+4. Positionne la plateforme à son point de départ. 🎯
 
     ![Position de départ](assets/202_position.gif)
 
-5. Repère la petite clé à côté de `Position` et clique dessus.
-6. Un message apparaît. Clique sur **Créer**.
+5. Repère la petite clé à côté de `Position` et clique dessus. 🎯
+6. Un message apparaît. Clique sur **Créer**. 🎯
     - Ça crée ce qu'on appelle une **clé** dans la ligne de temps. L'animation va démarrer à la position où était la plateforme lorsque tu as cliqué sur la clé.
 
     ![Créer une clé](assets/203_cle.gif)
@@ -621,13 +640,13 @@ J'ai fait des plateformes qu'on peut déplacer. Il va falloir bien suivre, car c
 ### Le point d'arrivée
 
 1. Dans la ligne de temps, repère la ligne bleue verticale. Elle indique où en est l'animation.
-2. Déplace-la à **1 seconde**.
+2. Déplace-la à **1 seconde**. 🎯
 
     ![La ligne de temps](assets/204_ligne_temps.gif)
 
-3. En t'assurant que la ligne bleue est à la bonne place, déplace la plateforme à sa destination.
+3. En t'assurant que la ligne bleue est à la bonne place, déplace la plateforme à sa destination. 🎯
     - Astuce : maintiens la touche `Majuscule` enfoncée pour déplacer en ligne droite.
-4. Clique de nouveau sur la clé à côté de `Position`.
+4. Clique de nouveau sur la clé à côté de `Position`. 🎯
 
     ![Destination](assets/205_destination.gif)
 
@@ -640,11 +659,11 @@ J'ai fait des plateformes qu'on peut déplacer. Il va falloir bien suivre, car c
 ![Options de l'animation](assets/207_options_animation.png)
 
 - **Cercle rouge** : le bouton *Play* au-dessus de la ligne de temps permet d'avoir un aperçu de l'animation.
-- **Cercle bleu** : le bouton **Lecture automatique** permet de démarrer l'animation automatiquement lorsque le jeu commence. Active-le!
-- **Cercle jaune** : la boucle en **boomerang** permet à la plateforme de faire un va-et-vient. Active-la aussi!
+- **Cercle bleu** : le bouton **Lecture automatique** permet de démarrer l'animation automatiquement lorsque le jeu commence. Active-le! 🎯
+- **Cercle jaune** : la boucle en **boomerang** permet à la plateforme de faire un va-et-vient. Active-la aussi! 🎯
 - La valeur à côté du chronomètre est la **durée de l'animation**.
 
-**Teste le jeu!**
+**Teste le jeu!** 🎯
 
 ![Plateforme mobile](assets/208_plateforme_finale.gif)
 
