@@ -7,9 +7,6 @@ llm_instructions: |
 
 # Atelier numéro 2 : Jeu de plateforme
 
-!!! danger "À réviser"
-    Note pour l'enseignant : cette leçon doit être révisée avant d'être utilisée en classe.
-
 !!! tip "Repère 🎯"
     Le symbole 🎯 indique un endroit où **tu dois faire une action** (cliquer, glisser, taper, tester, etc.). Si tu vois 🎯, c'est à ton tour d'agir!
 
