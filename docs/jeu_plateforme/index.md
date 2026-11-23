@@ -268,6 +268,9 @@ Il est maintenant temps de faire comme tout programmeur : programmer!
 
 1. Active la scène `Joueur`. 🎯
 2. Sélectionne le nœud `Joueur`. 🎯
+
+    <video controls src="assets/055_ouvrir_joueur.mp4" title="Ajouter le joueur" autoplay muted loop></video>
+
 3. Pour ajouter du code, on doit **attacher un script** au nœud. Dans le coin supérieur droit du volet Scène, il y a une petite icône en forme de parchemin avec un petit plus vert. Clique dessus. 🎯
 
     ![Bouton pour ajouter un script](assets/071_bouton_ajout_script.png)
@@ -289,25 +292,26 @@ Il est maintenant temps de faire comme tout programmeur : programmer!
 Godot donne du code de base, mais il manque des trucs. On va ajouter un plancher rapidement pour voir si ça fonctionne bien.
 
 1. Reviens à la scène `Monde`. 🎯
-2. Dans le volet Scène, repère le nœud `Map`. 🎯
+2. Clique sur le bouton "2D" dans la barre centrale supérieure pour revenir en mode design. 🎯
+3. Dans le volet Scène, repère le nœud `Map`. 🎯
     - Tu en as peut-être 2, un en dessous de l'autre. Sélectionne celui qui est le plus bas. 🎯
 
     ![Le nœud Map](assets/080_noeud_map.gif)
 
-3. Le volet inférieur change et affiche plein de petites images. Ce sont des **tuiles** qui vont nous permettre de dessiner le niveau.
+4. Le volet inférieur change et affiche plein de petites images. Ce sont des **tuiles** qui vont nous permettre de dessiner le niveau.
     - Tu peux agrandir l'affichage en faisant rouler la molette de la souris. 🎯
 
     ![Les tuiles](assets/081_tuiles.gif)
 
-4. Vois-tu un carré jaune lorsque tu promènes la souris sur les tuiles? Ça va nous permettre de dessiner.
-5. Sélectionne la tuile avec du gazon. 🎯
+5. Vois-tu un carré jaune lorsque tu promènes la souris sur les tuiles? Ça va nous permettre de dessiner.
+6. Sélectionne la tuile avec du gazon. 🎯
     - C'est comme un programme de dessin, mais avec des tuiles.
-6. Trace quelques tuiles en dessous du logo, sous le personnage. 🎯
+7. Trace quelques tuiles en dessous du logo, sous le personnage. 🎯
     - Tu peux effacer une ou plusieurs tuiles avec le **bouton droit** de la souris. 🎯
 
     ![Dessiner le plancher](assets/082_dessiner_plancher.gif)
 
-7. **Teste le jeu.** 🎯
+8. **Teste le jeu.** 🎯
     - Tu peux déplacer le personnage avec les flèches du clavier. 🎯
     - Pour sauter, appuie sur `Espace`. 🎯
 
@@ -337,7 +341,7 @@ As-tu remarqué que le personnage est très petit? C'est parce qu'on n'a pas mis
 Ça fonctionne, mais c'est encore petit. Il faut ajuster le zoom.
 
 1. Dans le volet Scène, sélectionne le nœud `Camera2D`. 🎯
-2. Complètement à droite de l'écran, dans l'**Inspecteur**, tu devrais voir plein de propriétés.
+2. Complètement à droite de l'écran, dans l'**Inspecteur**, tu devrais voir plein de texte que l'on appelle **propriétés**.
 3. Recherche `Zoom`. 🎯
 4. Mets `4.0` dans le `x`. 🎯
 

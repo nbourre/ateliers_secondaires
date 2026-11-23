@@ -27,5 +27,5 @@ Notes de conversion du pptx `Douance - Atelier - 02 - plateforme.pptx` vers `ind
 
 ## Images
 
-- Diapo 65 (options d'animation) : recadrée à partir du rendu de la diapo pour garder les cercles rouge, bleu et jaune (`207_options_animation.png`).
+- Diapo 65 (options d'animation) : nouvelle capture dans Godot 4.7.2, annotée avec les mêmes couleurs que la diapo : cercles rouge, bleu et jaune, flèche verte et libellé « Durée de l'animation » (`207_options_animation.png`).
 - Toutes les autres images et vidéos sont extraites telles quelles du pptx.
